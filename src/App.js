@@ -2,19 +2,15 @@ import './App.css';
 import { Button } from '@material-ui/core';
 import styled from 'styled-components';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 
 function App() {
-  const { handleSubmit, control } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const submit = (data) => {
     console.log("submitting!");
     console.log(data);
-  }
-
-  const upload = () => {
-    console.log("DONE");
   }
 
   return (
@@ -25,53 +21,22 @@ function App() {
         <h1>Welcome to AnyTutor</h1>
 
         <form onSubmit={handleSubmit(submit)} className="uploads">
-          <Controller
-            control={control}
-            name="audio-upload"
-            render={({ field }) => 
-              <>
-                <input
-                  name="audio"
-                  accept="audio/*"
-                  id="contained-button-file"
-                  type="file"
-                  // hidden
-                  // required
-                  onChange={upload}
-                  {...field}
-                />
-                <label htmlFor="contained-button-file">
-                  <Button type="button" variant="contained" color="primary" component="span"  >
-                    Upload Audio (.mp3, .wav)
-                  </Button>
-                </label>
-              </>
-            }
-          />
 
-          <Controller
-            control={control}
-            name="video-upload"
-            render={({ field }) => 
-              <div className="video">
-                <input
-                  name="video"
-                  accept="video/*"
-                  id="contained-button-file"
-                  type="file"
-                  // hidden
-                  // required
-                  onChange={upload}
-                  // {...field}
-                />
-                <label htmlFor="contained-button-file">
-                  <Button type="button" variant="contained" color="primary" component="span"  >
-                    Upload Video (.mp4)
-                  </Button>
-                </label>
-              </div>
-            }
-          />
+          <input 
+            name="audio"
+            accept="audio/*"
+            id="contained-button-file"
+            type="file"
+            required
+            {...register("audio-upload")} />
+
+          <input 
+            name="video"
+            accept="video/*"
+            id="contained-button-file"
+            type="file"
+            required
+            {...register("video-upload")} />
 
           <Button
             className="submit"
