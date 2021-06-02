@@ -1,106 +1,63 @@
-import { useState } from "react";
-import './App.css';
-import { Button } from '@material-ui/core';
-import styled from 'styled-components';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import "./App.css";
+import { Button } from "@material-ui/core";
+import styled from "styled-components";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import { useForm } from "react-hook-form";
-import FileUploader from './components/FileUploader';
-
+import AudioVideoUploader from "./components/AudioVideoUploader";
 
 function App() {
-  const axios = require('axios').default;
-  const { register, handleSubmit } = useForm();
-  const [selectedAudio, setSelectedAudio] = useState(null);
-  const API_ENDPOINT = 'https://nf4yot096j.execute-api.ap-southeast-1.amazonaws.com/default/getPresignedURL';
-  const API_VID_ENDPOINT = 'https://5n58vjjzdd.execute-api.ap-southeast-1.amazonaws.com/default/getVidPresignedURL';
+  const { handleSubmit } = useForm();
 
   const submit = (data) => {
     console.log(data);
-    fetch('https://8c3vifq9mj.execute-api.ap-southeast-1.amazonaws.com/default/test-socket', {
-      method: 'POST',
-      mode: 'no-cors',  // TODO: Check what the proper method is; need to handle error
-      headers: {
-        "Access-Control-Allow-Origin": '*',
-        'Content-Type': 'application/json',
-        'Accept': '*/*',
-      },
-    }).then(res => res.json())
-      .then(res => console.log(res))
-      .catch( (error) => {
+    fetch(
+      "https://8c3vifq9mj.execute-api.ap-southeast-1.amazonaws.com/default/test-socket",
+      {
+        method: "POST",
+        mode: "no-cors", // TODO: Check what the proper method is; need to handle error
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+          Accept: "*/*",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => console.log(res))
+      .catch((error) => {
         console.log(error);
       });
-  }
-  
-  const uploadAudio = async (file) => {
-    setSelectedAudio(file);
-    console.log("AUDIO CHANGING");
-    const response = await axios({
-      method: 'GET',
-      url: API_ENDPOINT
-    })
-
-    console.log(response.data.uploadURL);
-    console.log(file);
-
-    const result = await fetch(response.data.uploadURL, {
-      method: 'PUT',
-      headers: {
-        "Content-Type": "audio/*"
-      },
-      body: file,
-    })
-
-    console.log('Result: ', result)
-  }
-
-
-  const uploadVideo = async (file) => {
-    // * Get pre-signed URL
-    const response = await axios({
-      method: 'GET',
-      url: API_VID_ENDPOINT
-    })
-
-    // * Upload file to S3 via pre-signed URL
-    const result = await fetch(response.data.uploadURL, {
-      method: 'PUT',
-      headers: {
-        "Content-Type": "video/mp4"
-      },
-      body: file,
-    })
-
-    console.log('Result: ', result)
-  }
+  };
 
   return (
     <div className="App">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-      
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      />
+
       <AppStyled>
-        <h1>Welcome to AnyTutor</h1>
+        <h1>Welcome to AnyTutor!</h1>
+
+        <div className="audio">
+          <AudioVideoUploader isAudio={true} />
+        </div>
+        <AudioVideoUploader isAudio={false} />
+        <ul className="video-requirements">
+          <li>Video must have a face in every frame!</li>
+          <li>We recommend a short video ~10-20s long :)</li>
+        </ul>
 
         <form onSubmit={handleSubmit(submit)} className="uploads">
-          <FileUploader
-            onFileSelectSuccess={(file) => uploadAudio(file)}
-            onFileSelectError={({ error }) => alert(error)}
-            accept="audio/*"
-          />
-
-          <FileUploader
-            onFileSelectSuccess={(file) => uploadVideo(file)}
-            onFileSelectError={({ error }) => alert(error)}
-            accept="video/mp4"
-          />
-
           <Button
             className="submit"
             variant="contained"
             color="secondary"
             startIcon={<CloudUploadIcon />}
             type="submit"
-          >Submit</Button>
-
+          >
+            Submit
+          </Button>
         </form>
       </AppStyled>
     </div>
@@ -117,7 +74,12 @@ const AppStyled = styled.main`
   }
 
   .audio {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .video-requirements {
+    list-style: none;
+    padding: 0;
   }
 
   .submit {
