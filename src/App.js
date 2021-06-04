@@ -4,6 +4,7 @@ import styled from "styled-components";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import { useForm } from "react-hook-form";
 import AudioVideoUploader from "./components/AudioVideoUploader";
+import { Helmet } from "react-helmet";
 
 function App() {
   const { handleSubmit } = useForm();
@@ -31,13 +32,18 @@ function App() {
 
   return (
     <div className="App">
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-      />
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>AnyTutor</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        />
+      </Helmet>
 
       <AppStyled>
-        <h1>Welcome to AnyTutor!</h1>
+        <h1>Welcome!</h1>
 
         <div className="audio">
           <AudioVideoUploader isAudio={true} />

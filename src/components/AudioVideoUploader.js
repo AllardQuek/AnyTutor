@@ -46,7 +46,13 @@ const AudioVideoUploader = ({ isAudio }) => {
       submitButtonDisabled={(files) => files.length > 1}
       inputContent={isAudio ? "Drop 1 Audio File" : "Drop 1 Video File"}
       styles={{
-        dropzoneReject: { borderColor: "red", backgroundColor: "#DAA" },
+        dropzone: {
+          overflow: "auto",
+        },
+        dropzoneReject: {
+          borderColor: "red",
+          backgroundColor: "#DAA",
+        },
         inputLabel: (files, extra) => (extra.reject ? { color: "red" } : {}),
       }}
     />
