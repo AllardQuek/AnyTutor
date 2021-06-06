@@ -37,7 +37,6 @@ const AudioVideoUploader = ({ isAudio }) => {
 
   return (
     <Dropzone
-      //   getUploadParams={getUploadParams}
       onChangeStatus={handleChangeStatus}
       onSubmit={handleSubmit}
       accept={isAudio ? "audio/*" : "video/*"}

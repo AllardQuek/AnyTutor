@@ -1,34 +1,87 @@
 import "./App.css";
+import { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
 import styled from "styled-components";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
-import { useForm } from "react-hook-form";
-import AudioVideoUploader from "./components/AudioVideoUploader";
 import { Helmet } from "react-helmet";
+import Fire from "./components/Fire";
+import Login from "./components/Login";
+import Home from "./components/Home";
 
 function App() {
-  const { handleSubmit } = useForm();
+  const [user, setUser] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [hasAccount, setHasAccount] = useState(false);
 
-  const submit = (data) => {
-    console.log(data);
-    fetch(
-      "https://8c3vifq9mj.execute-api.ap-southeast-1.amazonaws.com/default/test-socket",
-      {
-        method: "POST",
-        mode: "no-cors", // TODO: Check what the proper method is; need to handle error
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-          Accept: "*/*",
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((res) => console.log(res))
-      .catch((error) => {
-        console.log(error);
+  const clearInputs = () => {
+    setEmail("");
+    setPassword("");
+  };
+
+  const clearErrors = () => {
+    setEmailError("");
+    setPasswordError("");
+  };
+
+  const handleLogin = () => {
+    clearErrors();
+    Fire.auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch((err) => {
+        switch (err.code) {
+          case "auth/invalid-email":
+          case "auth/user-disabled":
+          case "auth/user-not-found":
+            setEmailError(err.message);
+            break;
+          case "auth/wrong-password":
+            setPasswordError(err.message);
+            break;
+          default:
+            break;
+        }
       });
   };
+
+  const handleSignUp = () => {
+    clearErrors();
+    Fire.auth()
+      .createUserWithEmailAndPassword(email, password)
+      .catch((err) => {
+        switch (err.code) {
+          case "auth/email-already-in-use":
+          case "auth/invalid-email":
+            setEmailError(err.message);
+            break;
+          case "auth/weak-password":
+            setPasswordError(err.message);
+            break;
+          default:
+            break;
+        }
+      });
+  };
+
+  const handleLogout = () => {
+    Fire.auth().signOut();
+  };
+
+  const authListener = () => {
+    Fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        clearInputs();
+        setUser(user);
+      } else {
+        setUser("");
+      }
+    });
+  };
+
+  useEffect(() => {
+    authListener();
+  }, []);
 
   return (
     <div className="App">
@@ -41,56 +94,24 @@ function App() {
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
         />
       </Helmet>
-
-      <AppStyled>
-        <h1>Welcome!</h1>
-
-        <div className="audio">
-          <AudioVideoUploader isAudio={true} />
-        </div>
-        <AudioVideoUploader isAudio={false} />
-        <ul className="video-requirements">
-          <li>Video must have a face in every frame!</li>
-          <li>We recommend a short video ~10-20s long :)</li>
-        </ul>
-
-        <form onSubmit={handleSubmit(submit)} className="uploads">
-          <Button
-            className="submit"
-            variant="contained"
-            color="secondary"
-            startIcon={<CloudUploadIcon />}
-            type="submit"
-          >
-            Submit
-          </Button>
-        </form>
-      </AppStyled>
+      {user ? (
+        <Home handleLogout={handleLogout}></Home>
+      ) : (
+        <Login
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          handleLogin={handleLogin}
+          handleSignUp={handleSignUp}
+          hasAccount={hasAccount}
+          setHasAccount={setHasAccount}
+          emailError={emailError}
+          passwordError={passwordError}
+        />
+      )}
     </div>
   );
 }
-
-const AppStyled = styled.main`
-  .uploads {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .audio {
-    margin-bottom: 1rem;
-  }
-
-  .video-requirements {
-    list-style: none;
-    padding: 0;
-  }
-
-  .submit {
-    margin-top: 1.5rem;
-  }
-`;
 
 export default App;
