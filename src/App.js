@@ -15,7 +15,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 
 function App() {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -79,9 +79,10 @@ function App() {
     Fire.auth().onAuthStateChanged((user) => {
       if (user) {
         clearInputs();
-        setUser(user);
+        // setUser(user);
+        setUser(true);
       } else {
-        setUser("");
+        setUser(false);
       }
     });
   };
@@ -109,7 +110,6 @@ function App() {
             exact
             restricted={false}
             component={Home}
-            user={user}
             handleLogout={handleLogout}
           />
           <PublicRoute
@@ -117,7 +117,6 @@ function App() {
             exact
             restricted={true}
             component={Login}
-            user={user}
             email={email}
             setEmail={setEmail}
             password={password}
@@ -128,6 +127,12 @@ function App() {
             setHasAccount={setHasAccount}
             emailError={emailError}
             passwordError={passwordError}
+          />
+          <PrivateRoute
+            component={Uploader}
+            handleLogout={handleLogout}
+            path="/upload"
+            exact
           />
         </Switch>
       </Router>

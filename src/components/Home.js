@@ -1,11 +1,9 @@
 import { Button } from "@material-ui/core";
 
-const Home = (user) => {
-  console.log();
+const Home = () => {
   return (
     <div>
       <h1>Hello World</h1>
-
       <Button
         className="submit"
         variant="contained"
