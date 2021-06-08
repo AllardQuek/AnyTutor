@@ -9,7 +9,10 @@ import {
 } from "react-router-dom";
 import Fire from "./components/Fire";
 import Login from "./components/Login";
+import Uploader from "./components/Uploader";
 import Home from "./components/Home";
+import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublicRoute";
 
 function App() {
   const [user, setUser] = useState("");
@@ -101,26 +104,31 @@ function App() {
 
       <Router>
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route
+          <PublicRoute path="/" exact restricted={false} component={Home} />
+          <PublicRoute
             path="/login"
             exact
-            render={(props) => (
-              <Login
-                {...props}
-                email={email}
-                setEmail={setEmail}
-                password={password}
-                setPassword={setPassword}
-                handleLogin={handleLogin}
-                handleSignUp={handleSignUp}
-                hasAccount={hasAccount}
-                setHasAccount={setHasAccount}
-                emailError={emailError}
-                passwordError={passwordError}
-              />
-            )}
+            restricted={true}
+            component={Login}
+            user={user}
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+            handleLogin={handleLogin}
+            handleSignUp={handleSignUp}
+            hasAccount={hasAccount}
+            setHasAccount={setHasAccount}
+            emailError={emailError}
+            passwordError={passwordError}
           />
+          <PrivateRoute
+            path="/upload"
+            exact
+            component={Uploader}
+            handleLogout={handleLogout}
+            user={user}
+          ></PrivateRoute>
         </Switch>
       </Router>
     </div>
