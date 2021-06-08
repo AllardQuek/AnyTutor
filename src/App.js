@@ -1,8 +1,12 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { Button } from "@material-ui/core";
-import styled from "styled-components";
 import { Helmet } from "react-helmet";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Redirect,
+  Route,
+} from "react-router-dom";
 import Fire from "./components/Fire";
 import Login from "./components/Login";
 import Home from "./components/Home";
@@ -94,22 +98,31 @@ function App() {
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
         />
       </Helmet>
-      {user ? (
-        <Home handleLogout={handleLogout}></Home>
-      ) : (
-        <Login
-          email={email}
-          setEmail={setEmail}
-          password={password}
-          setPassword={setPassword}
-          handleLogin={handleLogin}
-          handleSignUp={handleSignUp}
-          hasAccount={hasAccount}
-          setHasAccount={setHasAccount}
-          emailError={emailError}
-          passwordError={passwordError}
-        />
-      )}
+
+      <Router>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route
+            path="/login"
+            exact
+            render={(props) => (
+              <Login
+                {...props}
+                email={email}
+                setEmail={setEmail}
+                password={password}
+                setPassword={setPassword}
+                handleLogin={handleLogin}
+                handleSignUp={handleSignUp}
+                hasAccount={hasAccount}
+                setHasAccount={setHasAccount}
+                emailError={emailError}
+                passwordError={passwordError}
+              />
+            )}
+          />
+        </Switch>
+      </Router>
     </div>
   );
 }
