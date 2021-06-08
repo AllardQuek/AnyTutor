@@ -1,6 +1,7 @@
 import { Button } from "@material-ui/core";
 
-const Home = () => {
+const Home = (user) => {
+  console.log();
   return (
     <div>
       <h1>Hello World</h1>

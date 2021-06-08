@@ -104,7 +104,14 @@ function App() {
 
       <Router>
         <Switch>
-          <PublicRoute path="/" exact restricted={false} component={Home} />
+          <PublicRoute
+            path="/"
+            exact
+            restricted={false}
+            component={Home}
+            user={user}
+            handleLogout={handleLogout}
+          />
           <PublicRoute
             path="/login"
             exact
@@ -122,13 +129,6 @@ function App() {
             emailError={emailError}
             passwordError={passwordError}
           />
-          <PrivateRoute
-            path="/upload"
-            exact
-            component={Uploader}
-            handleLogout={handleLogout}
-            user={user}
-          ></PrivateRoute>
         </Switch>
       </Router>
     </div>
