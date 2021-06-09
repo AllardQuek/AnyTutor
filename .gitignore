@@ -1,5 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# assets
+/src/images
+/src/videos
+
 # dependencies
 /node_modules
 /.pnp
@@ -23,3 +27,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 dump*
+
