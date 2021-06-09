@@ -9,7 +9,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
-import Navbar from "./components/NavBar";
+import Navbar from "./components/Navbar";
 
 function App() {
   const [user, setUser] = useState(false);
