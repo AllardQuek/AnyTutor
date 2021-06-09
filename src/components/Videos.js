@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
     left: 0,
   },
   header: {
-    color: "#FFF",
+    color: "#fff",
   },
 }));
 
