@@ -1,18 +1,15 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Redirect,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import Fire from "./components/Fire";
 import Login from "./components/Login";
 import Uploader from "./components/Uploader";
-import Home from "./components/Home";
+import Home from "./pages/Home";
+import About from "./pages/About";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
+import Navbar from "./components/NavBar";
 
 function App() {
   const [user, setUser] = useState(false);
@@ -104,6 +101,8 @@ function App() {
       </Helmet>
 
       <Router>
+        <Navbar />
+
         <Switch>
           <PublicRoute
             path="/"
@@ -111,6 +110,12 @@ function App() {
             restricted={false}
             component={Home}
             handleLogout={handleLogout}
+          />
+          <PublicRoute
+            path="/about"
+            exact
+            restricted={false}
+            component={About}
           />
           <PublicRoute
             path="/login"
