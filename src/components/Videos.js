@@ -8,12 +8,14 @@ const useStyles = makeStyles(() => ({
     position: "relative",
     paddingBottom: "3rem",
     display: "flex",
-    // paddingTop: "56.25%",
   },
   player: {
     position: "absolute",
     top: 0,
     left: 0,
+  },
+  header: {
+    color: "#FFF",
   },
 }));
 
@@ -27,7 +29,7 @@ function Cards() {
 
   return (
     <>
-      <h1>Check out these sample videos!</h1>
+      <h1 className={classes.header}>Check out these sample videos!</h1>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Grid container justify="center" spacing={2}>
