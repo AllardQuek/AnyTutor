@@ -26,6 +26,7 @@ video {
   
   .landing-container > p {
     margin-top: 8px;
+    margin-bottom: 16px;
     color: #fff;
     font-size: 32px;
     font-family: 'Roboto', sans-serif;
