@@ -20,7 +20,7 @@
   }
 
   .navbar-logo {
-    color: #fff;
+    color: var(--logo-color);
     justify-self: start;
     margin-left: 20px;
     cursor: pointer;
@@ -32,6 +32,7 @@
   
   .navbar-name {
     margin-left: 0.5rem;
+    font-weight: 500;
   }
   
   .nav-menu {
@@ -50,7 +51,7 @@
   }
   
   .nav-links {
-    color: #fff;
+    color: var(--font-nav-color);
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -59,6 +60,6 @@
   }
   
   .nav-links:hover {
-    border-bottom: 4px solid #fff;
+    border-bottom: 4px solid var(--hover-color);
     transition: all 0.2s ease-out;
   }
