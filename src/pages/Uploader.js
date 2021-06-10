@@ -44,8 +44,7 @@ const Uploader = ({ text }) => {
       </ul>
 
       <form onSubmit={handleSubmit(submit)} className="uploads">
-        {/* <button className="submit">Submit</button> */}
-        <Button text="Submit"></Button>
+        <Button text="Submit" className="btn-submit"></Button>
       </form>
     </AppStyled>
   );

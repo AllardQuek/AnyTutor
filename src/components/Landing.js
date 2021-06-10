@@ -1,23 +1,21 @@
-import "../App.css";
+import styled from "styled-components";
 import "./Landing.css";
-import { Button } from "@material-ui/core";
+import Button from "./Button";
 
 function Landing() {
   return (
-    <div className="landing-container">
-      <h1>REINVENT EDUCATION</h1>
-      <p>What are you waiting for?</p>
-      <Button
-        className="submit"
-        variant="contained"
-        color="primary"
-        type="submit"
-        href="/login"
-      >
-        Get Started
-      </Button>
-    </div>
+    <LandingStyled>
+      <div className="landing-container">
+        <h1>REINVENT EDUCATION</h1>
+        <p>What are you waiting for?</p>
+        <div className="btn-started">
+          <Button className="btn-started" text="Get Started" href="/login" />
+        </div>
+      </div>
+    </LandingStyled>
   );
 }
+
+const LandingStyled = styled.div``;
 
 export default Landing;

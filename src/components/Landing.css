@@ -31,7 +31,7 @@ video {
     font-size: 32px;
     font-family: 'Roboto', sans-serif;
   }
-  
+
   @media screen and (max-width: 960px) {
     .landing-container > h1 {
       font-size: 70px;

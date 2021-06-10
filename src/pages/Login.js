@@ -1,5 +1,6 @@
 import BackgroundStyle from "../styles/BackgroundStyle";
-import { Button } from "@material-ui/core";
+import Button from "../components/Button";
+// import { Button } from "@material-ui/core";
 
 const Login = (props) => {
   const {
@@ -56,13 +57,17 @@ const Login = (props) => {
           </p>
         )}
         <Button
+          text={hasAccount ? "Login" : "Sign up"}
+          className="btn-submit"
+        />
+        {/* <Button
           className="submit"
           variant="contained"
           color="primary"
           type="submit"
         >
           {hasAccount ? <div>Login</div> : <div>Sign Up </div>}
-        </Button>
+        </Button> */}
       </form>
     </>
   );
