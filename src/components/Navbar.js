@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import FeaturedVideoIcon from "@material-ui/icons/FeaturedVideo";
-import MenuIcon from "@material-ui/icons/Menu";
 
 function Navbar({ user, handleLogout }) {
   const [click, setClick] = useState(false);
