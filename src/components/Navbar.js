@@ -4,7 +4,7 @@ import "./Navbar.css";
 import FeaturedVideoIcon from "@material-ui/icons/FeaturedVideo";
 import MenuIcon from "@material-ui/icons/Menu";
 
-function Navbar() {
+function Navbar({ user, handleLogout }) {
   const [click, setClick] = useState(false);
   const closeMobileMenu = () => setClick(false);
 
@@ -21,6 +21,33 @@ function Navbar() {
               About
             </Link>
           </li>
+          {user ? (
+            <>
+              <li className="nav-item">
+                <Link
+                  to="/upload-image"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  Image
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  to="/upload-video"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  Video
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="" className="nav-links" onClick={handleLogout}>
+                  Logout
+                </Link>
+              </li>
+            </>
+          ) : null}
         </ul>
       </div>
     </nav>
