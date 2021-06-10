@@ -2,7 +2,6 @@
 
 # assets
 /src/images
-/src/videos
 
 # dependencies
 /node_modules
