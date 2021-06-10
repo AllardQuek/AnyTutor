@@ -74,19 +74,18 @@ function App() {
     fire.auth().signOut();
   };
 
-  const authListener = () => {
-    fire.auth().onAuthStateChanged((user) => {
-      if (user) {
-        clearInputs();
-        // setUser(user);
-        setUser(true);
-      } else {
-        setUser(false);
-      }
-    });
-  };
-
   useEffect(() => {
+    const authListener = () => {
+      fire.auth().onAuthStateChanged((user) => {
+        if (user) {
+          clearInputs();
+          // setUser(user);
+          setUser(true);
+        } else {
+          setUser(false);
+        }
+      });
+    };
     authListener();
   }, []);
 
@@ -110,6 +109,7 @@ function App() {
             path="/"
             exact
             restricted={false}
+            home={true}
             component={Home}
             handleLogout={handleLogout}
           />
