@@ -10,6 +10,7 @@ const useStyles = makeStyles(() => ({
   },
   header: {
     color: "#fff",
+    textTransform: "uppercase",
   },
 }));
 
@@ -23,7 +24,7 @@ function Cards() {
 
   return (
     <>
-      <h1 className={classes.header}>Check out these sample videos!</h1>
+      <h1 className={classes.header}>Use Cases</h1>
       <Grid container direction="row" justify="center" spacing={2}>
         {urls.map((url, value) => (
           <Grid key={value} item>
