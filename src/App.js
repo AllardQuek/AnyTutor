@@ -1,15 +1,15 @@
-import "./App.css";
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import Fire from "./components/Fire";
-import Login from "./components/Login";
-import Uploader from "./components/Uploader";
+import Login from "./pages/Login";
+import Uploader from "./pages/Uploader";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 import Navbar from "./components/Navbar";
+import homeVid from "./videos/homeVid.mp4";
 
 function App() {
   const [user, setUser] = useState(false);
@@ -99,9 +99,9 @@ function App() {
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
         />
       </Helmet>
-
+      <video src={homeVid} autoPlay loop muted />
       <Router>
-        <Navbar />
+        <Navbar user={user} handleLogout={handleLogout} />
 
         <Switch>
           <PublicRoute
@@ -135,8 +135,14 @@ function App() {
           />
           <PrivateRoute
             component={Uploader}
-            handleLogout={handleLogout}
-            path="/upload"
+            text="Upload your lesson video containing a face in every frame!"
+            path="/upload-video"
+            exact
+          />
+          <PrivateRoute
+            component={Uploader}
+            text="Upload an image of a face!"
+            path="/upload-image"
             exact
           />
         </Switch>
