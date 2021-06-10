@@ -6,6 +6,7 @@ const PublicRoute = ({
   component: Component,
   restricted,
   handleLogout,
+  home,
   ...rest
 }) => {
   return (
@@ -14,7 +15,7 @@ const PublicRoute = ({
       render={(props) =>
         isLoggedIn() && restricted ? (
           <Redirect to="/upload-video" />
-        ) : isLoggedIn() && !restricted ? (
+        ) : isLoggedIn() && home ? (
           <Uploader handleLogout={handleLogout} />
         ) : (
           <Component {...props} {...rest} />
