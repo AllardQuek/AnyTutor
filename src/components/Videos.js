@@ -18,7 +18,7 @@ function Cards() {
   const urls = [
     "https://youtu.be/KiT95Rp9Q4Y",
     "https://youtu.be/oeUUG7OH-SQ",
-    "https://youtu.be/tHjFBbSCszU",
+    "https://youtu.be/EJP64UFpF-A",
   ];
 
   return (
