@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
-import Fire from "./components/Fire";
+import fire from "./components/fire";
 import Login from "./pages/Login";
 import Uploader from "./pages/Uploader";
 import Home from "./pages/Home";
@@ -31,7 +31,8 @@ function App() {
 
   const handleLogin = () => {
     clearErrors();
-    Fire.auth()
+    fire
+      .auth()
       .signInWithEmailAndPassword(email, password)
       .catch((err) => {
         switch (err.code) {
@@ -51,7 +52,8 @@ function App() {
 
   const handleSignUp = () => {
     clearErrors();
-    Fire.auth()
+    fire
+      .auth()
       .createUserWithEmailAndPassword(email, password)
       .catch((err) => {
         switch (err.code) {
@@ -69,11 +71,11 @@ function App() {
   };
 
   const handleLogout = () => {
-    Fire.auth().signOut();
+    fire.auth().signOut();
   };
 
   const authListener = () => {
-    Fire.auth().onAuthStateChanged((user) => {
+    fire.auth().onAuthStateChanged((user) => {
       if (user) {
         clearInputs();
         // setUser(user);
