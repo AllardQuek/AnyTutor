@@ -1,10 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
 const BackgroundStyle = createGlobalStyle`
-	* {
-		background-color: var(--background-dark-color); 
+	body {
+		background-color: var(--primary-color); 
 	}
-	
+
 	video {
 		display: none;
 	}
