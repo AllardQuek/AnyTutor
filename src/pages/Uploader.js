@@ -1,9 +1,8 @@
 import { useForm } from "react-hook-form";
-import { Button } from "@material-ui/core";
 import styled from "styled-components";
 import BackgroundStyle from "../styles/BackgroundStyle";
 import AudioVideoUploader from "../components/AudioVideoUploader";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import Button from "../components/Button";
 
 const Uploader = ({ text }) => {
   const { handleSubmit } = useForm();
@@ -45,15 +44,8 @@ const Uploader = ({ text }) => {
       </ul>
 
       <form onSubmit={handleSubmit(submit)} className="uploads">
-        <Button
-          className="submit"
-          variant="contained"
-          color="secondary"
-          startIcon={<CloudUploadIcon />}
-          type="submit"
-        >
-          Submit
-        </Button>
+        {/* <button className="submit">Submit</button> */}
+        <Button text="Submit"></Button>
       </form>
     </AppStyled>
   );
@@ -75,10 +67,6 @@ const AppStyled = styled.main`
   .video-requirements {
     list-style: none;
     padding: 0;
-  }
-
-  .submit {
-    margin-top: 1.5rem;
   }
 `;
 
