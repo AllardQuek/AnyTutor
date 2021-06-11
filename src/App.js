@@ -30,6 +30,7 @@ function App() {
   };
 
   const handleLogin = () => {
+    console.log("LOFFING ING");
     clearErrors();
     fire
       .auth()
@@ -39,9 +40,12 @@ function App() {
           case "auth/invalid-email":
           case "auth/user-disabled":
           case "auth/user-not-found":
+            console.log("ER");
             setEmailError(err.message);
             break;
           case "auth/wrong-password":
+            console.log("EROR");
+
             setPasswordError(err.message);
             break;
           default:

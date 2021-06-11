@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
-const Button = ({ text, href, className }) => {
+const Button = ({ text, href, className, onClick }) => {
   const classes = "btn " + className;
 
   return (
     <ButtonStyled>
       <a href={href}>
-        <button className={classes}>{text}</button>
+        <button type="submit" className={classes} onclick={onClick}>
+          {text}
+        </button>
       </a>
     </ButtonStyled>
   );
