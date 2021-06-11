@@ -1,6 +1,5 @@
 import { Route, Redirect } from "react-router-dom";
 import { isLoggedIn } from "./isLoggedIn";
-import Uploader from "../pages/Uploader";
 
 const PublicRoute = ({
   component: Component,
@@ -13,10 +12,8 @@ const PublicRoute = ({
     <Route
       {...rest}
       render={(props) =>
-        isLoggedIn() && restricted ? (
+        isLoggedIn() && (restricted || home) ? (
           <Redirect to="/upload-video" />
-        ) : isLoggedIn() && home ? (
-          <Uploader handleLogout={handleLogout} />
         ) : (
           <Component {...props} {...rest} />
         )

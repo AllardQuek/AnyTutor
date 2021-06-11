@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import fire from "./components/fire";
 import Login from "./pages/Login";
-import Uploader from "./pages/Uploader";
+import Uploader from "./pages/Upload";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import PrivateRoute from "./components/PrivateRoute";
@@ -141,13 +141,16 @@ function App() {
           />
           <PrivateRoute
             component={Uploader}
-            text="Upload your lesson video containing a face in every frame!"
+            text="Upload your speech audio (.mp3) and a short video (.mp4) of someone's
+            face!"
+            mediaType="audio/*"
             path="/upload-video"
             exact
           />
           <PrivateRoute
             component={Uploader}
             text="Upload an image of a face!"
+            mediaType="image/*"
             path="/upload-image"
             exact
           />

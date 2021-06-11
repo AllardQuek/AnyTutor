@@ -1,12 +1,22 @@
 import "react-dropzone-uploader/dist/styles.css";
 import Dropzone from "react-dropzone-uploader";
 
-const AudioVideoUploader = ({ isAudio }) => {
+const Uploader = ({ mediaType }) => {
   const axios = require("axios").default;
 
-  const url = isAudio
-    ? "https://nf4yot096j.execute-api.ap-southeast-1.amazonaws.com/default/getPresignedURL"
-    : "https://5n58vjjzdd.execute-api.ap-southeast-1.amazonaws.com/default/getVidPresignedURL";
+  const url =
+    mediaType === "audio/*"
+      ? "https://nf4yot096j.execute-api.ap-southeast-1.amazonaws.com/default/getPresignedURL"
+      : mediaType === "image/*"
+      ? "" // TODO: Update image presigned URL
+      : "https://5n58vjjzdd.execute-api.ap-southeast-1.amazonaws.com/default/getVidPresignedURL";
+
+  const inputContent =
+    mediaType === "audio/*"
+      ? "Drop 1 Audio File"
+      : mediaType === "image/*"
+      ? "Drop 1 Image File"
+      : "Drop 1 Video File";
 
   const handleChangeStatus = ({ meta }, status) => {
     console.log(status, meta);
@@ -27,7 +37,7 @@ const AudioVideoUploader = ({ isAudio }) => {
     const result = await fetch(response.data.uploadURL, {
       method: "PUT",
       headers: {
-        "Content-Type": isAudio ? "audio/*" : "video/mp4",
+        "Content-Type": { mediaType },
       },
       body: f,
     });
@@ -39,11 +49,11 @@ const AudioVideoUploader = ({ isAudio }) => {
     <Dropzone
       onChangeStatus={handleChangeStatus}
       onSubmit={handleSubmit}
-      accept={isAudio ? "audio/*" : "video/*"}
+      accept={mediaType}
       maxFiles={1}
       multiple={false}
       submitButtonDisabled={(files) => files.length > 1}
-      inputContent={isAudio ? "Drop 1 Audio File" : "Drop 1 Video File"}
+      inputContent={inputContent}
       styles={{
         dropzone: {
           overflow: "auto",
@@ -58,4 +68,4 @@ const AudioVideoUploader = ({ isAudio }) => {
   );
 };
 
-export default AudioVideoUploader;
+export default Uploader;
