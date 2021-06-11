@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
     paddingBottom: "3rem",
   },
   header: {
-    color: "#fff",
+    marginTop: "3rem",
     textTransform: "uppercase",
   },
 }));

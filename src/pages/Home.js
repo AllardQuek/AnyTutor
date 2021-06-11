@@ -8,11 +8,17 @@ const Home = () => {
     <HomeStyled>
       <NavbarStyle />
       <Landing />
-      <Videos />
+      <div className="vids">
+        <Videos />
+      </div>
     </HomeStyled>
   );
 };
 
-const HomeStyled = styled.div``;
+const HomeStyled = styled.div`
+  .vids {
+    color: #fff;
+  }
+`;
 
 export default Home;
