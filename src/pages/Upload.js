@@ -15,7 +15,7 @@ const Uploader = ({ text, mediaType }) => {
 
     console.log(data);
     const url =
-      mediaType === "audio/*"
+      mediaType === "video/*"
         ? "https://8c3vifq9mj.execute-api.ap-southeast-1.amazonaws.com/default/test-socket"
         : ""; // TODO Update submission URL for image
 
@@ -42,14 +42,19 @@ const Uploader = ({ text, mediaType }) => {
       <h2 className="sub-heading">{text}</h2>
 
       <div className="audio">
-        <AudioVideoUploader mediaType={mediaType} />
+        <AudioVideoUploader mediaType="audio/*" />
       </div>
 
-      <AudioVideoUploader mediaType="video/*" />
-      <ul className="video-requirements">
-        <li>Video must have a face in every frame!</li>
-        <li>We recommend a short video ~10-20s long :)</li>
-      </ul>
+      <AudioVideoUploader mediaType={mediaType} />
+
+      {mediaType === "video/*" ? (
+        <ul className="video-requirements">
+          <li>Video must have a face in every frame!</li>
+          <li>We recommend a short video ~10-20s long :)</li>
+        </ul>
+      ) : (
+        <></>
+      )}
 
       <form onSubmit={handleSubmit(submit)} className="uploads">
         <Button text="Submit" className="btn-submit"></Button>
