@@ -4,19 +4,25 @@ import Dropzone from "react-dropzone-uploader";
 const Uploader = ({ mediaType }) => {
   const axios = require("axios").default;
 
-  const url =
-    mediaType === "audio/*"
-      ? "https://nf4yot096j.execute-api.ap-southeast-1.amazonaws.com/default/getPresignedURL"
-      : mediaType === "image/*"
-      ? "" // TODO: Update image presigned URL
-      : "https://5n58vjjzdd.execute-api.ap-southeast-1.amazonaws.com/default/getVidPresignedURL";
+  // * Initialize variables to empty string
+  var url, inputContent, contentType;
 
-  const inputContent =
-    mediaType === "audio/*"
-      ? "Drop 1 Audio File"
-      : mediaType === "image/*"
-      ? "Drop 1 Image File"
-      : "Drop 1 Video File";
+  if (mediaType === "audio/*") {
+    // * Endpoints to AWS Lambda functions that will fetch pre-signed URLs
+    url =
+      "https://nf4yot096j.execute-api.ap-southeast-1.amazonaws.com/default/getPresignedURL";
+    inputContent = "Drop 1 Audio File";
+    contentType = "audio/*";
+  } else if (mediaType === "video/mp4") {
+    url =
+      "https://5n58vjjzdd.execute-api.ap-southeast-1.amazonaws.com/default/getVidPresignedURL";
+    inputContent = "Drop 1 Video File";
+    contentType = "video/mp4";
+  } else {
+    url = ""; // TODO: Create image URL
+    inputContent = "Drop 1 Image File";
+    contentType = "image/*";
+  }
 
   const handleChangeStatus = ({ meta }, status) => {
     console.log(status, meta);
@@ -25,8 +31,7 @@ const Uploader = ({ mediaType }) => {
   const handleSubmit = async (files) => {
     // We limit uploads to only 1
     const f = files[0];
-    console.log(f.meta);
-    f.remove();
+    console.log(f["file"]);
 
     console.log("Uploading to S3...");
     const response = await axios({
@@ -34,12 +39,13 @@ const Uploader = ({ mediaType }) => {
       url: url,
     });
 
+    // * Using the returned URL, make a PUT request to upload media to S3 bucket
     const result = await fetch(response.data.uploadURL, {
       method: "PUT",
       headers: {
-        "Content-Type": { mediaType },
+        "Content-Type": contentType,
       },
-      body: f,
+      body: f["file"], // ! WATCH OUT !
     });
 
     console.log("Result: ", result);
