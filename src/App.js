@@ -30,7 +30,6 @@ function App() {
   };
 
   const handleLogin = () => {
-    console.log("LOFFING ING");
     clearErrors();
     fire
       .auth()
@@ -40,12 +39,9 @@ function App() {
           case "auth/invalid-email":
           case "auth/user-disabled":
           case "auth/user-not-found":
-            console.log("ER");
             setEmailError(err.message);
             break;
           case "auth/wrong-password":
-            console.log("EROR");
-
             setPasswordError(err.message);
             break;
           default:
@@ -84,6 +80,7 @@ function App() {
         if (user) {
           clearInputs();
           // setUser(user);
+          console.log(user.uid);
           setUser(true);
         } else {
           setUser(false);
@@ -143,7 +140,7 @@ function App() {
             component={Upload}
             text="Upload your speech audio (.mp3) and a short video (.mp4) of someone's
             face!"
-            mediaType="video/*"
+            mediaType="video/mp4"
             path="/upload-video"
             exact
           />
