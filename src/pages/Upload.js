@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import BackgroundStyle from "../styles/BackgroundStyle";
-import AudioVideoUploader from "../components/Uploader";
+import Uploader from "../components/Uploader";
 import Button from "../components/Button";
 
-const Uploader = ({ text, mediaType }) => {
+const Upload = ({ text, mediaType }) => {
   const { handleSubmit } = useForm();
 
   const submit = (data) => {
@@ -13,12 +13,13 @@ const Uploader = ({ text, mediaType }) => {
       return;
     }
 
-    console.log(data);
+    // * Endpoint to lambda that will run our notebook
     const url =
-      mediaType === "video/*"
+      mediaType === "video/mp4"
         ? "https://8c3vifq9mj.execute-api.ap-southeast-1.amazonaws.com/default/test-socket"
         : ""; // TODO Update submission URL for image
 
+    console.log(url);
     fetch(url, {
       method: "POST",
       mode: "no-cors", // TODO: Check what the proper method is; need to handle error
@@ -31,6 +32,7 @@ const Uploader = ({ text, mediaType }) => {
       .then((res) => res.json())
       .then((res) => console.log(res))
       .catch((error) => {
+        console.log("CAUGHT ERROR");
         console.log(error);
       });
   };
@@ -42,10 +44,10 @@ const Uploader = ({ text, mediaType }) => {
       <h2 className="sub-heading">{text}</h2>
 
       <div className="audio">
-        <AudioVideoUploader mediaType="audio/*" />
+        <Uploader mediaType="audio/*" />
       </div>
 
-      <AudioVideoUploader mediaType={mediaType} />
+      <Uploader mediaType={mediaType} />
 
       {mediaType === "video/*" ? (
         <ul className="video-requirements">
@@ -87,4 +89,4 @@ const AppStyled = styled.main`
   }
 `;
 
-export default Uploader;
+export default Upload;
