@@ -6,7 +6,7 @@ const Button = ({ text, href, className, onClick }) => {
   return (
     <ButtonStyled>
       <a href={href}>
-        <button type="submit" className={classes} onclick={onClick}>
+        <button type="submit" className={classes} onClick={onClick}>
           {text}
         </button>
       </a>
