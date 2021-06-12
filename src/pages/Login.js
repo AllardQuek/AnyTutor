@@ -78,17 +78,6 @@ const Login = (props) => {
           toggleLogin={toggleLogin}
         ></LoginToggle>
 
-        {/* {hasAccount ? (
-          <p>
-            Don't have an account?
-            <span onClick={() => setHasAccount(!hasAccount)}> Sign up </span>
-          </p>
-        ) : (
-          <p>
-            Already have an account?
-            <span onClick={() => setHasAccount(!hasAccount)}> Log in</span>
-          </p>
-        )} */}
         <Button
           text={hasAccount ? "Login" : "Sign up"}
           className="btn-submit"
