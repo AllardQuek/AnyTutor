@@ -14,6 +14,7 @@ import homeVid from "./videos/homeVid.mp4";
 function App() {
   const [user, setUser] = useState(false);
   const [email, setEmail] = useState("");
+  const [uploadEmail, setUploadEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -79,9 +80,10 @@ function App() {
       fire.auth().onAuthStateChanged((user) => {
         if (user) {
           clearInputs();
-          // setUser(user);
-          console.log(user.uid);
+          // console.log(user.email);
+          setUploadEmail(user.email);
           setUser(true);
+          console.log(uploadEmail);
         } else {
           setUser(false);
         }
@@ -141,6 +143,7 @@ function App() {
             text="Upload your speech audio (.mp3) and a short video (.mp4) of someone's
             face!"
             mediaType="video/mp4"
+            uploadEmail={uploadEmail}
             path="/upload-video"
             exact
           />
@@ -148,6 +151,7 @@ function App() {
             component={Upload}
             text="Upload an image of a face!"
             mediaType="image/*"
+            uploadEmail={uploadEmail}
             path="/upload-image"
             exact
           />
