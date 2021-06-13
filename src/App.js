@@ -16,7 +16,9 @@ function App() {
   const [email, setEmail] = useState("");
   const [uploadEmail, setUploadEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
+  const [emailError, setEmailError] = useState(
+    "Please use a legit email as all results will be sent to it!"
+  );
   const [passwordError, setPasswordError] = useState("");
   const [hasAccount, setHasAccount] = useState(false);
 
