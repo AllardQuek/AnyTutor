@@ -5,7 +5,7 @@ const Uploader = ({ mediaType }) => {
   const axios = require("axios").default;
 
   // * Initialize variables to empty string
-  var url, inputContent, contentType;
+  let [url, inputContent, contentType] = "";
 
   if (mediaType === "audio/*") {
     // * Endpoints to AWS Lambda functions that will fetch pre-signed URLs
