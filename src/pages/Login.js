@@ -36,7 +36,11 @@ const Login = (props) => {
       <BackgroundStyle />
       <form className="login" onSubmit={handleSubmit}>
         <div>
-          <Grid container spacing={1} alignItems="center">
+          <Grid
+            container
+            spacing={1}
+            alignItems={hasAccount ? "flex-end" : "center"}
+          >
             <Grid item>
               <EmailIcon />
             </Grid>
@@ -46,14 +50,18 @@ const Login = (props) => {
                 label="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                helperText={emailError}
+                helperText={
+                  !hasAccount && !emailError
+                    ? "Please use a legit email as results will be sent to it!"
+                    : emailError
+                }
               />
             </Grid>
           </Grid>
         </div>
 
         <div>
-          <Grid container spacing={1} alignItems="center">
+          <Grid container spacing={1} alignItems="flex-end">
             <Grid item>
               <LockIcon />
             </Grid>
