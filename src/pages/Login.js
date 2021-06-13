@@ -36,7 +36,7 @@ const Login = (props) => {
       <BackgroundStyle />
       <form className="login" onSubmit={handleSubmit}>
         <div>
-          <Grid container spacing={1} alignItems="flex-end">
+          <Grid container spacing={1} alignItems="center">
             <Grid item>
               <EmailIcon />
             </Grid>
@@ -53,7 +53,7 @@ const Login = (props) => {
         </div>
 
         <div>
-          <Grid container spacing={1} alignItems="flex-end">
+          <Grid container spacing={1} alignItems="center">
             <Grid item>
               <LockIcon />
             </Grid>
