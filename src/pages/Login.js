@@ -3,7 +3,7 @@ import Button from "../components/Button";
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import PersonIcon from "@material-ui/icons/Person";
+import EmailIcon from "@material-ui/icons/Email";
 import LockIcon from "@material-ui/icons/Lock";
 import LoginToggle from "../components/LoginToggle";
 
@@ -38,12 +38,12 @@ const Login = (props) => {
         <div>
           <Grid container spacing={1} alignItems="flex-end">
             <Grid item>
-              <PersonIcon />
+              <EmailIcon />
             </Grid>
             <Grid item>
               <TextField
                 className="text-field"
-                label="Username"
+                label="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 helperText={emailError}
