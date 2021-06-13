@@ -49,6 +49,7 @@ const Uploader = ({ mediaType }) => {
     });
 
     console.log("Result: ", result);
+    alert("File uploaded successfully!");
   };
 
   return (

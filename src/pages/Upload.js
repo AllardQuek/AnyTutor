@@ -4,7 +4,7 @@ import BackgroundStyle from "../styles/BackgroundStyle";
 import Uploader from "../components/Uploader";
 import Button from "../components/Button";
 
-const Upload = ({ text, mediaType }) => {
+const Upload = ({ text, mediaType, uploadEmail }) => {
   const { handleSubmit } = useForm();
 
   const submit = (data) => {
@@ -22,15 +22,20 @@ const Upload = ({ text, mediaType }) => {
     console.log(url);
     fetch(url, {
       method: "POST",
-      mode: "no-cors", // TODO: Check what the proper method is; need to handle error
+      mode: "cors",
       headers: {
-        "Access-Control-Allow-Origin": "*",
+        // * No need to overwrite Access-Control-Allow-Origin	here!
         "Content-Type": "application/json",
-        Accept: "*/*",
       },
+      body: JSON.stringify({ email: uploadEmail, b: 2 }), // * Make sure JSON data
     })
       .then((res) => res.json())
       .then((res) => console.log(res))
+      .then((res) =>
+        alert(
+          "Submitted! You will receive the result in your email in about 5 minutes (for a ~20s video) :)"
+        )
+      )
       .catch((error) => {
         console.log("CAUGHT ERROR");
         console.log(error);
