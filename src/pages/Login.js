@@ -22,7 +22,6 @@ const Login = (props) => {
   } = props;
 
   const handleSubmit = (e) => {
-    console.log("submitting");
     e.preventDefault();
     hasAccount ? handleLogin() : handleSignUp();
   };
@@ -89,7 +88,7 @@ const Login = (props) => {
         <Button
           text={hasAccount ? "Login" : "Sign up"}
           className="btn-submit"
-          onClick={handleSubmit}
+          type="submit"
         />
       </form>
     </LoginStyled>

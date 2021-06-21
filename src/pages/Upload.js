@@ -3,6 +3,7 @@ import styled from "styled-components";
 import BackgroundStyle from "../styles/BackgroundStyle";
 import Uploader from "../components/Uploader";
 import Button from "../components/Button";
+import { withRouter } from "react-router-dom";
 
 const Upload = ({ text, mediaType, uploadEmail }) => {
   const { handleSubmit } = useForm();
@@ -94,4 +95,4 @@ const AppStyled = styled.main`
   }
 `;
 
-export default Upload;
+export default withRouter(Upload);

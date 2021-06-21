@@ -1,5 +1,5 @@
 import { Route, Redirect } from "react-router-dom";
-import { isLoggedIn } from "./isLoggedIn";
+import firebase from "firebase/app";
 
 const PublicRoute = ({
   component: Component,
@@ -8,16 +8,18 @@ const PublicRoute = ({
   home,
   ...rest
 }) => {
+  console.log("PUBLIC");
+
   return (
     <Route
       {...rest}
-      render={(props) =>
-        isLoggedIn() && (restricted || home) ? (
+      render={(props) => {
+        return firebase.auth().currentUser && (restricted || home) ? (
           <Redirect to="/upload-video" />
         ) : (
           <Component {...props} {...rest} />
-        )
-      }
+        );
+      }}
     />
   );
 };

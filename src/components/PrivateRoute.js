@@ -1,18 +1,20 @@
 import { Route, Redirect } from "react-router-dom";
-import { isLoggedIn } from "./isLoggedIn";
+import firebase from "firebase/app";
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const PrivateRoute = ({ component: Component, user, ...rest }) => {
+  console.log("PRIVATE");
+
+  // Show the component only when the user is logged in, else redirect the user to /login page
   return (
-    // Show the component only when the user is logged in, else redirect the user to /login page
     <Route
       {...rest}
-      render={(props) =>
-        isLoggedIn() ? (
+      render={(props) => {
+        return firebase.auth().currentUser ? (
           <Component {...props} {...rest} />
         ) : (
           <Redirect to="/login" />
-        )
-      }
+        );
+      }}
     />
   );
 };
