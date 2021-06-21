@@ -8,8 +8,7 @@ const PublicRoute = ({
   home,
   ...rest
 }) => {
-  console.log("PUBLIC");
-
+  // console.log("PUBLIC");
   return (
     <Route
       {...rest}
