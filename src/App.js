@@ -137,6 +137,14 @@ function App() {
             passwordError={passwordError}
           />
           <PrivateRoute
+            path="/upload-image"
+            exact
+            component={Upload}
+            text="Upload your speech audio (.mp3) and an image of a face!"
+            mediaType="image/*"
+            uploadEmail={uploadEmail}
+          />
+          <PrivateRoute
             path="/upload-video"
             exact
             component={Upload}
@@ -146,11 +154,13 @@ function App() {
             uploadEmail={uploadEmail}
           />
           <PrivateRoute
-            path="/upload-image"
+            path="/upload-lesson"
             exact
             component={Upload}
-            text="Upload an image of a face!"
-            mediaType="image/*"
+            text="Upload your lesson video and a short video (.mp4) of someone's
+            face!"
+            mediaType="video/mp4"
+            lessonVid={true}
             uploadEmail={uploadEmail}
           />
         </Switch>

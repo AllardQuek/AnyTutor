@@ -41,6 +41,15 @@ function Navbar({ user, handleLogout }) {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link
+                  to="/upload-lesson"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  Lesson
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link to="" className="nav-links" onClick={handleLogout}>
                   Logout
                 </Link>
