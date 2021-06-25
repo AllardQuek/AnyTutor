@@ -18,7 +18,7 @@ function Cards() {
   const classes = useStyles();
   const urls = [
     "https://youtu.be/KiT95Rp9Q4Y",
-    "https://youtu.be/oeUUG7OH-SQ",
+    "https://youtu.be/vnxwlkxF_bE",
     "https://youtu.be/EJP64UFpF-A",
   ];
 
