@@ -9,16 +9,9 @@ const Upload = ({ text, mediaType, uploadEmail }) => {
   const { handleSubmit } = useForm();
 
   const submit = (data) => {
-    if (mediaType === "image/*") {
-      alert("Oops! This feature isn't ready yet :)");
-      return;
-    }
-
     // * Endpoint to lambda that will run our notebook
     const url =
-      mediaType === "video/mp4"
-        ? "https://8c3vifq9mj.execute-api.ap-southeast-1.amazonaws.com/default/test-socket"
-        : ""; // TODO Update submission URL for image
+      "https://8c3vifq9mj.execute-api.ap-southeast-1.amazonaws.com/default/test-socket";
 
     console.log(url);
     fetch(url, {
@@ -28,7 +21,7 @@ const Upload = ({ text, mediaType, uploadEmail }) => {
         // * No need to overwrite Access-Control-Allow-Origin	here!
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email: uploadEmail, b: 2 }), // * Make sure JSON data
+      body: JSON.stringify({ email: uploadEmail, mediaType: mediaType }), // * Make sure JSON data
     })
       .then((res) => res.json())
       .then((res) => console.log(res))

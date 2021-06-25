@@ -1,7 +1,7 @@
 import "react-dropzone-uploader/dist/styles.css";
 import Dropzone from "react-dropzone-uploader";
 
-const Uploader = ({ mediaType }) => {
+const Uploader = ({ mediaType, lessonVid }) => {
   const axios = require("axios").default;
 
   // * Initialize variables to empty string
@@ -19,9 +19,10 @@ const Uploader = ({ mediaType }) => {
     inputContent = "Drop 1 Video File";
     contentType = "video/mp4";
   } else {
-    url = ""; // TODO: Create image URL
+    url =
+      "https://6s7sw5hnci.execute-api.ap-southeast-1.amazonaws.com/default/getPresignedImageURL";
     inputContent = "Drop 1 Image File";
-    contentType = "image/*";
+    contentType = "image/jpeg";
   }
 
   const handleChangeStatus = ({ meta }, status) => {
@@ -37,6 +38,7 @@ const Uploader = ({ mediaType }) => {
     const response = await axios({
       method: "GET",
       url: url,
+      body: JSON.stringify({ lessonVid: lessonVid }),
     });
 
     // * Using the returned URL, make a PUT request to upload media to S3 bucket
