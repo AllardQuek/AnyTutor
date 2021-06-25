@@ -5,7 +5,7 @@ import Uploader from "../components/Uploader";
 import Button from "../components/Button";
 import { withRouter } from "react-router-dom";
 
-const Upload = ({ text, mediaType, uploadEmail }) => {
+const Upload = ({ text, mediaType, uploadEmail, lessonVid }) => {
   const { handleSubmit } = useForm();
 
   const submit = (data) => {
@@ -21,7 +21,11 @@ const Upload = ({ text, mediaType, uploadEmail }) => {
         // * No need to overwrite Access-Control-Allow-Origin	here!
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email: uploadEmail, mediaType: mediaType }), // * Make sure JSON data
+      body: JSON.stringify({
+        email: uploadEmail,
+        mediaType: mediaType,
+        lessonVid: lessonVid,
+      }), // * Make sure JSON data
     })
       .then((res) => res.json())
       .then((res) => console.log(res))
@@ -42,8 +46,12 @@ const Upload = ({ text, mediaType, uploadEmail }) => {
       <h1>Welcome to AnyTutor!</h1>
       <h2 className="sub-heading">{text}</h2>
 
-      <div className="audio">
-        <Uploader mediaType="audio/*" />
+      <div className="first-media">
+        {lessonVid ? (
+          <Uploader mediaType="video/mp4" lessonVid={lessonVid} />
+        ) : (
+          <Uploader mediaType="audio/*" />
+        )}
       </div>
 
       <Uploader mediaType={mediaType} />
@@ -73,7 +81,7 @@ const AppStyled = styled.main`
     text-align: center;
   }
 
-  .audio {
+  .first-media {
     margin-bottom: 1rem;
   }
 

@@ -14,9 +14,10 @@ const Uploader = ({ mediaType, lessonVid }) => {
     inputContent = "Drop 1 Audio File";
     contentType = "audio/*";
   } else if (mediaType === "video/mp4") {
-    url =
-      "https://5n58vjjzdd.execute-api.ap-southeast-1.amazonaws.com/default/getVidPresignedURL";
-    inputContent = "Drop 1 Video File";
+    url = lessonVid
+      ? "https://h5dh9a36jl.execute-api.ap-southeast-1.amazonaws.com/default/getLessonPresignedURL"
+      : "https://5n58vjjzdd.execute-api.ap-southeast-1.amazonaws.com/default/getVidPresignedURL";
+    inputContent = lessonVid ? "Drop 1 Lesson Video" : "Drop 1 Video File";
     contentType = "video/mp4";
   } else {
     url =
@@ -38,7 +39,6 @@ const Uploader = ({ mediaType, lessonVid }) => {
     const response = await axios({
       method: "GET",
       url: url,
-      body: JSON.stringify({ lessonVid: lessonVid }),
     });
 
     // * Using the returned URL, make a PUT request to upload media to S3 bucket
@@ -50,6 +50,7 @@ const Uploader = ({ mediaType, lessonVid }) => {
       body: f["file"], // ! WATCH OUT !
     });
 
+    // TODO: Handle potential 400 errors
     console.log("Result: ", result);
     alert("File uploaded successfully!");
   };
