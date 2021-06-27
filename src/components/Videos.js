@@ -14,17 +14,17 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function Cards() {
+function Videos() {
   const classes = useStyles();
   const urls = [
+    "https://youtu.be/EJP64UFpF-A",
     "https://youtu.be/KiT95Rp9Q4Y",
     "https://youtu.be/vnxwlkxF_bE",
-    "https://youtu.be/EJP64UFpF-A",
   ];
 
   return (
     <>
-      <h1 className={classes.header}>Use Cases</h1>
+      <h1 className={classes.header}>What We Do</h1>
       <Grid container direction="row" justify="center" spacing={2}>
         {urls.map((url, value) => (
           <Grid key={value} item>
@@ -38,4 +38,4 @@ function Cards() {
   );
 }
 
-export default Cards;
+export default Videos;
