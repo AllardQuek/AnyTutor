@@ -140,7 +140,7 @@ function App() {
             path="/upload-image"
             exact
             component={Upload}
-            text="Upload your speech audio (.mp3) and an image of a face!"
+            text="Upload an image of a face and your speech audio (.mp3) !"
             mediaType="image/*"
             uploadEmail={uploadEmail}
           />
@@ -148,8 +148,8 @@ function App() {
             path="/upload-video"
             exact
             component={Upload}
-            text="Upload your speech audio (.mp3) and a short video (.mp4) of someone's
-            face!"
+            text="Upload a short video (.mp4) of someone's
+            face and your speech audio (.mp3) !"
             mediaType="video/mp4"
             lessonVid={false}
             uploadEmail={uploadEmail}
@@ -158,8 +158,8 @@ function App() {
             path="/upload-lesson"
             exact
             component={Upload}
-            text="Upload your lesson video and a short video (.mp4) of someone's
-            face!"
+            text="Upload a short video (.mp4) of someone's
+            face and your lesson video!"
             mediaType="video/mp4"
             lessonVid={true}
             uploadEmail={uploadEmail}

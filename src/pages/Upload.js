@@ -44,18 +44,19 @@ const Upload = ({ text, mediaType, uploadEmail, lessonVid }) => {
   return (
     <AppStyled>
       <BackgroundStyle />
-      <h1>Welcome to AnyTutor!</h1>
       <h2 className="sub-heading">{text}</h2>
 
       <div className="first-media">
+        <Uploader mediaType={mediaType} />
+      </div>
+
+      <div>
         {lessonVid ? (
           <Uploader mediaType="video/mp4" lessonVid={lessonVid} />
         ) : (
           <Uploader mediaType="audio/*" />
         )}
       </div>
-
-      <Uploader mediaType={mediaType} />
 
       {mediaType === "video/*" ? (
         <ul className="video-requirements">
