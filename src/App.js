@@ -151,6 +151,7 @@ function App() {
             text="Upload your speech audio (.mp3) and a short video (.mp4) of someone's
             face!"
             mediaType="video/mp4"
+            lessonVid={false}
             uploadEmail={uploadEmail}
           />
           <PrivateRoute

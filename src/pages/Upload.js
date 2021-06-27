@@ -14,6 +14,7 @@ const Upload = ({ text, mediaType, uploadEmail, lessonVid }) => {
       "https://8c3vifq9mj.execute-api.ap-southeast-1.amazonaws.com/default/test-socket";
 
     console.log(url);
+    console.log(lessonVid);
     fetch(url, {
       method: "POST",
       mode: "cors",
