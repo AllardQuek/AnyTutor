@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import "./Landing.css";
-import Button from "./Button";
+import CustomButton from "./CustomButton";
 
 function Landing() {
   return (
@@ -9,7 +9,11 @@ function Landing() {
         <h1>REINVENT EDUCATION</h1>
         <p>What are you waiting for?</p>
         <div className="btn-started">
-          <Button className="btn-started" text="Get Started" href="/login" />
+          <CustomButton
+            className="btn-started"
+            text="Get Started"
+            href="/login"
+          />
         </div>
       </div>
     </LandingStyled>

@@ -1,5 +1,5 @@
 import BackgroundStyle from "../styles/BackgroundStyle";
-import Button from "../components/Button";
+import CustomButton from "../components/CustomButton";
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -85,7 +85,7 @@ const Login = (props) => {
           toggleLogin={toggleLogin}
         ></LoginToggle>
 
-        <Button
+        <CustomButton
           text={hasAccount ? "Login" : "Sign up"}
           className="btn-submit"
           type="submit"

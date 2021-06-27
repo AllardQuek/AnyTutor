@@ -1,12 +1,16 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import BackgroundStyle from "../styles/BackgroundStyle";
 import Uploader from "../components/Uploader";
-import Button from "../components/Button";
+import CustomButton from "../components/CustomButton";
+import { Button } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 
 const Upload = ({ text, mediaType, uploadEmail, lessonVid }) => {
   const { handleSubmit } = useForm();
+  const [firstUpload, setFirstUpload] = useState(false);
+  const [secondUpload, setSecondUpload] = useState(false);
 
   const submit = (data) => {
     // * Endpoint to lambda that will run our notebook
@@ -68,7 +72,10 @@ const Upload = ({ text, mediaType, uploadEmail, lessonVid }) => {
       )}
 
       <form onSubmit={handleSubmit(submit)} className="uploads">
-        <Button text="Submit" className="btn-submit"></Button>
+        <CustomButton text="Submit" className="btn-submit"></CustomButton>
+        <Button variant="contained" disabled>
+          Disabled
+        </Button>
       </form>
     </AppStyled>
   );
