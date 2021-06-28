@@ -57,7 +57,7 @@ const Upload = ({ text, mediaType, uploadEmail, lessonVid }) => {
       <div className="first-media">
         <Uploader
           mediaType={mediaType}
-          lessonVid={lessonVid}
+          lessonVid={false}
           nthUpload={firstUpload}
           setNthUpload={setFirstUpload}
         />
@@ -67,7 +67,7 @@ const Upload = ({ text, mediaType, uploadEmail, lessonVid }) => {
         {lessonVid ? (
           <Uploader
             mediaType="video/mp4"
-            lessonVid={lessonVid}
+            lessonVid={true} // TODO change the naming, dont't confuse!
             nthUpload={secondUpload}
             setNthUpload={setSecondUpload}
           />

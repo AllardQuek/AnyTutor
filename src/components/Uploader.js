@@ -5,6 +5,7 @@ import Dropzone from "react-dropzone-uploader";
 const Uploader = ({ mediaType, lessonVid, setNthUpload }) => {
   const axios = require("axios").default;
   const [loading, setLoading] = useState(false);
+  console.log(lessonVid);
 
   // * Initialize variables to empty string
   let [url, inputContent, contentType] = "";
