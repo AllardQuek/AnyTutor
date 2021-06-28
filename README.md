@@ -1,13 +1,13 @@
-# AnyTutor App
+# AnyTutor
 
-This project was made for NUS Orbital 2021.
+A ReactJS application made for NUS Orbital 2021.
 Here is the link for the app deployed on Vercel: [AnyTutor](https://any-tutor-allardquek.vercel.app/).
 
 ## Deploying the app locally
 
 In the project directory, you can run:
 
-### `yarn start`
+### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -27,7 +27,7 @@ As of Milestone 2, we have successfully implemented our core feature: a teacher 
 
 ## Solution Architecture
 
-[View it here!](https://drive.google.com/file/d/1r76ZKnCRcOcwaM2_Z2adoY6EzebQVoTk/view?usp=sharing)
+[View it here!](https://drive.google.com/file/d/1r76ZKnCRcOcwaM2_Z2adoY6EzebQVoTk/view?usp=sharing) (last updated: 28 May)
 
 ## Current Features
 1. Generate a deepfake video from user audio and image
@@ -35,8 +35,16 @@ As of Milestone 2, we have successfully implemented our core feature: a teacher 
 1. Generate a tutorial video with an avatar from the input lesson video and the tutor's sample video
 1. Receive your generated video through email!
 
-## Upcoming Features
+## IMOPRTANT NOTES
+- For the features to work, our AWS resources have to be switched on. 
+- When testing, only submit ONE request at a time. We have limited resources.
+- When choosing video content to upload, the recommended duration is 30-60 seconds to get results quickly
+- Videos of the tutor chosen must contain a human face in all of the video frames, but the duration may be short (even 5 to 10 seconds will work)
+- To obtain the best results, ensure that the tutor in the video varies their facial expressions and includes gestures as if emphasising certain points. To achieve this, it might be better to record a short video keeping these pointers in mind.
+- Please reach out if you face any issues or have any suggestions for improvements!
 
+## Upcoming Features
 1. Provide the user with sample videos to generate the deepfake video by inputting just raw text
 2. Translation to other languages (e.g. Chinese, Malay) to make education more accessible
 3. Give the user the option to format the layout of the overlay and output video
+
