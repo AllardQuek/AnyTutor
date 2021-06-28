@@ -26,10 +26,9 @@ As such, we aim to reduce the burden on teachers in this changing educational la
 As of Milestone 2, we have successfully implemented our core feature: a teacher is now able to upload a lesson video (without the teacher’s face) and a short sample video containing their face (or anyone’s face for that matter), and receive as output a new lesson video with the teacher’s face overlaid on the original video in a corner.
 
 ## Solution Architecture
+Last updated: 28 May
 
-![Alt text](/readme/architecture.jpg "Solution Architecture")
-
-[View it here!](https://drive.google.com/file/d/1r76ZKnCRcOcwaM2_Z2adoY6EzebQVoTk/view?usp=sharing) (last updated: 28 May)
+![Alt text](/readme/architecture.png "Solution Architecture")
 
 ## Current Features
 1. Generate a deepfake video from user audio and image
