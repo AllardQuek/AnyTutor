@@ -11,7 +11,6 @@ const Upload = ({ text, mediaType, uploadEmail, lessonVid }) => {
   const { handleSubmit } = useForm();
   const [firstUpload, setFirstUpload] = useState(false);
   const [secondUpload, setSecondUpload] = useState(false);
-  // const [loading, setLoading] = useState(false);
 
   const submit = (data) => {
     // * Endpoint to lambda that will run our notebook
@@ -56,8 +55,6 @@ const Upload = ({ text, mediaType, uploadEmail, lessonVid }) => {
           mediaType={mediaType}
           nthUpload={firstUpload}
           setNthUpload={setFirstUpload}
-          // loading={loading}
-          // setLoading={setLoading}
         />
       </div>
 
@@ -68,16 +65,12 @@ const Upload = ({ text, mediaType, uploadEmail, lessonVid }) => {
             lessonVid={lessonVid}
             nthUpload={secondUpload}
             setNthUpload={setSecondUpload}
-            // loading={loading}
-            // setLoading={setLoading}
           />
         ) : (
           <Uploader
             mediaType="audio/*"
             nthUpload={secondUpload}
             setNthUpload={setSecondUpload}
-            // loading={loading}
-            // setLoading={setLoading}
           />
         )}
       </div>
@@ -92,7 +85,7 @@ const Upload = ({ text, mediaType, uploadEmail, lessonVid }) => {
       )}
 
       <form onSubmit={handleSubmit(submit)} className="uploads">
-        {/* Check if both uploads have been made: enable/disable button */}
+        {/* If both uploads have been made enable submit button */}
         {firstUpload && secondUpload ? (
           <CustomButton text="Submit" className="btn-submit" />
         ) : (

@@ -24,7 +24,7 @@ const ButtonStyled = styled.div`
     );
     text-transform: uppercase;
     font-weight: 500;
-    color: #fff;
+    color: var(--white-color);
     border: none;
     border-radius: 45px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -33,6 +33,7 @@ const ButtonStyled = styled.div`
     outline: none;
     margin-top: 1.5rem;
   }
+
   .btn-submit {
     width: 140px;
     height: 45px;

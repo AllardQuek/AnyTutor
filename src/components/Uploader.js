@@ -2,13 +2,7 @@ import { useState } from "react";
 import "react-dropzone-uploader/dist/styles.css";
 import Dropzone from "react-dropzone-uploader";
 
-const Uploader = ({
-  mediaType,
-  lessonVid,
-  setNthUpload,
-  // loading,
-  // setLoading,
-}) => {
+const Uploader = ({ mediaType, lessonVid, setNthUpload }) => {
   const axios = require("axios").default;
   const [loading, setLoading] = useState(false);
 
@@ -88,7 +82,11 @@ const Uploader = ({
         },
         submitButton: {
           borderRadius: "45px",
-          backgroundColour: "red",
+          color: "var(--white-color)",
+          boxShadow: "0px 8px 25px rgba(0,0,0,0.1)",
+          fontWeight: 500,
+          letterSpacing: "1.2px",
+          fontFamily: "Roboto",
         },
         inputLabel: (files, extra) => (extra.reject ? { color: "red" } : {}),
       }}
