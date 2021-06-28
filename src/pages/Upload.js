@@ -4,6 +4,7 @@ import styled from "styled-components";
 import BackgroundStyle from "../styles/BackgroundStyle";
 import Uploader from "../components/Uploader";
 import CustomButton from "../components/CustomButton";
+import DisabledButton from "../components/DisabledButton";
 import { Button } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 
@@ -51,14 +52,27 @@ const Upload = ({ text, mediaType, uploadEmail, lessonVid }) => {
       <h2 className="sub-heading">{text}</h2>
 
       <div className="first-media">
-        <Uploader mediaType={mediaType} />
+        <Uploader
+          mediaType={mediaType}
+          nthUpload={firstUpload}
+          setNthUpload={setFirstUpload}
+        />
       </div>
 
       <div>
         {lessonVid ? (
-          <Uploader mediaType="video/mp4" lessonVid={lessonVid} />
+          <Uploader
+            mediaType="video/mp4"
+            lessonVid={lessonVid}
+            nthUpload={secondUpload}
+            setNthUpload={setSecondUpload}
+          />
         ) : (
-          <Uploader mediaType="audio/*" />
+          <Uploader
+            mediaType="audio/*"
+            nthUpload={secondUpload}
+            setNthUpload={setSecondUpload}
+          />
         )}
       </div>
 
@@ -72,10 +86,12 @@ const Upload = ({ text, mediaType, uploadEmail, lessonVid }) => {
       )}
 
       <form onSubmit={handleSubmit(submit)} className="uploads">
-        <CustomButton text="Submit" className="btn-submit"></CustomButton>
-        <Button variant="contained" disabled>
-          Disabled
-        </Button>
+        {/* Check if both uploads have been made: enable/disable button */}
+        {firstUpload && secondUpload ? (
+          <CustomButton text="Submit" className="btn-submit" />
+        ) : (
+          <DisabledButton text="Submit" className="btn-submit" />
+        )}
       </form>
     </AppStyled>
   );

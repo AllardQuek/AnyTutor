@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Button = ({ text, href, className, onClick }) => {
+const CustomButton = ({ text, href, className, onClick }) => {
   const classes = "btn " + className;
 
   return (
@@ -59,4 +59,4 @@ const ButtonStyled = styled.div`
   }
 `;
 
-export default Button;
+export default CustomButton;

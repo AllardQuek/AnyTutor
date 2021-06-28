@@ -1,7 +1,7 @@
 import "react-dropzone-uploader/dist/styles.css";
 import Dropzone from "react-dropzone-uploader";
 
-const Uploader = ({ mediaType, lessonVid }) => {
+const Uploader = ({ mediaType, lessonVid, nthUpload, setNthUpload }) => {
   const axios = require("axios").default;
 
   // * Initialize variables to empty string
@@ -50,6 +50,8 @@ const Uploader = ({ mediaType, lessonVid }) => {
       body: f["file"], // ! WATCH OUT !
     });
 
+    // * Keep track which files have been uploaded
+    setNthUpload(true);
     // TODO: Handle potential 400 errors
     console.log("Result: ", result);
     alert("File uploaded successfully!");
