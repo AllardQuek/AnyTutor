@@ -14,7 +14,7 @@ const PublicRoute = ({
       {...rest}
       render={(props) => {
         return firebase.auth().currentUser && (restricted || home) ? (
-          <Redirect to="/upload-video" />
+          <Redirect to="/about" />
         ) : (
           <Component {...props} {...rest} />
         );

@@ -9,7 +9,8 @@
     position: sticky;
     top: 0;
     z-index: 999;
-    background-color: var(--primary-color); /* Make sure navbar text does not overlap */
+    /* Make sure navbar text does not overlap */
+    background-color: var(--primary-color); 
   }
   
   .navbar-container {

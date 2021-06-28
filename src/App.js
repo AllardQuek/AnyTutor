@@ -112,6 +112,7 @@ function App() {
             restricted={false}
             home={true}
             component={Home}
+            navBG={false}
             handleLogout={handleLogout}
           />
           <PublicRoute

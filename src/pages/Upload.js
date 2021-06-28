@@ -5,7 +5,6 @@ import BackgroundStyle from "../styles/BackgroundStyle";
 import Uploader from "../components/Uploader";
 import CustomButton from "../components/CustomButton";
 import DisabledButton from "../components/DisabledButton";
-import { Button } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 
 const Upload = ({ text, mediaType, uploadEmail, lessonVid }) => {
