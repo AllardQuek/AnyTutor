@@ -143,6 +143,7 @@ function App() {
             component={Upload}
             text="Upload an image of a face and your speech audio (.mp3) !"
             mediaType="image/*"
+            lessonVid={false}
             uploadEmail={uploadEmail}
           />
           <PrivateRoute
