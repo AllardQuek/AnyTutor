@@ -1,8 +1,16 @@
+import { useState } from "react";
 import "react-dropzone-uploader/dist/styles.css";
 import Dropzone from "react-dropzone-uploader";
 
-const Uploader = ({ mediaType, lessonVid, nthUpload, setNthUpload }) => {
+const Uploader = ({
+  mediaType,
+  lessonVid,
+  setNthUpload,
+  // loading,
+  // setLoading,
+}) => {
   const axios = require("axios").default;
+  const [loading, setLoading] = useState(false);
 
   // * Initialize variables to empty string
   let [url, inputContent, contentType] = "";
@@ -31,6 +39,8 @@ const Uploader = ({ mediaType, lessonVid, nthUpload, setNthUpload }) => {
   };
 
   const handleSubmit = async (files) => {
+    setLoading(true);
+
     // We limit uploads to only 1
     const f = files[0];
     console.log(f["file"]);
@@ -50,8 +60,8 @@ const Uploader = ({ mediaType, lessonVid, nthUpload, setNthUpload }) => {
       body: f["file"], // ! WATCH OUT !
     });
 
-    // * Keep track which files have been uploaded
-    setNthUpload(true);
+    setNthUpload(true); // Keep track which files have been uploaded
+    setLoading(false); // Disable uploader if file is already uploading
     // TODO: Handle potential 400 errors
     console.log("Result: ", result);
     alert("File uploaded successfully!");
@@ -66,13 +76,19 @@ const Uploader = ({ mediaType, lessonVid, nthUpload, setNthUpload }) => {
       multiple={false}
       submitButtonDisabled={(files) => files.length > 1}
       inputContent={inputContent}
+      disabled={loading}
       styles={{
         dropzone: {
           overflow: "auto",
         },
+        // TODO: Fix UI display when wrong file type is submitted
         dropzoneReject: {
           borderColor: "red",
           backgroundColor: "#DAA",
+        },
+        submitButton: {
+          borderRadius: "45px",
+          backgroundColour: "red",
         },
         inputLabel: (files, extra) => (extra.reject ? { color: "red" } : {}),
       }}
