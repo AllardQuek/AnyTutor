@@ -37,9 +37,7 @@ const Uploader = ({ mediaType, lessonVid, setNthUpload }) => {
 
     // We limit uploads to only 1
     const f = files[0];
-    console.log(f["file"]);
 
-    console.log("Uploading to S3...");
     const response = await axios({
       method: "GET",
       url: url,
@@ -56,8 +54,6 @@ const Uploader = ({ mediaType, lessonVid, setNthUpload }) => {
 
     setNthUpload(true); // Keep track which files have been uploaded
     setLoading(false); // Disable uploader if file is already uploading
-    // TODO: Handle potential 400 errors
-    console.log("Result: ", result);
     alert("File uploaded successfully!");
   };
 
@@ -75,7 +71,6 @@ const Uploader = ({ mediaType, lessonVid, setNthUpload }) => {
         dropzone: {
           overflow: "auto",
         },
-        // TODO: Fix UI display when wrong file type is submitted
         dropzoneReject: {
           borderColor: "red",
           backgroundColor: "#DAA",
