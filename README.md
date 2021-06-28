@@ -27,6 +27,8 @@ As of Milestone 2, we have successfully implemented our core feature: a teacher 
 
 ## Solution Architecture
 
+![Alt text](/readme/architecture.jpg "Solution Architecture")
+
 [View it here!](https://drive.google.com/file/d/1r76ZKnCRcOcwaM2_Z2adoY6EzebQVoTk/view?usp=sharing) (last updated: 28 May)
 
 ## Current Features
