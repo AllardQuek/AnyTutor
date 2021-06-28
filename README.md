@@ -1,8 +1,9 @@
-# Getting Started with Create React App
+# AnyTutor App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was made for NUS Orbital 2021.
+Here is the link for the app deployed on Vercel: [AnyTutor](https://any-tutor-allardquek.vercel.app/).
 
-## Available Scripts
+## Deploying the app locally
 
 In the project directory, you can run:
 
@@ -14,57 +15,28 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `yarn test`
+## Problem
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Since the Covid-19 pandemic started, many schools and tuition centers have shifted their lessons online. However, such online lessons are notorious for being less engaging than face-to-face classes, and coupled with many student’s tendencies to get distracted easily, these lessons usually end up being less productive than they should be. Moreover, there is an evident lack of teachers to provide each student sufficient attention during lessons. 
 
-### `yarn build`
+## Solution
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+As such, we aim to reduce the burden on teachers in this changing educational landscape, and at the same time hopefully also make the learning experience for students more interesting, engaging, and thus more productive. Our proposed solution is to utilize Deep Fake technology to produce video lessons conveniently and efficiently. This would ultimately save teachers a significant amount of time they can then spend on planning more engaging lessons and doing more meaningful work. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+As of Milestone 2, we have successfully implemented our core feature: a teacher is now able to upload a lesson video (without the teacher’s face) and a short sample video containing their face (or anyone’s face for that matter), and receive as output a new lesson video with the teacher’s face overlaid on the original video in a corner.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Solution Architecture
 
-### `yarn eject`
+[View it here!](https://drive.google.com/file/d/1r76ZKnCRcOcwaM2_Z2adoY6EzebQVoTk/view?usp=sharing)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Current Features
+1. Generate a deepfake video from user audio and image
+1. Generate a lip-sync video from your own video and audio
+1. Generate a tutorial video with an avatar from the input lesson video and the tutor's sample video
+1. Receive your generated video through email!
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Upcoming Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Provide the user with sample videos to generate the deepfake video by inputting just raw text
+2. Translation to other languages (e.g. Chinese, Malay) to make education more accessible
+3. Give the user the option to format the layout of the overlay and output video
