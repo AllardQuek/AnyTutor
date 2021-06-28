@@ -12,7 +12,6 @@ const Upload = ({ text, mediaType, uploadEmail, lessonVid }) => {
   const [firstUpload, setFirstUpload] = useState(false);
   const [secondUpload, setSecondUpload] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  console.log(submitting);
 
   const submit = (data) => {
     setSubmitting(true);
@@ -93,7 +92,7 @@ const Upload = ({ text, mediaType, uploadEmail, lessonVid }) => {
 
       <form onSubmit={handleSubmit(submit)} className="uploads">
         {/* If both uploads have been made enable submit button */}
-        {(firstUpload && secondUpload) || !submitting ? (
+        {firstUpload && secondUpload && !submitting ? (
           <CustomButton text="Submit" className="btn-submit" />
         ) : (
           <DisabledButton text="Submit" className="btn-submit" />
