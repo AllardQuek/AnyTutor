@@ -44,7 +44,7 @@ const Uploader = ({ mediaType, lessonVid, setNthUpload }) => {
     });
 
     // * Using the returned URL, make a PUT request to upload media to S3 bucket
-    const result = await fetch(response.data.uploadURL, {
+    await fetch(response.data.uploadURL, {
       method: "PUT",
       headers: {
         "Content-Type": contentType,

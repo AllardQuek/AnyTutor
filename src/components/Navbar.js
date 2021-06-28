@@ -55,7 +55,9 @@ function Navbar({ user, handleLogout }) {
                 </Link>
               </li>
             </>
-          ) : null}
+          ) : (
+            <></>
+          )}
         </ul>
       </div>
     </nav>
