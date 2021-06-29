@@ -25,8 +25,8 @@ function App() {
       <Router>
         <AuthProvider>
           <video src={homeVid} autoPlay loop muted />
-
           <Navbar />
+
           <Switch>
             <PublicRoute path="/" exact component={Home} />
             <PublicRoute path="/about" component={About} />

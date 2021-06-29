@@ -20,34 +20,53 @@ const Login = (props) => {
   const [hasAccount, setHasAccount] = useState(false);
   // const [loading, setLoading] = useState(true);
 
-  // const clearInputs = () => {
-  //   setEmail("");
-  //   setPassword("");
-  // };
+  const clearErrors = () => {
+    setEmailError("");
+    setPasswordError("");
+  };
 
-  // const clearErrors = () => {
-  //   setEmailError("");
-  //   setPasswordError("");
-  // };
-
-  // TODO improve on catching errors
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
+    clearErrors();
     e.preventDefault();
     // setLoading(true);
-    if (hasAccount) {
-      try {
-        await login(email, password);
-        history.push("/about");
-      } catch {
-        console.log("Failed to log in");
+    try {
+      await login(email, password);
+      history.push("/about");
+    } catch (error) {
+      switch (error.code) {
+        case "auth/invalid-email":
+        case "auth/user-disabled":
+        case "auth/user-not-found":
+          setEmailError(error.message);
+          break;
+        case "auth/wrong-password":
+          setPasswordError(error.message);
+          break;
+        default:
+          break;
       }
-      login();
-    } else {
-      try {
-        await signup(email, password);
-        history.push("/about");
-      } catch {
-        console.log("Failed to create an account");
+    }
+    // setLoading(false);
+  };
+
+  const handleSignup = async (e) => {
+    clearErrors();
+    e.preventDefault();
+    // setLoading(true);
+    try {
+      await signup(email, password);
+      history.push("/about");
+    } catch (error) {
+      switch (error.code) {
+        case "auth/email-already-in-use":
+        case "auth/invalid-email":
+          setEmailError(error.message);
+          break;
+        case "auth/weak-password":
+          setPasswordError(error.message);
+          break;
+        default:
+          break;
       }
     }
     // setLoading(false);
@@ -60,7 +79,10 @@ const Login = (props) => {
   return (
     <LoginStyled>
       <BackgroundStyle />
-      <form className="login" onSubmit={handleSubmit}>
+      <form
+        className="login"
+        onSubmit={hasAccount ? handleLogin : handleSignup}
+      >
         <div>
           <Grid
             container
