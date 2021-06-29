@@ -17,8 +17,8 @@ const useStyles = makeStyles(() => ({
 function Videos() {
   const classes = useStyles();
   const urls = [
-    "https://youtu.be/EJP64UFpF-A",
-    "https://youtu.be/KiT95Rp9Q4Y",
+    "https://youtu.be/rJ6SW2KPI4U",
+    "https://youtu.be/mhn5xSXgBhc",
     "https://youtu.be/vnxwlkxF_bE",
   ];
 
