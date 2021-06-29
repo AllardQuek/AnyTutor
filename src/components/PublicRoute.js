@@ -1,7 +1,7 @@
 import { Route, Redirect } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
-const PublicRoute = ({ component: Component, ...rest }) => {
+const PublicRoute = ({ component: Component, isLogin, ...rest }) => {
   const { currentUser } = useAuth();
   console.log("PUBLIC");
 
@@ -9,13 +9,11 @@ const PublicRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) => {
-        return <Component {...props} {...rest} />;
-
-        // currentUser ? (
-        //   <Component {...props} {...rest} />
-        // ) : (
-        //   <Redirect to="/about" />
-        // );
+        return currentUser && isLogin ? (
+          <Redirect to="/about" />
+        ) : (
+          <Component {...props} {...rest} />
+        );
       }}
     />
   );

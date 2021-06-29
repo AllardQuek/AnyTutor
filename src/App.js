@@ -30,7 +30,7 @@ function App() {
           <Switch>
             <PublicRoute path="/" exact component={Home} />
             <PublicRoute path="/about" component={About} />
-            <PublicRoute path="/login" component={Login} />
+            <PublicRoute path="/login" component={Login} isLogin={true} />
             <PrivateRoute
               path="/upload-image"
               exact
