@@ -1,11 +1,24 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./Navbar.css";
+import { useAuth } from "../contexts/AuthContext";
 import FeaturedVideoIcon from "@material-ui/icons/FeaturedVideo";
 
-function Navbar({ user, handleLogout }) {
+function Navbar() {
   const [click, setClick] = useState(false);
   const closeMobileMenu = () => setClick(false);
+  const { currentUser, logout } = useAuth();
+  const history = useHistory();
+
+  async function handleLogout() {
+    try {
+      await logout();
+      console.log("HELLO");
+      history.push("/login");
+    } catch {
+      console.log("Failed to log out");
+    }
+  }
 
   return (
     <nav className="navbar">
@@ -20,7 +33,7 @@ function Navbar({ user, handleLogout }) {
               About
             </Link>
           </li>
-          {user ? (
+          {currentUser ? (
             <>
               <li className="nav-item">
                 <Link

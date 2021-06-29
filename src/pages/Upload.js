@@ -6,12 +6,15 @@ import Uploader from "../components/Uploader";
 import CustomButton from "../components/CustomButton";
 import DisabledButton from "../components/DisabledButton";
 import { withRouter } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
-const Upload = ({ text, mediaType, uploadEmail, lessonVid }) => {
+const Upload = ({ text, mediaType, lessonVid }) => {
   const { handleSubmit } = useForm();
   const [firstUpload, setFirstUpload] = useState(false);
   const [secondUpload, setSecondUpload] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const { currentUser } = useAuth();
+  const uploadEmail = currentUser.email;
 
   const submit = (data) => {
     setSubmitting(true);
@@ -21,7 +24,7 @@ const Upload = ({ text, mediaType, uploadEmail, lessonVid }) => {
       "https://8c3vifq9mj.execute-api.ap-southeast-1.amazonaws.com/default/test-socket";
 
     console.log(url);
-    console.log(lessonVid);
+    console.log(uploadEmail);
     fetch(url, {
       method: "POST",
       mode: "cors",

@@ -6,24 +6,51 @@ import Grid from "@material-ui/core/Grid";
 import EmailIcon from "@material-ui/icons/Email";
 import LockIcon from "@material-ui/icons/Lock";
 import LoginToggle from "../components/LoginToggle";
+import { useAuth } from "../contexts/AuthContext";
+import { useHistory } from "react-router-dom";
+import { useState } from "react";
 
 const Login = (props) => {
-  const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    handleLogin,
-    handleSignUp,
-    hasAccount,
-    setHasAccount,
-    emailError,
-    passwordError,
-  } = props;
+  const { login, signup } = useAuth();
+  const history = useHistory();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [hasAccount, setHasAccount] = useState(false);
+  // const [loading, setLoading] = useState(true);
 
-  const handleSubmit = (e) => {
+  // const clearInputs = () => {
+  //   setEmail("");
+  //   setPassword("");
+  // };
+
+  // const clearErrors = () => {
+  //   setEmailError("");
+  //   setPasswordError("");
+  // };
+
+  // TODO improve on catching errors
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    hasAccount ? handleLogin() : handleSignUp();
+    // setLoading(true);
+    if (hasAccount) {
+      try {
+        await login(email, password);
+        history.push("/about");
+      } catch {
+        console.log("Failed to log in");
+      }
+      login();
+    } else {
+      try {
+        await signup(email, password);
+        history.push("/about");
+      } catch {
+        console.log("Failed to create an account");
+      }
+    }
+    // setLoading(false);
   };
 
   const toggleLogin = () => {

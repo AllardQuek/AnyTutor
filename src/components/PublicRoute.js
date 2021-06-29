@@ -1,22 +1,21 @@
 import { Route, Redirect } from "react-router-dom";
-import firebase from "firebase/app";
+import { useAuth } from "../contexts/AuthContext";
 
-const PublicRoute = ({
-  component: Component,
-  restricted,
-  handleLogout,
-  home,
-  ...rest
-}) => {
+const PublicRoute = ({ component: Component, ...rest }) => {
+  const { currentUser } = useAuth();
+  console.log("PUBLIC");
+
   return (
     <Route
       {...rest}
       render={(props) => {
-        return firebase.auth().currentUser && (restricted || home) ? (
-          <Redirect to="/about" />
-        ) : (
-          <Component {...props} {...rest} />
-        );
+        return <Component {...props} {...rest} />;
+
+        // currentUser ? (
+        //   <Component {...props} {...rest} />
+        // ) : (
+        //   <Redirect to="/about" />
+        // );
       }}
     />
   );

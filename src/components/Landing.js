@@ -1,8 +1,11 @@
 import styled from "styled-components";
 import "./Landing.css";
 import CustomButton from "./CustomButton";
+import { useAuth } from "../contexts/AuthContext";
 
 function Landing() {
+  const { currentUser } = useAuth();
+
   return (
     <LandingStyled>
       <div className="landing-container">
@@ -11,8 +14,8 @@ function Landing() {
         <div className="btn-started">
           <CustomButton
             className="btn-started"
-            text="Get Started"
-            href="/login"
+            text={currentUser ? "Start Now" : "Get Started"}
+            href={currentUser ? "/about" : "/login"}
           />
         </div>
       </div>

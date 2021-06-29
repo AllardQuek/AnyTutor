@@ -1,13 +1,16 @@
 import { Route, Redirect } from "react-router-dom";
-import firebase from "firebase/app";
+import { useAuth } from "../contexts/AuthContext";
 
-const PrivateRoute = ({ component: Component, user, ...rest }) => {
+const PrivateRoute = ({ component: Component, ...rest }) => {
   // Show the component only when the user is logged in, else redirect the user to /login page
+  const { currentUser } = useAuth();
+  console.log("PRIVATE");
+
   return (
     <Route
       {...rest}
       render={(props) => {
-        return firebase.auth().currentUser ? (
+        return currentUser ? (
           <Component {...props} {...rest} />
         ) : (
           <Redirect to="/login" />
