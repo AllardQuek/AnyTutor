@@ -9,6 +9,7 @@ import PublicRoute from "./components/PublicRoute";
 import Navbar from "./components/Navbar";
 import homeVid from "./videos/homeVid.mp4";
 import { AuthProvider } from "./contexts/AuthContext";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
   return (
@@ -33,7 +34,6 @@ function App() {
             <PublicRoute path="/login" component={Login} isLogin={true} />
             <PrivateRoute
               path="/upload-image"
-              exact
               component={Upload}
               text="Upload an image of a face and your speech audio (.mp3) !"
               mediaType="image/*"
@@ -41,7 +41,6 @@ function App() {
             />
             <PrivateRoute
               path="/upload-video"
-              exact
               component={Upload}
               text="Upload a short video (.mp4) of someone's
             face and your speech audio (.mp3) !"
@@ -50,13 +49,13 @@ function App() {
             />
             <PrivateRoute
               path="/upload-lesson"
-              exact
               component={Upload}
               text="Upload a short video (.mp4) of someone's
             face and your lesson video!"
               mediaType="video/mp4"
               lessonVid={true}
             />
+            <PublicRoute path="/reset-password" component={ForgotPassword} />
           </Switch>
         </AuthProvider>
       </Router>

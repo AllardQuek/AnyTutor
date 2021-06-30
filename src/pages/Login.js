@@ -129,14 +129,6 @@ const Login = (props) => {
           </Grid>
         </div>
 
-        <LoginToggle
-          text={
-            hasAccount ? "Don't have an account? " : "Already have an account?"
-          }
-          callToAction={hasAccount ? "Sign up" : "Log in"}
-          toggleLogin={toggleLogin}
-        ></LoginToggle>
-
         {loading ? (
           <DisabledButton
             text={hasAccount ? "Login" : "Sign up"}
@@ -149,6 +141,8 @@ const Login = (props) => {
             type="submit"
           />
         )}
+
+        <LoginToggle hasAccount={hasAccount} toggleLogin={toggleLogin} />
       </form>
     </LoginStyled>
   );
@@ -165,29 +159,6 @@ const LoginStyled = styled.div`
   .text-field {
     min-width: 300px;
   }
-
-  .wrap-input {
-    width: 100%;
-    border-bottom: 2px solid #d9d9d9;
-    margin-bottom: 23px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .errorMessage {
-    color: var(--error-color);
-  }
-
-  .labels {
-    color: red;
-    text-align: left;
-    font-size: 14px;
-    padding-left: 7px;
-  }
-
-  /* .MuiFormHelperText-root {
-    color: red;
-  } */
 `;
 
 export default Login;

@@ -48,6 +48,14 @@ const ButtonStyled = styled.div`
     transform: translateY(-7px);
   }
 
+  .btn-reset {
+    width: 200px;
+    height: 45px;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+  }
+
+  // For the Get Started Button
   .btn-started {
     width: 220px;
     height: 75px;

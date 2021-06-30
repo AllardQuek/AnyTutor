@@ -9,25 +9,24 @@ import { useAuth } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
-const ForgotPassword = (props) => {
+const ForgotPassword = () => {
   const { resetPassword } = useAuth();
   const history = useHistory();
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const handleSubmit = async (e) => {
     setError("");
     e.preventDefault();
-    // setLoading(true);
+    setLoading(true);
     try {
-      await resetPassword(email, password);
+      await resetPassword(email);
       history.push("/about");
     } catch (error) {
       setError(error.message);
     }
-    // setLoading(false);
+    setLoading(false);
   };
 
   return (
@@ -35,35 +34,22 @@ const ForgotPassword = (props) => {
       <BackgroundStyle />
       <form className="login" onSubmit={handleSubmit}>
         <div>
-          <Grid container spacing={1} alignItems="center">
+          <Grid
+            container
+            spacing={1}
+            alignItems={error ? "center" : "flex-end"}
+          >
             <Grid item>
               <EmailIcon />
             </Grid>
             <Grid item>
               <TextField
                 className="text-field"
-                label="Email"
+                label="Your account email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 helperText={error}
-              />
-            </Grid>
-          </Grid>
-        </div>
-
-        <div>
-          <Grid container spacing={1} alignItems="flex-end">
-            <Grid item>
-              <LockIcon />
-            </Grid>
-            <Grid item>
-              <TextField
-                className="text-field"
-                value={password}
-                label="Password"
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-                helperText={error}
+                error={error}
               />
             </Grid>
           </Grid>
@@ -71,7 +57,7 @@ const ForgotPassword = (props) => {
 
         <CustomButton
           text="Reset Password"
-          className="btn-submit"
+          className="btn-reset"
           type="submit"
         />
       </form>
@@ -89,29 +75,6 @@ const LoginStyled = styled.div`
 
   .text-field {
     min-width: 300px;
-  }
-
-  .wrap-input {
-    width: 100%;
-    border-bottom: 2px solid #d9d9d9;
-    margin-bottom: 23px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .errorMessage {
-    color: var(--error-color);
-  }
-
-  .labels {
-    color: red;
-    text-align: left;
-    font-size: 14px;
-    padding-left: 7px;
-  }
-
-  .MuiFormHelperText-root {
-    color: red;
   }
 `;
 
