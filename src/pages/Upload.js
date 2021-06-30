@@ -109,6 +109,8 @@ const Upload = ({ text, mediaType, lessonVid }) => {
         )}
       </form>
 
+      <h5>Send to: {currentUser.email} </h5>
+
       <div className="disclaimers">
         <h3>Disclaimers:</h3>
         <p>Please only make 1 submission at a time.</p>
@@ -135,6 +137,7 @@ const AppStyled = styled.main`
     flex-direction: column;
     align-items: center;
     text-align: center;
+    margin-bottom: 0.5rem;
   }
 
   .first-media {
