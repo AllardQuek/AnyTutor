@@ -9,6 +9,7 @@ import LoginToggle from "../components/LoginToggle";
 import { useAuth } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import DisabledButton from "../components/DisabledButton";
 
 const Login = (props) => {
   const { login, signup } = useAuth();
@@ -18,7 +19,7 @@ const Login = (props) => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [hasAccount, setHasAccount] = useState(false);
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const clearErrors = () => {
     setEmailError("");
@@ -28,7 +29,7 @@ const Login = (props) => {
   const handleLogin = async (e) => {
     clearErrors();
     e.preventDefault();
-    // setLoading(true);
+    setLoading(true);
     try {
       await login(email, password);
       history.push("/about");
@@ -46,13 +47,13 @@ const Login = (props) => {
           break;
       }
     }
-    // setLoading(false);
+    setLoading(false);
   };
 
   const handleSignup = async (e) => {
     clearErrors();
     e.preventDefault();
-    // setLoading(true);
+    setLoading(true);
     try {
       await signup(email, password);
       history.push("/about");
@@ -68,8 +69,8 @@ const Login = (props) => {
         default:
           break;
       }
+      setLoading(false);
     }
-    // setLoading(false);
   };
 
   const toggleLogin = () => {
@@ -134,11 +135,18 @@ const Login = (props) => {
           toggleLogin={toggleLogin}
         ></LoginToggle>
 
-        <CustomButton
-          text={hasAccount ? "Login" : "Sign up"}
-          className="btn-submit"
-          type="submit"
-        />
+        {loading ? (
+          <DisabledButton
+            text={hasAccount ? "Login" : "Sign up"}
+            className="btn-submit"
+          />
+        ) : (
+          <CustomButton
+            text={hasAccount ? "Login" : "Sign up"}
+            className="btn-submit"
+            type="submit"
+          />
+        )}
       </form>
     </LoginStyled>
   );

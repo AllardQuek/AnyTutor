@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const DisabledButton = ({ text, href, className, onClick }) => {
+const DisabledButton = ({ text, className, onClick, href }) => {
   const classes = "btn " + className;
 
   return (
