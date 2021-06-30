@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const CustomButton = ({ text, href, className, onClick }) => {
+const CustomButton = ({ text, className, onClick, href }) => {
   const classes = "btn " + className;
 
   return (

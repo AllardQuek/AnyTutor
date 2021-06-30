@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import "./Navbar.css";
 import { useAuth } from "../contexts/AuthContext";
 import FeaturedVideoIcon from "@material-ui/icons/FeaturedVideo";
+import NavButton from "./NavButton";
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -13,7 +14,6 @@ function Navbar() {
   async function handleLogout() {
     try {
       await logout();
-      console.log("HELLO");
       history.push("/login");
     } catch {
       console.log("Failed to log out");
@@ -21,8 +21,8 @@ function Navbar() {
   }
 
   return (
-    <nav className="navbar">
-      <div className="navbar-container">
+    <div className="navbar-container">
+      <nav className="navbar">
         <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
           <FeaturedVideoIcon />
           <span className="navbar-name">AnyTutor</span>
@@ -62,18 +62,20 @@ function Navbar() {
                   Lesson
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link to="" className="nav-links" onClick={handleLogout}>
-                  Logout
-                </Link>
+              <li className="nav-item logout">
+                <NavButton
+                  className="nav-links"
+                  text="Logout"
+                  onClick={handleLogout}
+                />
               </li>
             </>
           ) : (
             <></>
           )}
         </ul>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 }
 

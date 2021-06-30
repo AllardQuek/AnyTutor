@@ -16,6 +16,7 @@ const GlobalStyles = createGlobalStyle`
 		--error-color: #FD5901;
         --font-light-color: #677897;
 		--font-nav-color: #6B8CAE;
+		--font-nav-color-2: #0663a3;
         --font-dark-color: #151515;
         --sidebar-dark-color: #191D2B;
         --scrollbar-bg-color: #383838;
