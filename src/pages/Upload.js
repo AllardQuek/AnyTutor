@@ -109,7 +109,7 @@ const Upload = ({ text, mediaType, lessonVid }) => {
         )}
       </form>
 
-      <h5>Send to: {currentUser.email} </h5>
+      <h5>Send results to: {currentUser.email} </h5>
 
       <div className="disclaimers">
         <h3>Disclaimers:</h3>
