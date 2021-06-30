@@ -40,7 +40,6 @@ const AboutStyled = styled.main`
     text-align: center;
     width: 50%;
     display: inline-block; // Important for alignment!
-    line-height: 1.6;
   }
 
   .title {

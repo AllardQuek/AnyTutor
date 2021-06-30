@@ -43,7 +43,9 @@ const Upload = ({ text, mediaType, lessonVid }) => {
       .then((res) => {
         setSubmitting(false);
         alert(
-          "Submitted! You will receive the result in your email in about 5 minutes (for a ~20s video) :)"
+          "Submitted! You will receive the result video in your email when it is ready. \
+          This should take about 5 minutes for a ~20s video. \
+          Please contact us at anytutor.official@gmail.com if you face any difficulties! :)"
         );
       })
       .catch((error) => {
@@ -64,33 +66,37 @@ const Upload = ({ text, mediaType, lessonVid }) => {
           nthUpload={firstUpload}
           setNthUpload={setFirstUpload}
         />
+
+        {mediaType === "video/mp4" ? (
+          <ul className="video-requirements">
+            <li>Video must have a face in every frame!</li>
+            <li>We recommend a short video, about 10s long will do! :)</li>
+          </ul>
+        ) : (
+          <></>
+        )}
       </div>
 
-      <div>
-        {lessonVid ? (
+      {lessonVid ? (
+        <div>
           <Uploader
             mediaType="video/mp4"
             lessonVid={true} // TODO change the naming, dont't confuse!
             nthUpload={secondUpload}
             setNthUpload={setSecondUpload}
           />
-        ) : (
-          <Uploader
-            mediaType="audio/*"
-            lessonVid={lessonVid}
-            nthUpload={secondUpload}
-            setNthUpload={setSecondUpload}
-          />
-        )}
-      </div>
 
-      {mediaType === "video/*" ? (
-        <ul className="video-requirements">
-          <li>Video must have a face in every frame!</li>
-          <li>We recommend a short video ~10-20s long :)</li>
-        </ul>
+          <p className="lesson-requirements">
+            Recommended lesson video length: 30 seconds to 1 minute
+          </p>
+        </div>
       ) : (
-        <></>
+        <Uploader
+          mediaType="audio/*"
+          lessonVid={lessonVid}
+          nthUpload={secondUpload}
+          setNthUpload={setSecondUpload}
+        />
       )}
 
       <form onSubmit={handleSubmit(submit)} className="uploads">
@@ -101,6 +107,22 @@ const Upload = ({ text, mediaType, lessonVid }) => {
           <DisabledButton text="Submit" className="btn-submit" />
         )}
       </form>
+
+      <div className="disclaimers">
+        <h3>Disclaimers:</h3>
+        <p>Please only make 1 submission at a time.</p>
+        <p>
+          Only your latest request will be processed, provided there are no
+          other requests currently in progress.
+        </p>
+        <br />
+        <p>
+          Quality of the generated video may be reduced to speed up processing
+          and reduce consumption of our limited resources.
+        </p>
+        <br />
+        <p>We seek your understanding on this. Thank you!</p>
+      </div>
     </AppStyled>
   );
 };
@@ -115,17 +137,28 @@ const AppStyled = styled.main`
   }
 
   .first-media {
-    margin-bottom: 1rem;
+    margin-bottom: 2.5rem;
   }
 
-  .video-requirements {
+  .video-requirements,
+  .lesson-requirements {
     list-style: none;
     padding: 0;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
   }
 
   .sub-heading {
     margin: 1rem;
+  }
+
+  .disclaimers {
+    margin-top: 2rem;
+    padding: 1rem;
+    width: 50%;
+    display: inline-block;
+    border: 1px solid var(--secondary-color);
+    border-radius: 20px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   }
 `;
 

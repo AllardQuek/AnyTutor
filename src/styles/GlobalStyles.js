@@ -41,6 +41,7 @@ const GlobalStyles = createGlobalStyle`
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		line-height: 1.6;
 	}
 
 	.home {
