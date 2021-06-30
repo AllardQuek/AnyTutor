@@ -3,7 +3,6 @@ import { useAuth } from "../contexts/AuthContext";
 
 const PublicRoute = ({ component: Component, isLogin, ...rest }) => {
   const { currentUser } = useAuth();
-  console.log("PUBLIC");
 
   return (
     <Route

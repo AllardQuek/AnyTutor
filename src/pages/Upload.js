@@ -29,20 +29,21 @@ const Upload = ({ text, mediaType, lessonVid }) => {
       method: "POST",
       mode: "cors",
       headers: {
-        // * No need to overwrite Access-Control-Allow-Origin	here!
+        // No need to overwrite Access-Control-Allow-Origin	here!
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         email: uploadEmail,
         mediaType: mediaType,
         lessonVid: lessonVid,
-      }), // * Make sure JSON data
+      }), // Make sure JSON data
     })
       .then((res) => res.json())
       .then((res) => console.log(res))
       .then((res) => {
         setSubmitting(false);
         alert(
+          // eslint-disable-next-line no-multi-str
           "Submitted! You will receive the result video in your email when it is ready. \
           This should take about 5 minutes for a ~20s video. \
           Please contact us at anytutor.official@gmail.com if you face any difficulties! :)"
