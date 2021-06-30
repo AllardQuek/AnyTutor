@@ -63,7 +63,8 @@ const AboutStyled = styled.main`
     color: var(--hover-color);
     border-left: 2px solid var(--font-light-color);
     border-right: 2px solid var(--font-light-color);
-    padding: 2rem 1rem 1rem 1rem;
+    padding: 1rem 1rem 1rem 1rem;
+    margin-top: 1.5rem;
   }
 `;
 
