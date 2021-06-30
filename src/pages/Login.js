@@ -100,10 +100,11 @@ const Login = (props) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 helperText={
-                  !hasAccount && !emailError
+                  !hasAccount
                     ? "Please use a legit email as results will be sent to it!"
-                    : emailError
+                    : ""
                 }
+                error={emailError}
               />
             </Grid>
           </Grid>
@@ -121,7 +122,7 @@ const Login = (props) => {
                 label="Password"
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
-                helperText={passwordError}
+                error={passwordError}
               />
             </Grid>
           </Grid>
@@ -183,9 +184,9 @@ const LoginStyled = styled.div`
     padding-left: 7px;
   }
 
-  .MuiFormHelperText-root {
+  /* .MuiFormHelperText-root {
     color: red;
-  }
+  } */
 `;
 
 export default Login;
