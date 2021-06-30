@@ -100,9 +100,9 @@ const Login = (props) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 helperText={
-                  !hasAccount
+                  !hasAccount && !emailError
                     ? "Please use a legit email as results will be sent to it!"
-                    : ""
+                    : emailError
                 }
                 error={emailError}
               />
@@ -122,6 +122,7 @@ const Login = (props) => {
                 label="Password"
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
+                helperText={passwordError}
                 error={passwordError}
               />
             </Grid>
