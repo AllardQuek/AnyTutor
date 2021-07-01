@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const CustomButton = ({ text, className, onClick, href }) => {
+const CustomButton = ({ text, className, href }) => {
   const classes = "btn " + className;
   console.log(href);
 
@@ -9,13 +9,13 @@ const CustomButton = ({ text, className, onClick, href }) => {
     <ButtonStyled>
       {href ? (
         <Link to={href}>
-          <button type="submit" className={classes} onClick={onClick}>
+          <button type="submit" className={classes}>
             {text}
           </button>
         </Link>
       ) : (
         <a href={href}>
-          <button type="submit" className={classes} onClick={onClick}>
+          <button type="submit" className={classes}>
             {text}
           </button>
         </a>
