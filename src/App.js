@@ -10,57 +10,90 @@ import Navbar from "./components/Navbar";
 import homeVid from "./videos/homeVid.mp4";
 import { AuthProvider } from "./contexts/AuthContext";
 import ForgotPassword from "./pages/ForgotPassword";
+import { useState, useEffect } from "react";
+import { ScatterBoxLoader } from "react-awesome-loaders";
+import styled from "styled-components";
 
 function App() {
-  return (
-    <div className="App">
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>AnyTutor</title>
-        <link rel="canonical" href="http://mysite.com/example" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-        />
-      </Helmet>
-      <Router>
-        <AuthProvider>
-          <video src={homeVid} autoPlay loop muted />
-          <Navbar />
+  const [loading, setLoading] = useState(true);
+  console.log(loading);
+  useEffect(() => {
+    // This code will run after the component is mounted
+    console.log("mounted");
+    setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+  }, []);
 
-          <Switch>
-            <PublicRoute path="/" exact component={Home} />
-            <PublicRoute path="/about" component={About} />
-            <PublicRoute path="/login" component={Login} isLogin={true} />
-            <PrivateRoute
-              path="/upload-image"
-              component={Upload}
-              text="Upload an image of a face and your speech audio (.mp3) !"
-              mediaType="image/*"
-              lessonVid={false}
+  return (
+    <AppStyled>
+      {loading ? (
+        <div className="loader">
+          <ScatterBoxLoader primaryColor={"#6366F1"} />
+        </div>
+      ) : (
+        <div className="App">
+          <Helmet>
+            <meta charSet="utf-8" />
+            <title>AnyTutor</title>
+            <link rel="canonical" href="http://mysite.com/example" />
+            <link
+              rel="stylesheet"
+              href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
             />
-            <PrivateRoute
-              path="/upload-video"
-              component={Upload}
-              text="Upload a short video (.mp4) of someone's
+          </Helmet>
+          <Router>
+            <AuthProvider>
+              <video src={homeVid} autoPlay loop muted />
+              <Navbar />
+
+              <Switch>
+                <PublicRoute path="/" exact component={Home} />
+                <PublicRoute path="/about" component={About} />
+                <PublicRoute path="/login" component={Login} isLogin={true} />
+                <PrivateRoute
+                  path="/upload-image"
+                  component={Upload}
+                  text="Upload an image of a face and your speech audio (.mp3) !"
+                  mediaType="image/*"
+                  lessonVid={false}
+                />
+                <PrivateRoute
+                  path="/upload-video"
+                  component={Upload}
+                  text="Upload a short video (.mp4) of someone's
             face and your speech audio (.mp3) !"
-              mediaType="video/mp4"
-              lessonVid={false}
-            />
-            <PrivateRoute
-              path="/upload-lesson"
-              component={Upload}
-              text="Upload a short video (.mp4) of someone's
+                  mediaType="video/mp4"
+                  lessonVid={false}
+                />
+                <PrivateRoute
+                  path="/upload-lesson"
+                  component={Upload}
+                  text="Upload a short video (.mp4) of someone's
             face and your lesson video!"
-              mediaType="video/mp4"
-              lessonVid={true}
-            />
-            <PublicRoute path="/reset-password" component={ForgotPassword} />
-          </Switch>
-        </AuthProvider>
-      </Router>
-    </div>
+                  mediaType="video/mp4"
+                  lessonVid={true}
+                />
+                <PublicRoute
+                  path="/reset-password"
+                  component={ForgotPassword}
+                />
+              </Switch>
+            </AuthProvider>
+          </Router>
+        </div>
+      )}
+    </AppStyled>
   );
 }
+
+const AppStyled = styled.div`
+  .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; // Need this for vertical alignment
+  }
+`;
 
 export default App;

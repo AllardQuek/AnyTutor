@@ -2,10 +2,9 @@ import { useState } from "react";
 import "react-dropzone-uploader/dist/styles.css";
 import Dropzone from "react-dropzone-uploader";
 
-const Uploader = ({ mediaType, lessonVid, setNthUpload }) => {
+const Uploader = ({ mediaType, uploadLesson, setNthUpload }) => {
   const axios = require("axios").default;
   const [loading, setLoading] = useState(false);
-  console.log(lessonVid);
 
   // * Initialize variables to empty string
   let [url, inputContent, contentType] = "";
@@ -17,10 +16,10 @@ const Uploader = ({ mediaType, lessonVid, setNthUpload }) => {
     inputContent = "Drop 1 Speech Audio File";
     contentType = "audio/*";
   } else if (mediaType === "video/mp4") {
-    url = lessonVid
+    url = uploadLesson
       ? "https://h5dh9a36jl.execute-api.ap-southeast-1.amazonaws.com/default/getLessonPresignedURL"
       : "https://5n58vjjzdd.execute-api.ap-southeast-1.amazonaws.com/default/getVidPresignedURL";
-    inputContent = lessonVid ? "Drop 1 Lesson Video" : "Drop 1 Video File";
+    inputContent = uploadLesson ? "Drop 1 Lesson Video" : "Drop 1 Video File";
     contentType = "video/mp4";
   } else {
     url =
