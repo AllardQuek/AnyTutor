@@ -1,4 +1,5 @@
 import { Route, Redirect } from "react-router-dom";
+
 import { useAuth } from "../contexts/AuthContext";
 
 const PublicRoute = ({ component: Component, isLogin, ...rest }) => {

@@ -1,12 +1,14 @@
 import { useState } from "react";
+
 import { useForm } from "react-hook-form";
+import { withRouter } from "react-router-dom";
 import styled from "styled-components";
-import BackgroundStyle from "../styles/BackgroundStyle";
-import Uploader from "../components/Uploader";
+
 import CustomButton from "../components/CustomButton";
 import DisabledButton from "../components/DisabledButton";
-import { withRouter } from "react-router-dom";
+import Uploader from "../components/Uploader";
 import { useAuth } from "../contexts/AuthContext";
+import BackgroundStyle from "../styles/BackgroundStyle";
 
 const Upload = ({ text, mediaType, lessonVid }) => {
   const { handleSubmit } = useForm();

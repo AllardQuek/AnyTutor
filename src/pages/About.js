@@ -1,7 +1,8 @@
-import BackgroundStyle from "../styles/BackgroundStyle";
 import { FcIdea } from "react-icons/fc";
 import styled from "styled-components";
+
 import Videos from "../components/Videos";
+import BackgroundStyle from "../styles/BackgroundStyle";
 
 const About = () => {
   return (

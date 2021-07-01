@@ -1,12 +1,15 @@
-import BackgroundStyle from "../styles/BackgroundStyle";
-import CustomButton from "../components/CustomButton";
-import styled from "styled-components";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
-import EmailIcon from "@material-ui/icons/Email";
-import { useAuth } from "../contexts/AuthContext";
-import { useHistory } from "react-router-dom";
 import { useState } from "react";
+
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+import EmailIcon from "@material-ui/icons/Email";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
+
+import CustomButton from "../components/CustomButton";
+import DisabledButton from "../components/DisabledButton";
+import { useAuth } from "../contexts/AuthContext";
+import BackgroundStyle from "../styles/BackgroundStyle";
 
 const ForgotPassword = () => {
   const { resetPassword } = useAuth();
@@ -53,12 +56,18 @@ const ForgotPassword = () => {
             </Grid>
           </Grid>
         </div>
-
+        {loading ? 
+          <DisabledButton
+            text="Reset Password"
+            className="btn-submit"
+          />
+        : 
         <CustomButton
           text="Reset Password"
           className="btn-reset"
           type="submit"
         />
+}
       </form>
     </LoginStyled>
   );

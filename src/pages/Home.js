@@ -1,6 +1,7 @@
-import Videos from "../components/Videos";
-import Landing from "../components/Landing";
 import styled from "styled-components";
+
+import Landing from "../components/Landing";
+import Videos from "../components/Videos";
 import NavbarStyle from "../styles/NavbarStyle";
 
 const Home = () => {

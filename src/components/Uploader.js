@@ -1,5 +1,7 @@
-import { useState } from "react";
 import "react-dropzone-uploader/dist/styles.css";
+
+import { useState } from "react";
+
 import Dropzone from "react-dropzone-uploader";
 
 const Uploader = ({ mediaType, uploadLesson, setNthUpload }) => {
