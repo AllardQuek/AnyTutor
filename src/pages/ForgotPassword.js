@@ -16,7 +16,7 @@ const ForgotPassword = () => {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     setError("");
@@ -57,7 +57,7 @@ const ForgotPassword = () => {
           </Grid>
         </div>
         {loading ? (
-          <DisabledButton text="Reset Password" className="btn-submit" />
+          <DisabledButton text="Reset Password" className="btn-reset" />
         ) : (
           <CustomButton
             text="Reset Password"

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const LoginToggle = ({ hasAccount, toggleLogin }) => {
@@ -8,7 +9,13 @@ const LoginToggle = ({ hasAccount, toggleLogin }) => {
 
   return (
     <ToggleStyled>
-      {hasAccount ? <p className="link pw">Forgot password?</p> : <></>}
+      {hasAccount ? (
+        <div className="link pw">
+          <Link to="/reset-password">Forgot password?</Link>
+        </div>
+      ) : (
+        <></>
+      )}
       <p>
         {text}
         <span className="link" onClick={toggleLogin}>
