@@ -1,8 +1,10 @@
 import { useState } from "react";
 
 import Grid from "@material-ui/core/Grid";
+import Snackbar from "@material-ui/core/Snackbar";
 import TextField from "@material-ui/core/TextField";
 import EmailIcon from "@material-ui/icons/Email";
+import MuiAlert from "@material-ui/lab/Alert";
 import styled from "styled-components";
 
 import CustomButton from "../components/CustomButton";
@@ -15,13 +17,28 @@ const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [resetComplete, setResetComplete] = useState(false);
+
+  function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setResetComplete(false);
+  };
 
   const handleSubmit = async (e) => {
     setError("");
     e.preventDefault();
     setLoading(true);
+    setResetComplete(false);
     try {
       await resetPassword(email);
+      setResetComplete(true);
     } catch (error) {
       setError(error.message);
     }
@@ -63,6 +80,21 @@ const ForgotPassword = () => {
           />
         )}
       </form>
+
+      {resetComplete ? (
+        <Snackbar
+          open={resetComplete}
+          autoHideDuration={6000}
+          onClose={handleClose}
+        >
+          <Alert onClose={handleClose} severity="success">
+            We've got your request! Please check your email for further
+            instructions.
+          </Alert>
+        </Snackbar>
+      ) : (
+        <></>
+      )}
     </LoginStyled>
   );
 };
