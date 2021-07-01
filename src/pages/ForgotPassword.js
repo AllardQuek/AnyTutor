@@ -3,7 +3,6 @@ import { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import EmailIcon from "@material-ui/icons/Email";
-import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import CustomButton from "../components/CustomButton";
@@ -13,7 +12,6 @@ import BackgroundStyle from "../styles/BackgroundStyle";
 
 const ForgotPassword = () => {
   const { resetPassword } = useAuth();
-  const history = useHistory();
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,7 +22,6 @@ const ForgotPassword = () => {
     setLoading(true);
     try {
       await resetPassword(email);
-      history.push("/about");
     } catch (error) {
       setError(error.message);
     }
