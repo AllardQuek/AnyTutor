@@ -56,18 +56,15 @@ const ForgotPassword = () => {
             </Grid>
           </Grid>
         </div>
-        {loading ? 
-          <DisabledButton
+        {loading ? (
+          <DisabledButton text="Reset Password" className="btn-submit" />
+        ) : (
+          <CustomButton
             text="Reset Password"
-            className="btn-submit"
+            className="btn-reset"
+            type="submit"
           />
-        : 
-        <CustomButton
-          text="Reset Password"
-          className="btn-reset"
-          type="submit"
-        />
-}
+        )}
       </form>
     </LoginStyled>
   );

@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+
 import { auth } from "../components/fire";
 
 const AuthContext = React.createContext();
