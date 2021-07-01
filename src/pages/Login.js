@@ -1,15 +1,17 @@
-import BackgroundStyle from "../styles/BackgroundStyle";
-import CustomButton from "../components/CustomButton";
-import styled from "styled-components";
-import TextField from "@material-ui/core/TextField";
+import { useState } from "react";
+
 import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
 import EmailIcon from "@material-ui/icons/Email";
 import LockIcon from "@material-ui/icons/Lock";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
+
+import CustomButton from "../components/CustomButton";
+import DisabledButton from "../components/DisabledButton";
 import LoginToggle from "../components/LoginToggle";
 import { useAuth } from "../contexts/AuthContext";
-import { useHistory } from "react-router-dom";
-import { useState } from "react";
-import DisabledButton from "../components/DisabledButton";
+import BackgroundStyle from "../styles/BackgroundStyle";
 
 const Login = (props) => {
   const { login, signup } = useAuth();

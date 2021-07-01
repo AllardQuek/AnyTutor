@@ -1,7 +1,8 @@
 import styled from "styled-components";
+
 import "./Landing.css";
-import CustomButton from "./CustomButton";
 import { useAuth } from "../contexts/AuthContext";
+import CustomButton from "./CustomButton";
 
 function Landing() {
   const { currentUser } = useAuth();

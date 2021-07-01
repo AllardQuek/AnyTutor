@@ -1,27 +1,29 @@
+import { useEffect, useState } from "react";
+
+import { ScatterBoxLoader } from "react-awesome-loaders";
 import { Helmet } from "react-helmet";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
-import Login from "./pages/Login";
-import Upload from "./pages/Upload";
-import Home from "./pages/Home";
-import About from "./pages/About";
+import styled from "styled-components";
+
+import Navbar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
-import Navbar from "./components/Navbar";
-import homeVid from "./videos/homeVid.mp4";
 import { AuthProvider } from "./contexts/AuthContext";
+import About from "./pages/About";
 import ForgotPassword from "./pages/ForgotPassword";
-import { useState, useEffect } from "react";
-import { ScatterBoxLoader } from "react-awesome-loaders";
-import styled from "styled-components";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Upload from "./pages/Upload";
+import homeVid from "./videos/homeVid.mp4";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  console.log(loading);
+
   useEffect(() => {
     // This code will run after the component is mounted
     console.log("mounted");
     setTimeout(() => {
-      setLoading(false);
+      setLoading(false); // Shows App after 2.5s
     }, 2500);
   }, []);
 

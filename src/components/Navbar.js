@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import "./Navbar.css";
-import { useAuth } from "../contexts/AuthContext";
+
 import FeaturedVideoIcon from "@material-ui/icons/FeaturedVideo";
+import { Link, useHistory } from "react-router-dom";
+
+import { useAuth } from "../contexts/AuthContext";
+import "./Navbar.css";
 import NavButton from "./NavButton";
 
 function Navbar() {

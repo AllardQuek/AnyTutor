@@ -1,6 +1,6 @@
+import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import ReactPlayer from "react-player";
-import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(() => ({
   video: {

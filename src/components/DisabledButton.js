@@ -35,6 +35,13 @@ const ButtonStyled = styled.div`
     font-size: 11px;
     letter-spacing: 2.5px;
   }
+
+  .btn-reset {
+    width: 200px;
+    height: 45px;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+  }
 `;
 
 export default DisabledButton;

@@ -1,15 +1,25 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const CustomButton = ({ text, className, onClick, href }) => {
   const classes = "btn " + className;
+  console.log(href);
 
   return (
     <ButtonStyled>
-      <a href={href}>
-        <button type="submit" className={classes} onClick={onClick}>
-          {text}
-        </button>
-      </a>
+      {href ? (
+        <Link to={href}>
+          <button type="submit" className={classes} onClick={onClick}>
+            {text}
+          </button>
+        </Link>
+      ) : (
+        <a href={href}>
+          <button type="submit" className={classes} onClick={onClick}>
+            {text}
+          </button>
+        </a>
+      )}
     </ButtonStyled>
   );
 };
