@@ -18,7 +18,7 @@ import homeVid from "./videos/homeVid.mp4";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  console.log(loading);
+
   useEffect(() => {
     // This code will run after the component is mounted
     console.log("mounted");
