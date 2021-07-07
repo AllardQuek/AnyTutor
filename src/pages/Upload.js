@@ -62,6 +62,17 @@ const Upload = ({ text, mediaType, lessonVid }) => {
       <BackgroundStyle />
       <h2 className="sub-heading">{text}</h2>
 
+      <h3 className="sample-link">
+        Don't have files to upload? Download samples{" "}
+        <a
+          href="https://drive.google.com/drive/folders/1IT7qzq-z5cxpZHn4pfRvFoAC2jFUONK6?usp=sharing"
+          target="_blank"
+          rel="noreferrer"
+        >
+          here!
+        </a>
+      </h3>
+
       <div className="first-media">
         <Uploader
           mediaType={mediaType}
@@ -115,6 +126,22 @@ const Upload = ({ text, mediaType, lessonVid }) => {
 
       <div className="disclaimers">
         <h3>Disclaimers:</h3>
+        <br />
+        <p>
+          For the process to work, we will need to turn on our backend services.
+          However, this costs real money and so to cut costs we will turn on the
+          services <strong>only while we are developing</strong>.
+        </p>
+        <br />
+        <p>
+          If you'd like to test the features out, please reach out to us at
+          <a href="mailto:anytutor.official@gmail.com">
+            {" "}
+            anytutor.offical@gmail.com
+          </a>{" "}
+          to make arrangements with us. Thank you!
+        </p>
+        <br />
         <p>Please only make 1 submission at a time.</p>
         <p>
           Only your latest request will be processed, provided there are no
@@ -126,7 +153,7 @@ const Upload = ({ text, mediaType, lessonVid }) => {
           and reduce consumption of our limited resources.
         </p>
         <br />
-        <p>We seek your understanding on this. Thank you!</p>
+        <p>We seek your understanding on these matters. Thank you!</p>
       </div>
     </AppStyled>
   );
@@ -157,8 +184,13 @@ const AppStyled = styled.main`
     margin: 1rem;
   }
 
+  .sample-link {
+    margin-bottom: 2rem;
+  }
+
   .disclaimers {
     margin-top: 2rem;
+    margin-bottom: 4rem;
     padding: 1rem;
     width: 50%;
     display: inline-block;
