@@ -27,7 +27,7 @@ const Uploader = ({ mediaType, uploadLesson, setNthUpload }) => {
     url =
       "https://6s7sw5hnci.execute-api.ap-southeast-1.amazonaws.com/default/getPresignedImageURL";
     inputContent = "Drop 1 Image File of a Face";
-    contentType = "image/jpeg";
+    contentType = "image/*";
   }
 
   const handleChangeStatus = ({ meta }, status) => {
