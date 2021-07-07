@@ -30,8 +30,17 @@ const Uploader = ({ mediaType, uploadLesson, setNthUpload }) => {
     contentType = "image/*";
   }
 
-  const handleChangeStatus = ({ meta }, status) => {
-    console.log(status, meta);
+  const handleChangeStatus = (file, status) => {
+    console.log(status, file.meta);
+
+    // When status is done, alert the user if their file is longer than 1 minute
+    if (status === "done") {
+      if (file.meta.duration > 60) {
+        alert("Sorry, maximum file duration is 1 minute!");
+        file.remove();
+        return;
+      }
+    }
   };
 
   const handleSubmit = async (files) => {
@@ -52,8 +61,11 @@ const Uploader = ({ mediaType, uploadLesson, setNthUpload }) => {
         "Content-Type": contentType,
       },
       body: f["file"], // ! WATCH OUT !
+    }).catch((err) => {
+      console.log(err);
     });
 
+    f.remove(); // Remove the file from the Dropzone
     setNthUpload(true); // Keep track which files have been uploaded
     setLoading(false); // Disable uploader if file is already uploading
     alert("File uploaded successfully!");
