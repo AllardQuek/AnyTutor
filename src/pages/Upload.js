@@ -77,45 +77,47 @@ const Upload = ({ text, mediaType, lessonVid }) => {
         Max File Length: <strong>1 minute</strong>
       </p>
 
-      <div className="first-media">
-        <Uploader
-          mediaType={mediaType}
-          lessonVid={false}
-          nthUpload={firstUpload}
-          setNthUpload={setFirstUpload}
-        />
-
-        {mediaType === "video/mp4" ? (
-          <ul className="video-requirements">
-            <li>Video must have a face in every frame!</li>
-            <li>We recommend a short video, about 10s long will do! :)</li>
-          </ul>
-        ) : (
-          <></>
-        )}
-      </div>
-
-      {lessonVid ? (
-        <div>
+      <div className="dropzones">
+        <div className="first-media">
           <Uploader
-            mediaType="video/mp4"
-            uploadLesson={lessonVid} // true
+            mediaType={mediaType}
+            lessonVid={false}
+            nthUpload={firstUpload}
+            setNthUpload={setFirstUpload}
+          />
+
+          {mediaType === "video/mp4" ? (
+            <ul className="video-requirements">
+              <li>Video must have a face in every frame!</li>
+              <li>We recommend a short video, about 10s long will do! :)</li>
+            </ul>
+          ) : (
+            <></>
+          )}
+        </div>
+
+        {lessonVid ? (
+          <div>
+            <Uploader
+              mediaType="video/mp4"
+              uploadLesson={lessonVid} // true
+              nthUpload={secondUpload}
+              setNthUpload={setSecondUpload}
+            />
+
+            <p className="lesson-requirements">
+              Recommended lesson video length: 30 seconds to 1 minute
+            </p>
+          </div>
+        ) : (
+          <Uploader
+            mediaType="audio/*"
+            uploadLesson={lessonVid} // false
             nthUpload={secondUpload}
             setNthUpload={setSecondUpload}
           />
-
-          <p className="lesson-requirements">
-            Recommended lesson video length: 30 seconds to 1 minute
-          </p>
-        </div>
-      ) : (
-        <Uploader
-          mediaType="audio/*"
-          uploadLesson={lessonVid} // false
-          nthUpload={secondUpload}
-          setNthUpload={setSecondUpload}
-        />
-      )}
+        )}
+      </div>
 
       <form onSubmit={handleSubmit(submit)} className="uploads">
         {/* If both uploads have been made enable submit button */}
@@ -134,22 +136,18 @@ const Upload = ({ text, mediaType, lessonVid }) => {
         <p>
           For the process to work, we will need to turn on our backend services.
           However, this costs real money and so to cut costs we will turn on the
-          services <strong>only while we are developing</strong>.
-        </p>
-        <br />
-        <p>
-          If you'd like to test the features out, please reach out to us at
+          services <strong>only while we are developing</strong>. If you'd like
+          to test the features out, please reach out to us at{" "}
           <a href="mailto:anytutor.official@gmail.com">
-            {" "}
             anytutor.offical@gmail.com
           </a>{" "}
           to make arrangements with us. Thank you!
         </p>
         <br />
-        <p>Please only make 1 submission at a time.</p>
         <p>
-          Only your latest request will be processed, provided there are no
-          other requests currently in progress.
+          Please only make 1 submission at a time. Only your latest request will
+          be processed, provided there are no other requests currently in
+          progress.
         </p>
         <br />
         <p>
@@ -194,6 +192,11 @@ const AppStyled = styled.main`
 
   .additional-info {
     margin-bottom: 2rem;
+  }
+
+  .dropzones {
+    width: 60%;
+    display: inline-block;
   }
 
   .disclaimers {
