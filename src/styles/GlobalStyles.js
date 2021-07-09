@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
         --background-light-color: #f9f9f0;
 		--hover-color: #FAAB36;
         --white-color: #FFF;
-		--logo-color: #91B7DC;
+		--logo-color: #6ba2d6;
 		--error-color: #FD5901;
         --font-light-color: #677897;
 		--font-nav-color: #6B8CAE;
@@ -22,6 +22,7 @@ const GlobalStyles = createGlobalStyle`
         --scrollbar-bg-color: #383838;
         --scrollbar-thump-color: #6b6b6b;
         --scrollbar-track-color: #383838;
+        --original-scatterbox-color: #6366F1;
     }
 
 	* {

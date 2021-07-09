@@ -16,10 +16,6 @@ const Home = () => {
   );
 };
 
-const HomeStyled = styled.div`
-  .vids {
-    color: #fff;
-  }
-`;
+const HomeStyled = styled.div``;
 
 export default Home;

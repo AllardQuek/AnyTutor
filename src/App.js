@@ -14,7 +14,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Upload from "./pages/Upload";
-import homeVid from "./videos/homeVid.mp4";
+import homeVid from "./videos/homeVideo.mp4";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -31,7 +31,7 @@ function App() {
     <AppStyled>
       {loading ? (
         <div className="loader">
-          <ScatterBoxLoader primaryColor={"#6366F1"} />
+          <ScatterBoxLoader primaryColor={"#677897"} />
         </div>
       ) : (
         <div className="App">
