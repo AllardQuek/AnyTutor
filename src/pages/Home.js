@@ -11,7 +11,6 @@ const Home = () => {
       <Landing />
       <div className="vids">
         <Videos />
-        <h1>hello</h1>
       </div>
     </HomeStyled>
   );
