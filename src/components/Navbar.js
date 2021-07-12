@@ -35,7 +35,7 @@ function Navbar() {
               About
             </Link>
           </li>
-          {currentUser ? (
+          {currentUser && (
             <>
               <li className="nav-item">
                 <Link
@@ -50,8 +50,6 @@ function Navbar() {
                 <FiLogOut className="logout-icon" onClick={handleLogout} />
               </li>
             </>
-          ) : (
-            <></>
           )}
         </ul>
       </nav>
