@@ -15,13 +15,15 @@ const Uploader = ({ mediaType, uploadLesson, setNthUpload }) => {
     // * Endpoints to AWS Lambda functions that will fetch pre-signed URLs
     url =
       "https://nf4yot096j.execute-api.ap-southeast-1.amazonaws.com/default/getPresignedURL";
-    inputContent = "Drop 1 Speech Audio File";
+    inputContent = "Drop 1 Audio File of Speech";
     contentType = "audio/*";
   } else if (mediaType === "video/mp4") {
     url = uploadLesson
       ? "https://h5dh9a36jl.execute-api.ap-southeast-1.amazonaws.com/default/getLessonPresignedURL"
       : "https://5n58vjjzdd.execute-api.ap-southeast-1.amazonaws.com/default/getVidPresignedURL";
-    inputContent = uploadLesson ? "Drop 1 Lesson Video" : "Drop 1 Video File";
+    inputContent = uploadLesson
+      ? "Drop 1 Lesson Video"
+      : "Drop 1 Video File of a Face";
     contentType = "video/mp4";
   } else {
     url =

@@ -5,7 +5,6 @@ const Disclaimers = () => {
     <DisclaimersStyled>
       <div className="disclaimers">
         <h3>Disclaimers:</h3>
-        <br />
         <p>
           For the process to work, we will need to turn on our backend services.
           However, this costs real money and so to cut costs we will turn on the
