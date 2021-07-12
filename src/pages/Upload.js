@@ -1,12 +1,13 @@
 import { useState } from "react";
 
 import { useForm } from "react-hook-form";
-import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 
 import CustomButton from "../components/CustomButton";
 import DisabledButton from "../components/DisabledButton";
+import Disclaimers from "../components/Disclaimers";
 import Uploader from "../components/Uploader";
+import UploadInfo from "../components/UploadInfo";
 import { useAuth } from "../contexts/AuthContext";
 import BackgroundStyle from "../styles/BackgroundStyle";
 
@@ -17,6 +18,8 @@ const Upload = ({ text, mediaType, lessonVid }) => {
   const [submitting, setSubmitting] = useState(false);
   const { currentUser } = useAuth();
   const uploadEmail = currentUser.email;
+  const successMessage =
+    "Submitted! You will receive the result video in your email when it is ready. This should take about 5 minutes for a ~20s video. Please contact us at anytutor.official@gmail.com if you face any difficulties! :)";
 
   const submit = (data) => {
     setSubmitting(true);
@@ -35,6 +38,7 @@ const Upload = ({ text, mediaType, lessonVid }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        uploadText: false, // Need this if not AWS Lambda cannot find this field
         email: uploadEmail,
         mediaType: mediaType,
         lessonVid: lessonVid,
@@ -44,12 +48,7 @@ const Upload = ({ text, mediaType, lessonVid }) => {
       .then((res) => console.log(res))
       .then((res) => {
         setSubmitting(false);
-        alert(
-          // eslint-disable-next-line no-multi-str
-          "Submitted! You will receive the result video in your email when it is ready. \
-          This should take about 5 minutes for a ~20s video. \
-          Please contact us at anytutor.official@gmail.com if you face any difficulties! :)"
-        );
+        alert(successMessage);
       })
       .catch((error) => {
         console.log("CAUGHT ERROR");
@@ -60,22 +59,7 @@ const Upload = ({ text, mediaType, lessonVid }) => {
   return (
     <AppStyled>
       <BackgroundStyle />
-      <h2 className="sub-heading">{text}</h2>
-
-      <h3 className="sample-info">
-        Don't have files to upload? Download samples{" "}
-        <a
-          href="https://drive.google.com/drive/folders/1IT7qzq-z5cxpZHn4pfRvFoAC2jFUONK6?usp=sharing"
-          target="_blank"
-          rel="noreferrer"
-        >
-          here!
-        </a>
-      </h3>
-
-      <p className="additional-info">
-        Max File Length: <strong>1 minute</strong>
-      </p>
+      <UploadInfo text={text} />
 
       <div className="dropzones">
         <div className="first-media">
@@ -129,34 +113,7 @@ const Upload = ({ text, mediaType, lessonVid }) => {
       </form>
 
       <h5>Send results to: {currentUser.email}</h5>
-
-      <div className="disclaimers">
-        <h3>Disclaimers:</h3>
-        <br />
-        <p>
-          For the process to work, we will need to turn on our backend services.
-          However, this costs real money and so to cut costs we will turn on the
-          services <strong>only while we are developing</strong>. If you'd like
-          to test the features out, please reach out to us at{" "}
-          <a href="mailto:anytutor.official@gmail.com">
-            anytutor.offical@gmail.com
-          </a>{" "}
-          to make arrangements with us. Thank you!
-        </p>
-        <br />
-        <p>
-          Please only make 1 submission at a time. Only your latest request will
-          be processed, provided there are no other requests currently in
-          progress.
-        </p>
-        <br />
-        <p>
-          Quality of the generated video may be reduced to speed up processing
-          and reduce consumption of our limited resources.
-        </p>
-        <br />
-        <p>We seek your understanding on these matters. Thank you!</p>
-      </div>
+      <Disclaimers />
     </AppStyled>
   );
 };
@@ -182,33 +139,10 @@ const AppStyled = styled.main`
     margin-top: 0.5rem;
   }
 
-  .sub-heading {
-    margin: 1rem;
-  }
-
-  .sample-info {
-    margin-bottom: 1rem;
-  }
-
-  .additional-info {
-    margin-bottom: 2rem;
-  }
-
   .dropzones {
     width: 60%;
     display: inline-block;
   }
-
-  .disclaimers {
-    margin-top: 2rem;
-    margin-bottom: 4rem;
-    padding: 1rem;
-    width: 50%;
-    display: inline-block;
-    border: 1px solid var(--secondary-color);
-    border-radius: 20px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  }
 `;
 
-export default withRouter(Upload);
+export default Upload;
