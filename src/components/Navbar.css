@@ -74,11 +74,15 @@
 
 .nav-links:hover {
   border-bottom: 4px solid var(--hover-color);
-  transition: all 0.2s ease-out;
 }
 
 .logout-icon {
   height: 100%;
   margin-left: 0.5rem;
   cursor: pointer;
+}
+
+.logout-icon:hover {
+  transform: translateX(7px);
+  transition: all 0.3s ease-in-out 0s;
 }
