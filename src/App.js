@@ -54,35 +54,7 @@ function App() {
                 <PublicRoute path="/" exact component={Home} />
                 <PublicRoute path="/about" component={About} />
                 <PublicRoute path="/login" component={Login} isLogin={true} />
-                <PrivateRoute
-                  path="/upload-image"
-                  component={Upload}
-                  text="Upload an image of a face and your speech audio (.mp3) !"
-                  mediaType="image/*"
-                  lessonVid={false}
-                />
-                <PrivateRoute
-                  path="/upload-video"
-                  component={Upload}
-                  text="Upload a short video (.mp4) of someone's
-            face and your speech audio (.mp3) !"
-                  mediaType="video/mp4"
-                  lessonVid={false}
-                />
-                <PrivateRoute
-                  path="/upload-lesson"
-                  component={Upload}
-                  text="Upload a short video (.mp4) of someone's
-            face and your lesson video!"
-                  mediaType="video/mp4"
-                  lessonVid={true}
-                />
-                <PrivateRoute
-                  path="/text"
-                  component={TextUpload}
-                  text="Upload a short video (.mp4) of someone's
-                  face and type your text below!"
-                />
+                <PrivateRoute path="/upload" component={Upload} />
                 <PublicRoute
                   path="/reset-password"
                   component={ForgotPassword}

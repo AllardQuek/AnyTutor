@@ -39,38 +39,11 @@ function Navbar() {
             <>
               <li className="nav-item">
                 <Link
-                  to="/upload-image"
+                  to="/upload"
                   className="nav-links"
                   onClick={closeMobileMenu}
                 >
-                  Image
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  to="/upload-video"
-                  className="nav-links"
-                  onClick={closeMobileMenu}
-                >
-                  Video
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  to="/upload-lesson"
-                  className="nav-links"
-                  onClick={closeMobileMenu}
-                >
-                  Lesson
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  to="/text"
-                  className="nav-links"
-                  onClick={closeMobileMenu}
-                >
-                  Text
+                  Upload
                 </Link>
               </li>
               <li className="nav-item logout">
