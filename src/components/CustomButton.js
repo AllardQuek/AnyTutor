@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const CustomButton = ({ text, className, href }) => {
   const classes = "btn " + className;
-  console.log(href);
 
   return (
     <ButtonStyled>

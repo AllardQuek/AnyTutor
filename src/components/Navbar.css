@@ -44,7 +44,7 @@
 .nav-menu {
   display: grid;
   grid-template-columns: repeat(
-    5,
+    6,
     auto
   ); /* Use this to change number of nav items */
   grid-gap: 10px;
@@ -75,4 +75,10 @@
 .nav-links:hover {
   border-bottom: 4px solid var(--hover-color);
   transition: all 0.2s ease-out;
+}
+
+.logout-icon {
+  height: 100%;
+  margin-left: 0.5rem;
+  cursor: pointer;
 }
