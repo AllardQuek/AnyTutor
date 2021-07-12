@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 import FeaturedVideoIcon from "@material-ui/icons/FeaturedVideo";
+import { FiLogOut } from "react-icons/fi";
 import { Link, useHistory } from "react-router-dom";
 
 import { useAuth } from "../contexts/AuthContext";
 import "./Navbar.css";
-import NavButton from "./NavButton";
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -64,12 +64,17 @@ function Navbar() {
                   Lesson
                 </Link>
               </li>
-              <li className="nav-item logout">
-                <NavButton
+              <li className="nav-item">
+                <Link
+                  to="/text"
                   className="nav-links"
-                  text="Logout"
-                  onClick={handleLogout}
-                />
+                  onClick={closeMobileMenu}
+                >
+                  Text
+                </Link>
+              </li>
+              <li className="nav-item logout">
+                <FiLogOut className="logout-icon" onClick={handleLogout} />
               </li>
             </>
           ) : (

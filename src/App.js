@@ -13,6 +13,7 @@ import About from "./pages/About";
 import ForgotPassword from "./pages/ForgotPassword";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import TextUpload from "./pages/TextUpload";
 import Upload from "./pages/Upload";
 import homeVid from "./videos/homeVideo.mp4";
 
@@ -75,6 +76,12 @@ function App() {
             face and your lesson video!"
                   mediaType="video/mp4"
                   lessonVid={true}
+                />
+                <PrivateRoute
+                  path="/text"
+                  component={TextUpload}
+                  text="Upload a short video (.mp4) of someone's
+                  face and type your text below!"
                 />
                 <PublicRoute
                   path="/reset-password"
