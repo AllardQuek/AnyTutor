@@ -7,7 +7,7 @@ import CustomButton from "./CustomButton";
 
 const useStyles = makeStyles(() => ({
   video: {
-    marginTop: "1rem",
+    marginTop: "3rem",
     position: "relative",
     paddingBottom: "3rem",
   },
@@ -21,32 +21,23 @@ function Videos() {
   const classes = useStyles();
   const { currentUser } = useAuth();
   const urls = [
-    { slug: "upload-image", href: "https://youtu.be/rJ6SW2KPI4U" },
-    { slug: "upload-video", href: "https://youtu.be/mhn5xSXgBhc" },
-    { slug: "upload-lesson", href: "https://youtu.be/vnxwlkxF_bE" },
+    "https://youtu.be/rJ6SW2KPI4U",
+    "https://youtu.be/mhn5xSXgBhc",
+    "https://youtu.be/vnxwlkxF_bE",
   ];
 
   return (
     <>
       <h1 className={classes.header}>What We Do</h1>
+      {/* If user is logged in display custom button else do not display anything */}
+      {currentUser && (
+        <CustomButton text="Try Now" className="btn-submit" href="upload" />
+      )}
       <Grid container direction="row" justify="center" spacing={2}>
         {urls.map((url, value) => (
           <Grid key={value} item>
-            {/* If user is logged in display custom button else do not display anything */}
-            {currentUser && (
-              <CustomButton
-                text="Try Now"
-                className="btn-submit"
-                href={url.slug}
-              />
-            )}
             <div className={classes.video}>
-              <ReactPlayer
-                url={url.href}
-                pip={true}
-                controls={true}
-                width="100%"
-              />
+              <ReactPlayer url={url} pip={true} controls={true} width="100%" />
             </div>
           </Grid>
         ))}

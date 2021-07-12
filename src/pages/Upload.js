@@ -4,22 +4,27 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
 import CustomButton from "../components/CustomButton";
+import DestUploader from "../components/DestUploader";
 import DisabledButton from "../components/DisabledButton";
 import Disclaimers from "../components/Disclaimers";
-import Uploader from "../components/Uploader";
+import SrcUploader from "../components/SrcUploader";
 import UploadInfo from "../components/UploadInfo";
 import { useAuth } from "../contexts/AuthContext";
 import BackgroundStyle from "../styles/BackgroundStyle";
 
-const Upload = ({ text, mediaType, lessonVid }) => {
+const Upload = () => {
   const { handleSubmit } = useForm();
-  const [firstUpload, setFirstUpload] = useState(false);
   const [secondUpload, setSecondUpload] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const { currentUser } = useAuth();
   const uploadEmail = currentUser.email;
   const successMessage =
     "Submitted! You will receive the result video in your email when it is ready. This should take about 5 minutes for a ~20s video. Please contact us at anytutor.official@gmail.com if you face any difficulties! :)";
+  const [uploadText, setUploadText] = useState("");
+  const [firstUpload, setFirstUpload] = useState(false);
+  const [destType, setDestType] = useState("video/mp4");
+  const [srcType, setSrcType] = useState("lesson");
+  const lessonVid = srcType === "lesson" ? true : false;
 
   const submit = (data) => {
     setSubmitting(true);
@@ -27,7 +32,6 @@ const Upload = ({ text, mediaType, lessonVid }) => {
     // * Endpoint to lambda that will run our notebook
     const url =
       "https://8c3vifq9mj.execute-api.ap-southeast-1.amazonaws.com/default/test-socket";
-
     console.log(url);
     console.log(uploadEmail);
     fetch(url, {
@@ -38,10 +42,10 @@ const Upload = ({ text, mediaType, lessonVid }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        uploadText: false, // Need this if not AWS Lambda cannot find this field
         email: uploadEmail,
-        mediaType: mediaType,
+        uploadText: uploadText,
         lessonVid: lessonVid,
+        mediaType: destType,
       }), // Make sure JSON data
     })
       .then((res) => res.json())
@@ -51,7 +55,7 @@ const Upload = ({ text, mediaType, lessonVid }) => {
         alert(successMessage);
       })
       .catch((error) => {
-        console.log("CAUGHT ERROR");
+        setSubmitting(false);
         console.log(error);
       });
   };
@@ -59,58 +63,36 @@ const Upload = ({ text, mediaType, lessonVid }) => {
   return (
     <AppStyled>
       <BackgroundStyle />
-      <UploadInfo text={text} />
+      <UploadInfo text="Customize your inputs!" />
 
       <div className="dropzones">
-        <div className="first-media">
-          <Uploader
-            mediaType={mediaType}
-            lessonVid={false}
-            nthUpload={firstUpload}
-            setNthUpload={setFirstUpload}
+        <div className="src-media">
+          <SrcUploader
+            srcType={srcType}
+            setSrcType={setSrcType}
+            secondUpload={secondUpload}
+            setSecondUpload={setSecondUpload}
+            setUploadText={setUploadText}
+            lessonVid={lessonVid}
           />
-
-          {mediaType === "video/mp4" ? (
-            <ul className="video-requirements">
-              <li>Video must have a face in every frame!</li>
-              <li>We recommend a short video, about 10s long will do! :)</li>
-            </ul>
-          ) : (
-            <></>
-          )}
         </div>
 
-        {lessonVid ? (
-          <div>
-            <Uploader
-              mediaType="video/mp4"
-              uploadLesson={lessonVid} // true
-              nthUpload={secondUpload}
-              setNthUpload={setSecondUpload}
-            />
+        <DestUploader
+          destType={destType}
+          setDestType={setDestType}
+          firstUpload={firstUpload}
+          setFirstUpload={setFirstUpload}
+        />
 
-            <p className="lesson-requirements">
-              Recommended lesson video length: 30 seconds to 1 minute
-            </p>
-          </div>
-        ) : (
-          <Uploader
-            mediaType="audio/*"
-            uploadLesson={lessonVid} // false
-            nthUpload={secondUpload}
-            setNthUpload={setSecondUpload}
-          />
-        )}
+        <form onSubmit={handleSubmit(submit)} className="uploads">
+          {/* If both uploads have been made enable submit button */}
+          {firstUpload && (secondUpload || uploadText) && !submitting ? (
+            <CustomButton text="Submit" className="btn-submit" />
+          ) : (
+            <DisabledButton text="Submit" className="btn-submit" />
+          )}
+        </form>
       </div>
-
-      <form onSubmit={handleSubmit(submit)} className="uploads">
-        {/* If both uploads have been made enable submit button */}
-        {firstUpload && secondUpload && !submitting ? (
-          <CustomButton text="Submit" className="btn-submit" />
-        ) : (
-          <DisabledButton text="Submit" className="btn-submit" />
-        )}
-      </form>
 
       <h5>Send results to: {currentUser.email}</h5>
       <Disclaimers />
@@ -128,20 +110,20 @@ const AppStyled = styled.main`
     margin-bottom: 0.5rem;
   }
 
-  .first-media {
-    margin-bottom: 2.5rem;
+  .dropzones {
+    width: 60%;
+    display: inline-block;
   }
 
-  .video-requirements,
-  .lesson-requirements {
+  // In srcUploader
+  .video-requirements {
     list-style: none;
     padding: 0;
     margin-top: 0.5rem;
   }
 
-  .dropzones {
-    width: 60%;
-    display: inline-block;
+  .src-media {
+    margin-bottom: 2.5rem;
   }
 `;
 
