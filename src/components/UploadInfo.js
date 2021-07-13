@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-const UploadInfo = ({ text }) => {
+const UploadInfo = () => {
   return (
     <UploadInfoStyled>
-      <h2 className="sub-heading">{text}</h2>
+      <h2 className="sub-heading">Customize your inputs!</h2>
 
       <h3 className="sample-info">
-        Don't have files to upload? Download samples{" "}
+        No files to upload? Download samples{" "}
         <a
           href="https://drive.google.com/drive/folders/1IT7qzq-z5cxpZHn4pfRvFoAC2jFUONK6?usp=sharing"
           target="_blank"

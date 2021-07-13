@@ -66,7 +66,7 @@ const Upload = () => {
   return (
     <AppStyled>
       <BackgroundStyle />
-      <UploadInfo text="Customize your inputs!" />
+      <UploadInfo />
 
       <div className="dropzones">
         <div className="src-media">
