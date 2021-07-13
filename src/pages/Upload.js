@@ -140,6 +140,7 @@ const AppStyled = styled.main`
     color: var(--font-light-color);
   }
 
+  // Radio button color when selected
   .PrivateRadioButtonIcon-root-5.PrivateRadioButtonIcon-checked-7 {
     color: var(--success-color);
   }

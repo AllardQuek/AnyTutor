@@ -10,6 +10,7 @@ const GlobalStyles = createGlobalStyle`
         --border-color: #2e344e;
         --background-light-color: #f9f9f0;
 		--hover-color: #FAAB36;
+		--link-color: #187ADF;
         --white-color: #FFF;
 		--logo-color: #6ba2d6;
 		--error-color: #FD5901;
@@ -21,11 +22,13 @@ const GlobalStyles = createGlobalStyle`
         --scrollbar-bg-color: #383838;
         --scrollbar-thump-color: #6b6b6b;
         --scrollbar-track-color: #383838;
+		--success-color: #14b66b;
+		--theme-toggle-color: #677897;
         --original-scatterbox-color: #6366F1;
     }
 
 	.dark-theme{
-        --primary-color: #102131;
+        --primary-color: #22272d;
         --primary-color-light: #057FFF;
         --secondary-color: #6c757d;
         --background-dark-color: #10121A;
@@ -34,14 +37,18 @@ const GlobalStyles = createGlobalStyle`
         --background-light-color: #F1F1F1;
         --background-light-color-2: rgba(3,127,255,.3);
 		--hover-color: #FAAB36;
+		--link-color: #FAAB36;
+		--logo-color: #e1b675;
         --white-color: #FFF;
-        --font-light-color: #FFF;
+        --font-light-color: #f8f1f1;
         --font-dark-color: #313131;
         --font-dark-color-2: #151515;
         --sidebar-dark-color: #191D2B;
         --scrollbar-bg-color: #383838;
         --scrollbar-thump-color: #6b6b6b;
         --scrollbar-track-color: #383838;
+		--success-color: #14b66b;
+		--theme-toggle-color: #187ADF;
     }
 
 	* {
@@ -49,7 +56,6 @@ const GlobalStyles = createGlobalStyle`
 		margin: 0;
 		padding: 0;
 		font-family: 'Roboto', sans-serif;
-		background-color: var(----primary-color);
 	}
 
 	body {
@@ -57,7 +63,7 @@ const GlobalStyles = createGlobalStyle`
 	}
 
 	a {
-		color:var(--hover-color);
+		color:var(--link-color);
 	}
 
 	.App {

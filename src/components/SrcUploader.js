@@ -36,7 +36,7 @@ const SrcUploader = ({
   return (
     <SrcUploaderStyled>
       <FormControl component="fieldset">
-        <FormLabel className="form-label" component="legend">
+        <FormLabel className="form-label" component="legend" color="secondary">
           1. Lesson Media Type:
         </FormLabel>
         <RadioGroup
@@ -46,6 +46,7 @@ const SrcUploader = ({
           value={srcType}
           onChange={handleSrcChange}
           row
+          // color="primary"
         >
           <FormControlLabel value="lesson" control={<Radio />} label="Lesson" />
           <FormControlLabel value="audio" control={<Radio />} label="Audio" />
@@ -78,7 +79,7 @@ const SrcUploader = ({
         </div>
       )}
       {srcType === "text" && (
-        <div>
+        <div className="field">
           <TextField
             className="text-field"
             id="outlined-multiline-static"
@@ -121,12 +122,42 @@ const SrcUploaderStyled = styled.div`
     width: 100%;
   }
 
+  textarea,
+  label,
+  #voice-native-helper,
+  .MuiSvgIcon-root.MuiNativeSelect-icon,
+  .MuiFormHelperText-root.MuiFormHelperText-filled {
+    color: var(--font-light-color);
+  }
+
   .form-control {
     margin-top: 1rem;
   }
 
   .radio-row {
     width: 110%; // Display as single row on mobile
+  }
+
+  .MuiOutlinedInput-root {
+    fieldset {
+      border-color: var(--font-light-color);
+    }
+
+    &:hover fieldset {
+      border-color: green;
+    }
+
+    .Mui-focused fieldset {
+      border-color: var(--success-color);
+    }
+  }
+
+  .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: var(--success-color);
+  }
+
+  .MuiInput-underline:after {
+    border-bottom: 2px solid var(--success-color);
   }
 `;
 
