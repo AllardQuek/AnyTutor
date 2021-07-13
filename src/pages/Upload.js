@@ -20,11 +20,14 @@ const Upload = () => {
   const uploadEmail = currentUser.email;
   const successMessage =
     "Submitted! You will receive the result video in your email when it is ready. This should take about 5 minutes for a ~20s video. Please contact us at anytutor.official@gmail.com if you face any difficulties! :)";
+  const errorMessage =
+    "Sorry, our services are currently not runnning. Please contact anytutor.official@gmail.com for assistance!";
   const [uploadText, setUploadText] = useState("");
   const [firstUpload, setFirstUpload] = useState(false);
   const [destType, setDestType] = useState("video/mp4");
   const [srcType, setSrcType] = useState("lesson");
   const lessonVid = srcType === "lesson" ? true : false;
+  const [voice, setVoice] = useState("Joanna");
 
   const submit = (data) => {
     setSubmitting(true);
@@ -32,8 +35,6 @@ const Upload = () => {
     // * Endpoint to lambda that will run our notebook
     const url =
       "https://8c3vifq9mj.execute-api.ap-southeast-1.amazonaws.com/default/test-socket";
-    console.log(url);
-    console.log(uploadEmail);
     fetch(url, {
       method: "POST",
       mode: "cors",
@@ -46,18 +47,20 @@ const Upload = () => {
         uploadText: uploadText,
         lessonVid: lessonVid,
         mediaType: destType,
+        voice: voice,
       }), // Make sure JSON data
     })
       .then((res) => res.json())
-      .then((res) => console.log(res))
       .then((res) => {
-        setSubmitting(false);
-        alert(successMessage);
+        // console.log(res);
+        return typeof res === "string"
+          ? alert(successMessage)
+          : alert(errorMessage);
       })
       .catch((error) => {
-        setSubmitting(false);
         console.log(error);
       });
+    setSubmitting(false);
   };
 
   return (
@@ -74,6 +77,8 @@ const Upload = () => {
             setSecondUpload={setSecondUpload}
             setUploadText={setUploadText}
             lessonVid={lessonVid}
+            voice={voice}
+            setVoice={setVoice}
           />
         </div>
 
