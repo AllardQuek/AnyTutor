@@ -20,7 +20,9 @@ const DestUploader = ({
   return (
     <DestUploaderStyled>
       <FormControl component="fieldset">
-        <FormLabel component="legend">2. Sync your lesson to:</FormLabel>
+        <FormLabel className="form-label" component="legend">
+          2. Sync your lesson to:
+        </FormLabel>
         <RadioGroup
           aria-label="mediaType"
           name="destMediaType"
@@ -55,6 +57,10 @@ const DestUploader = ({
   );
 };
 
-const DestUploaderStyled = styled.div``;
+const DestUploaderStyled = styled.div`
+  .form-label {
+    color: var(--font-light-color);
+  }
+`;
 
 export default DestUploader;

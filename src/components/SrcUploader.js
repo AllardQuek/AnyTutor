@@ -36,7 +36,9 @@ const SrcUploader = ({
   return (
     <SrcUploaderStyled>
       <FormControl component="fieldset">
-        <FormLabel component="legend">1. Lesson Media Type:</FormLabel>
+        <FormLabel className="form-label" component="legend">
+          1. Lesson Media Type:
+        </FormLabel>
         <RadioGroup
           className="radio-row"
           aria-label="sourceMediaType"
@@ -110,6 +112,11 @@ const SrcUploader = ({
 };
 
 const SrcUploaderStyled = styled.div`
+  .form-label {
+    // Adding to global styles doesn't seem to work
+    color: var(--font-light-color);
+  }
+
   .text-field {
     width: 100%;
   }

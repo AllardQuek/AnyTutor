@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
+import AboutInfo from "../components/AboutInfo";
 import Videos from "../components/Videos";
 import BackgroundStyle from "../styles/BackgroundStyle";
-import AboutInfo from "./AboutInfo";
 
 const About = () => {
   return (

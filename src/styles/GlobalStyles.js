@@ -1,8 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
-    /* SINGLE Theme Styles */
-    :root {
+    .light-theme {
         --primary-color: #F6F9FD;
         --primary-color-light: #F78104;
         --secondary-color: #6c757d;
@@ -25,6 +24,26 @@ const GlobalStyles = createGlobalStyle`
         --original-scatterbox-color: #6366F1;
     }
 
+	.dark-theme{
+        --primary-color: #102131;
+        --primary-color-light: #057FFF;
+        --secondary-color: #6c757d;
+        --background-dark-color: #10121A;
+        --background-dark-grey: #191D2B;
+        --border-color: #2e344e;
+        --background-light-color: #F1F1F1;
+        --background-light-color-2: rgba(3,127,255,.3);
+		--hover-color: #FAAB36;
+        --white-color: #FFF;
+        --font-light-color: #FFF;
+        --font-dark-color: #313131;
+        --font-dark-color-2: #151515;
+        --sidebar-dark-color: #191D2B;
+        --scrollbar-bg-color: #383838;
+        --scrollbar-thump-color: #6b6b6b;
+        --scrollbar-track-color: #383838;
+    }
+
 	* {
 		box-sizing: border-box;
 		margin: 0;
@@ -36,13 +55,18 @@ const GlobalStyles = createGlobalStyle`
 	body {
 		color: var(--font-light-color);
 	}
-	
+
+	a {
+		color:var(--hover-color);
+	}
+
 	.App {
 		text-align: center;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		line-height: 1.6;
+		transition: all 1s ease;
 	}
 
 	.home {

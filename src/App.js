@@ -8,6 +8,7 @@ import styled from "styled-components";
 import Navbar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
+import Toggle from "./components/Toggle";
 import { AuthProvider } from "./contexts/AuthContext";
 import About from "./pages/About";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -15,9 +16,30 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Upload from "./pages/Upload";
 import homeVid from "./videos/homeVideo.mp4";
+import darkHome from "./videos/darkHome.mp4";
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [theme, setTheme] = useState("light-theme"); // Default dark theme
+
+  useEffect(() => {
+    const localTheme = window.localStorage.getItem("anytutor-theme"); // Save chosen theme in local storage
+    localTheme ? setTheme(localTheme) : setMode("light-theme"); // Default to light mode if no theme
+    document.documentElement.className = theme; // Apply chosen theme by setting class
+  }, [theme]); // https://reactjs.org/docs/hooks-effect.html
+
+  const themeToggler = () => {
+    if (theme === "light-theme") {
+      setMode("dark-theme"); // setTheme('dark-theme');
+    } else {
+      setMode("light-theme");
+    }
+  };
+
+  const setMode = (mode) => {
+    window.localStorage.setItem("anytutor-theme", mode);
+    setTheme(mode);
+  };
 
   useEffect(() => {
     // This code will run after the component is mounted
@@ -44,9 +66,15 @@ function App() {
               href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
             />
           </Helmet>
+          <Toggle themeToggler={themeToggler} />
           <Router>
             <AuthProvider>
-              <video src={homeVid} autoPlay loop muted />
+              <video
+                src={theme === "light-theme" ? homeVid : darkHome}
+                autoPlay
+                loop
+                muted
+              />
               <Navbar />
 
               <Switch>
