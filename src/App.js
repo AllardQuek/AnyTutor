@@ -15,8 +15,9 @@ import ForgotPassword from "./pages/ForgotPassword";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Upload from "./pages/Upload";
-import homeVid from "./videos/homeVideo.mp4";
-import darkHome from "./videos/darkHome.mp4";
+import BackgroundStyle from "./styles/BackgroundStyle";
+import darkHomeVid from "./videos/darkHomeVid.mp4";
+import lightHomeVid from "./videos/lightHomeVid.mp4";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -53,7 +54,10 @@ function App() {
     <AppStyled>
       {loading ? (
         <div className="loader">
-          <ScatterBoxLoader primaryColor={"#677897"} />
+          <BackgroundStyle />
+          <ScatterBoxLoader
+            primaryColor={theme === "light-theme" ? "#677897" : "#d58815"}
+          />
         </div>
       ) : (
         <div className="App">
@@ -70,7 +74,7 @@ function App() {
           <Router>
             <AuthProvider>
               <video
-                src={theme === "light-theme" ? homeVid : darkHome}
+                src={theme === "light-theme" ? lightHomeVid : darkHomeVid}
                 autoPlay
                 loop
                 muted
