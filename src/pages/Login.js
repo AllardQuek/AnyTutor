@@ -86,50 +86,47 @@ const Login = (props) => {
         className="login"
         onSubmit={hasAccount ? handleLogin : handleSignup}
       >
-        <div className="grid">
-          <Grid
-            container
-            spacing={1}
-            alignItems={hasAccount ? "flex-end" : "center"}
-          >
-            <Grid item>
-              <EmailIcon />
-            </Grid>
-            <Grid item>
-              <TextField
-                className="text-field"
-                label="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                helperText={
-                  !hasAccount && !emailError
-                    ? "Please use a legit email as results will be sent to it!"
-                    : emailError
-                }
-                error={emailError}
-              />
-            </Grid>
+        <Grid
+          className="grid"
+          container
+          spacing={1}
+          alignItems={hasAccount ? "flex-end" : "center"}
+        >
+          <Grid item>
+            <EmailIcon />
           </Grid>
-        </div>
+          <Grid item>
+            <TextField
+              className="text-field"
+              label="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              helperText={
+                !hasAccount && !emailError
+                  ? "Please use a legit email as results will be sent to it!"
+                  : emailError
+              }
+              error={emailError}
+            />
+          </Grid>
+        </Grid>
 
-        <div className="grid">
-          <Grid className="grid" container spacing={1} alignItems="flex-end">
-            <Grid item>
-              <LockIcon />
-            </Grid>
-            <Grid item>
-              <TextField
-                className="text-field"
-                value={password}
-                label="Password"
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-                helperText={passwordError}
-                error={passwordError}
-              />
-            </Grid>
+        <Grid className="grid" container spacing={1} alignItems="flex-end">
+          <Grid item>
+            <LockIcon />
           </Grid>
-        </div>
+          <Grid item>
+            <TextField
+              className="text-field"
+              value={password}
+              label="Password"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              helperText={passwordError}
+              error={passwordError}
+            />
+          </Grid>
+        </Grid>
 
         {loading ? (
           <DisabledButton
