@@ -1,7 +1,10 @@
 import { TextField } from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormHelperText from "@material-ui/core/FormHelperText";
 import FormLabel from "@material-ui/core/FormLabel";
+import InputLabel from "@material-ui/core/InputLabel";
+import NativeSelect from "@material-ui/core/NativeSelect";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import styled from "styled-components";
@@ -15,7 +18,13 @@ const SrcUploader = ({
   setSecondUpload,
   setUploadText,
   lessonVid,
+  voice,
+  setVoice,
 }) => {
+  const handleVoiceChange = (event) => {
+    setVoice(event.target.value);
+  };
+
   const handleSrcChange = (event) => {
     setSrcType(event.target.value);
   };
@@ -27,7 +36,7 @@ const SrcUploader = ({
   return (
     <SrcUploaderStyled>
       <FormControl component="fieldset">
-        <FormLabel component="legend">Lesson Media Type:</FormLabel>
+        <FormLabel component="legend">1. Lesson Media Type:</FormLabel>
         <RadioGroup
           aria-label="sourceMediaType"
           name="srcMediaType"
@@ -44,7 +53,7 @@ const SrcUploader = ({
       {/* If text show text field,
 		  If audio, show audio uploader,
 		  If lesson, show lesson uploader. 
-		*/}
+		  */}
       {srcType === "lesson" && (
         <div>
           <Uploader
@@ -66,17 +75,34 @@ const SrcUploader = ({
         </div>
       )}
       {srcType === "text" && (
-        <TextField
-          className="text-field"
-          id="outlined-multiline-static"
-          label="Your text here"
-          multiline
-          rows={4}
-          variant="outlined"
-          onChange={handleChangeText}
-        />
-
-        // TODO: Add on options to change the output voice
+        <div>
+          <TextField
+            className="text-field"
+            id="outlined-multiline-static"
+            label="Your text here"
+            multiline
+            rows={4}
+            variant="outlined"
+            onChange={handleChangeText}
+          />
+          <FormControl className="form-control">
+            <InputLabel htmlFor="voice-native-helper">Voice Type</InputLabel>
+            <NativeSelect
+              value={voice}
+              onChange={handleVoiceChange}
+              inputProps={{
+                name: "voice",
+                id: "voice-native-helper",
+              }}
+            >
+              <option value="Joanna">US female</option>
+              <option value="Joey">US male</option>
+              <option value="Geraint">Welsh male</option>
+              <option value="Raveena">Indian female</option>
+            </NativeSelect>
+            <FormHelperText>Select your voice</FormHelperText>
+          </FormControl>
+        </div>
       )}
     </SrcUploaderStyled>
   );
@@ -85,6 +111,10 @@ const SrcUploader = ({
 const SrcUploaderStyled = styled.div`
   .text-field {
     width: 100%;
+  }
+
+  .form-control {
+    margin-top: 1rem;
   }
 `;
 
