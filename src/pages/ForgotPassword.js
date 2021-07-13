@@ -105,6 +105,10 @@ const LoginStyled = styled.div`
     border: 2px;
     border-radius: 20px;
     box-shadow: 3px 3px 4px 4px #ccc;
+
+    @media (max-width: 480px) {
+      box-shadow: none;
+    }
   }
 
   .text-field {

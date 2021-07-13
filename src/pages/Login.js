@@ -86,7 +86,7 @@ const Login = (props) => {
         className="login"
         onSubmit={hasAccount ? handleLogin : handleSignup}
       >
-        <div>
+        <div className="grid">
           <Grid
             container
             spacing={1}
@@ -112,8 +112,8 @@ const Login = (props) => {
           </Grid>
         </div>
 
-        <div>
-          <Grid container spacing={1} alignItems="flex-end">
+        <div className="grid">
+          <Grid className="grid" container spacing={1} alignItems="flex-end">
             <Grid item>
               <LockIcon />
             </Grid>
@@ -156,10 +156,16 @@ const LoginStyled = styled.div`
     border: 2px;
     border-radius: 20px;
     box-shadow: 3px 3px 4px 4px #ccc;
+    width: 100%;
+    display: inline-block;
+
+    @media (max-width: 480px) {
+      box-shadow: none;
+    }
   }
 
   .text-field {
-    min-width: 300px;
+    min-width: 300px; // Extend text field line to the width of the container
   }
 `;
 
