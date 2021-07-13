@@ -165,7 +165,7 @@ const LoginStyled = styled.div`
   }
 
   .text-field {
-    min-width: 300px; // Extend text field line to the width of the container
+    min-width: 350px; // Extend text field line to the width of the container
   }
 `;
 

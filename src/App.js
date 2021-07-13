@@ -106,6 +106,22 @@ const AppStyled = styled.div`
     align-items: center;
     height: 100vh; // Need this for vertical alignment
   }
+
+  // CSS for MUI text inputs in login, register and reset password pages
+  label,
+  label.Mui-focused,
+  input,
+  .MuiFormHelperText-root {
+    color: var(--font-light-color);
+  }
+
+  .MuiInput-underline:before {
+    border-color: var(--font-light-color);
+  }
+
+  .MuiInput-underline:after {
+    border-color: var(--success-color);
+  }
 `;
 
 export default App;
