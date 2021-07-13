@@ -130,6 +130,19 @@ const AppStyled = styled.main`
   .src-media {
     margin-bottom: 2.5rem;
   }
+
+  // Styles for all radio buttons in child components
+  .MuiIconButton-label,
+  .form-label {
+    color: var(--font-light-color);
+  }
+  .MuiFormLabel-root.Mui-focused {
+    color: var(--font-light-color);
+  }
+
+  .PrivateRadioButtonIcon-root-5.PrivateRadioButtonIcon-checked-7 {
+    color: var(--success-color);
+  }
 `;
 
 export default Upload;
