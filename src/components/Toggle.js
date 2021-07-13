@@ -14,9 +14,9 @@ const ToggleStyled = styled.button`
   border: none;
   position: fixed;
   right: 0;
-  top: 20%;
+  top: 15%;
   background-color: var(--theme-toggle-color);
-  width: 4.5rem;
+  width: 3.5rem;
   height: 2.5rem;
   z-index: 15; // If box overlaps with other components, it will still show (higher z-index)
   display: flex;

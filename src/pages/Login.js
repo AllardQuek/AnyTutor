@@ -164,8 +164,20 @@ const LoginStyled = styled.div`
     }
   }
 
-  .text-field {
-    min-width: 350px; // Extend text field line to the width of the container
+  @media (min-width: 481px) {
+    .text-field {
+      min-width: 350px; // Extend text field line to the width of the container
+    }
+  }
+
+  @media (max-width: 480px) {
+    .text-field {
+      min-width: 310px;
+    }
+  }
+
+  .grid {
+    flex-wrap: nowrap;
   }
 `;
 
