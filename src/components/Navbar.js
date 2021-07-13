@@ -25,7 +25,7 @@ function Navbar() {
   return (
     <div className="navbar-container">
       <nav className="navbar">
-        <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+        <Link to="/" className="navbar-brand" onClick={closeMobileMenu}>
           <FeaturedVideoIcon />
           <span className="navbar-name">AnyTutor</span>
         </Link>

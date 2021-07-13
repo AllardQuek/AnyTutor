@@ -37,7 +37,6 @@ const GlobalStyles = createGlobalStyle`
 		color: var(--font-light-color);
 	}
 	
-
 	.App {
 		text-align: center;
 		display: flex;

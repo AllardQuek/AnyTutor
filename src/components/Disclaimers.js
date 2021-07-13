@@ -38,7 +38,7 @@ const DisclaimersStyled = styled.div`
     margin-top: 2rem;
     margin-bottom: 4rem;
     padding: 1rem;
-    width: 50%;
+    width: 60%;
     display: inline-block;
     border: 1px solid var(--secondary-color);
     border-radius: 20px;

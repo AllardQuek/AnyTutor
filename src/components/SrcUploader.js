@@ -38,6 +38,7 @@ const SrcUploader = ({
       <FormControl component="fieldset">
         <FormLabel component="legend">1. Lesson Media Type:</FormLabel>
         <RadioGroup
+          className="radio-row"
           aria-label="sourceMediaType"
           name="srcMediaType"
           value={srcType}
@@ -115,6 +116,10 @@ const SrcUploaderStyled = styled.div`
 
   .form-control {
     margin-top: 1rem;
+  }
+
+  .radio-row {
+    width: 110%; // Display as single row on mobile
   }
 `;
 
