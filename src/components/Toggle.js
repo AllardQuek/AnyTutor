@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
+import styled from "styled-components";
 
 const Toggle = ({ themeToggler }) => {
   return (
@@ -15,7 +15,7 @@ const ToggleStyled = styled.button`
   position: fixed;
   right: 0;
   top: 20%;
-  background-color: var(--background-dark-color);
+  background-color: var(--theme-toggle-color);
   width: 4.5rem;
   height: 2.5rem;
   z-index: 15; // If box overlaps with other components, it will still show (higher z-index)
