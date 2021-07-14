@@ -46,6 +46,7 @@ const Login = (props) => {
           setPasswordError(error.message);
           break;
         default:
+          setPasswordError(error.message); // Too many login attempt
           break;
       }
     }
