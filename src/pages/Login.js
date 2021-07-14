@@ -90,7 +90,7 @@ const Login = (props) => {
           className="grid"
           container
           spacing={1}
-          alignItems={hasAccount ? "flex-end" : "center"}
+          alignItems={hasAccount && !emailError ? "flex-end" : "center"}
         >
           <Grid item>
             <EmailIcon />
@@ -111,7 +111,12 @@ const Login = (props) => {
           </Grid>
         </Grid>
 
-        <Grid className="grid" container spacing={1} alignItems="flex-end">
+        <Grid
+          className="grid"
+          container
+          spacing={1}
+          alignItems={passwordError ? "center" : "flex-end"}
+        >
           <Grid item>
             <LockIcon />
           </Grid>
