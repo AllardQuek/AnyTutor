@@ -139,10 +139,7 @@ const SrcUploaderStyled = styled.div`
   }
 
   .MuiOutlinedInput-root {
-    fieldset {
-      border-color: var(--font-light-color);
-    }
-
+    fieldset,
     .Mui-focused fieldset {
       border-color: var(--font-light-color);
     }
