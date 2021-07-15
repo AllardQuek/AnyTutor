@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
+import CustomBeatLoader from "../components/CustomBeatLoader";
 import CustomButton from "../components/CustomButton";
 import DestUploader from "../components/DestUploader";
 import DisabledButton from "../components/DisabledButton";
@@ -28,6 +29,8 @@ const Upload = () => {
   const [srcType, setSrcType] = useState("lesson");
   const lessonVid = srcType === "lesson" ? true : false;
   const [voice, setVoice] = useState("Joanna");
+
+  console.log(submitting);
 
   const submit = (data) => {
     setSubmitting(true);
@@ -57,10 +60,11 @@ const Upload = () => {
           ? alert(successMessage)
           : alert(errorMessage);
       })
+      .then(() => setSubmitting(false)) // Should be inside the fetch scope to avoid jumping ahead
       .catch((error) => {
         console.log(error);
+        setSubmitting(false);
       });
-    setSubmitting(false);
   };
 
   return (
@@ -81,14 +85,12 @@ const Upload = () => {
             setVoice={setVoice}
           />
         </div>
-
         <DestUploader
           destType={destType}
           setDestType={setDestType}
           firstUpload={firstUpload}
           setFirstUpload={setFirstUpload}
         />
-
         <form onSubmit={handleSubmit(submit)} className="uploads">
           {/* If both uploads have been made enable submit button */}
           {firstUpload && (secondUpload || uploadText) && !submitting ? (
@@ -97,6 +99,7 @@ const Upload = () => {
             <DisabledButton text="Submit" className="btn-submit" />
           )}
         </form>
+        <CustomBeatLoader submitting={submitting} />
       </div>
 
       <h5>Send results to: {currentUser.email}</h5>

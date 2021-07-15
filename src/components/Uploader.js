@@ -1,8 +1,9 @@
 import "react-dropzone-uploader/dist/styles.css";
-
 import { useState } from "react";
 
 import Dropzone from "react-dropzone-uploader";
+
+import CustomBeatLoader from "./CustomBeatLoader";
 
 const Uploader = ({ mediaType, uploadLesson, setNthUpload }) => {
   const axios = require("axios").default;
@@ -82,10 +83,13 @@ const Uploader = ({ mediaType, uploadLesson, setNthUpload }) => {
       multiple={false}
       submitButtonDisabled={(files) => files.length > 1}
       inputContent={inputContent}
+      PreviewComponent={loading && CustomBeatLoader} // Cannot pass props here!
       disabled={loading}
       styles={{
         dropzone: {
           overflow: "auto",
+          padding: "1.5rem",
+          backgroundColor: "var(--dropzone-bg-color)",
         },
         dropzoneReject: {
           borderColor: "red",
@@ -99,7 +103,10 @@ const Uploader = ({ mediaType, uploadLesson, setNthUpload }) => {
           letterSpacing: "1.2px",
           fontFamily: "Roboto",
         },
-        inputLabel: (files, extra) => (extra.reject ? { color: "red" } : {}),
+        preview: {},
+        inputLabel: {
+          color: "var(--dropzone-font-color)",
+        },
       }}
     />
   );
