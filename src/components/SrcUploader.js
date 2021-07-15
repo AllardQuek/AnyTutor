@@ -135,23 +135,21 @@ const SrcUploaderStyled = styled.div`
   }
 
   .radio-row {
-    width: 110%; // Display as single row on mobile
+    width: 120%; // Display as single row on mobile
   }
 
   .MuiOutlinedInput-root {
-    fieldset {
+    fieldset,
+    .Mui-focused fieldset {
       border-color: var(--font-light-color);
     }
 
     &:hover fieldset {
-      border-color: green;
-    }
-
-    .Mui-focused fieldset {
       border-color: var(--success-color);
     }
   }
 
+  // When text field is focused, keep green color
   .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
     border-color: var(--success-color);
   }
