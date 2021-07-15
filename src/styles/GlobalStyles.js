@@ -9,6 +9,9 @@ const GlobalStyles = createGlobalStyle`
         --background-dark-grey: #B0B9CA;
         --border-color: #2e344e;
         --background-light-color: #f9f9f0;
+		--dropzone-color: #677897;
+		--dropzone-bg-color: #dedede;
+		--dropzone-font-color:#677897;
 		--hover-color: #FAAB36;
 		--link-color: #187ADF;
         --white-color: #FFF;
@@ -22,6 +25,7 @@ const GlobalStyles = createGlobalStyle`
         --scrollbar-bg-color: #383838;
         --scrollbar-thump-color: #6b6b6b;
         --scrollbar-track-color: #383838;
+		--shadow-color: #ccc;
 		--success-color: #14b66b;
 		--theme-toggle-color: #677897;
         --original-scatterbox-color: #6366F1;
@@ -36,6 +40,9 @@ const GlobalStyles = createGlobalStyle`
         --border-color: #2e344e;
         --background-light-color: #F1F1F1;
         --background-light-color-2: rgba(3,127,255,.3);
+		--dropzone-color: #22272d;
+		--dropzone-bg-color: #bbbdbf;
+		--dropzone-font-color: #595a5c;
 		--hover-color: #FAAB36;
 		--link-color: #FAAB36;
 		--logo-color: #e1b675;
@@ -47,6 +54,7 @@ const GlobalStyles = createGlobalStyle`
         --scrollbar-bg-color: #383838;
         --scrollbar-thump-color: #6b6b6b;
         --scrollbar-track-color: #383838;
+		--shadow-color: #10121A;
 		--success-color: #14b66b;
 		--theme-toggle-color: #187ADF;
     }

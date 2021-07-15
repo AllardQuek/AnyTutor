@@ -158,7 +158,7 @@ const LoginStyled = styled.div`
     padding: 2rem;
     border: 2px;
     border-radius: 20px;
-    box-shadow: 3px 3px 4px 4px #ccc;
+    box-shadow: 3px 3px 4px 4px var(--shadow-color);
     width: 100%;
     display: inline-block;
 
