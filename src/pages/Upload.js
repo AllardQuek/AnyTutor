@@ -146,7 +146,7 @@ const AppStyled = styled.main`
   // Radio button color when selected
   .PrivateRadioButtonIcon-root-5.PrivateRadioButtonIcon-checked-7,
   .PrivateRadioButtonIcon-root-7.PrivateRadioButtonIcon-checked-9,
-  .jss5 .jss7 {
+  .jss5.jss7 {
     color: var(--success-color);
   }
 `;
