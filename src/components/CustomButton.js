@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const CustomButton = ({ text, className, href }) => {
+const CustomButton = ({ text, className, href, onClick }) => {
   const classes = "btn " + className;
 
   return (
     <ButtonStyled>
       {href ? (
+        // Link to actual page
         <Link to={href}>
           <button type="submit" className={classes}>
             {text}
@@ -14,7 +15,7 @@ const CustomButton = ({ text, className, href }) => {
         </Link>
       ) : (
         <a href={href}>
-          <button type="submit" className={classes}>
+          <button type="submit" className={classes} onClick={onClick}>
             {text}
           </button>
         </a>
@@ -74,6 +75,14 @@ const ButtonStyled = styled.div`
 
   .btn-started:hover {
     box-shadow: 0px 15px 20px;
+  }
+
+  .btn-continue {
+    width: 120px;
+    height: 40px;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    margin-top: 0; // Reset margin top
   }
 `;
 
