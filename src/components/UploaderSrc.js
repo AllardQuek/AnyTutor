@@ -11,7 +11,7 @@ import styled from "styled-components";
 
 import Uploader from "./Uploader";
 
-const SrcUploader = ({
+const UploaderSrc = ({
   srcType,
   setSrcType,
   secondUpload,
@@ -26,6 +26,8 @@ const SrcUploader = ({
   };
 
   const handleSrcChange = (event) => {
+    setSecondUpload(false); // If user changed media type, reset second upload
+    setUploadText(""); // and reset the text field
     setSrcType(event.target.value);
   };
 
@@ -34,7 +36,7 @@ const SrcUploader = ({
   };
 
   return (
-    <SrcUploaderStyled>
+    <UploaderSrcStyled>
       <FormControl component="fieldset">
         <FormLabel className="form-label" component="legend" color="secondary">
           1. Lesson Media Type:
@@ -46,7 +48,6 @@ const SrcUploader = ({
           value={srcType}
           onChange={handleSrcChange}
           row
-          // color="primary"
         >
           <FormControlLabel value="lesson" control={<Radio />} label="Lesson" />
           <FormControlLabel value="audio" control={<Radio />} label="Audio" />
@@ -65,6 +66,7 @@ const SrcUploader = ({
             uploadLesson={lessonVid} // true
             nthUpload={secondUpload}
             setNthUpload={setSecondUpload}
+            successMessage="Source file uploaded!"
           />
         </div>
       )}
@@ -75,6 +77,7 @@ const SrcUploader = ({
             uploadLesson={lessonVid} // true
             nthUpload={secondUpload}
             setNthUpload={setSecondUpload}
+            successMessage="Source file uploaded!"
           />
         </div>
       )}
@@ -108,11 +111,11 @@ const SrcUploader = ({
           </FormControl>
         </div>
       )}
-    </SrcUploaderStyled>
+    </UploaderSrcStyled>
   );
 };
 
-const SrcUploaderStyled = styled.div`
+const UploaderSrcStyled = styled.div`
   .form-label {
     // Adding to global styles doesn't seem to work
     color: var(--font-light-color);
@@ -159,4 +162,4 @@ const SrcUploaderStyled = styled.div`
   }
 `;
 
-export default SrcUploader;
+export default UploaderSrc;

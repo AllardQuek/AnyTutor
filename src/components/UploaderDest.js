@@ -7,7 +7,7 @@ import styled from "styled-components";
 
 import Uploader from "./Uploader";
 
-const DestUploader = ({
+const UploaderDest = ({
   destType,
   setDestType,
   firstUpload,
@@ -18,7 +18,7 @@ const DestUploader = ({
   };
 
   return (
-    <DestUploaderStyled>
+    <UploaderDestStyled>
       <FormControl component="fieldset">
         <FormLabel className="form-label" component="legend">
           2. Sync your lesson to:
@@ -44,23 +44,28 @@ const DestUploader = ({
           lessonVid={false} // Will always be false for destination
           nthUpload={firstUpload}
           setNthUpload={setFirstUpload}
+          successMessage="Destination file uploaded!"
         />
 
         {destType === "video/mp4" && (
-          <ul className="video-requirements">
-            <li>Video must have a face in every frame!</li>
-            <li>We recommend a short video, about 10s long will do! :)</li>
-          </ul>
+          <div className="video-requirements">
+            <p>Video must have a face in every frame!</p>
+            <p>We recommend a short video, about 10s long will do! :)</p>
+          </div>
         )}
       </div>
-    </DestUploaderStyled>
+    </UploaderDestStyled>
   );
 };
 
-const DestUploaderStyled = styled.div`
+const UploaderDestStyled = styled.div`
   .form-label {
     color: var(--font-light-color);
   }
+
+  .video-requirements {
+    margin-bottom: 2rem;
+  }
 `;
 
-export default DestUploader;
+export default UploaderDest;
