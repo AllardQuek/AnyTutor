@@ -1,14 +1,13 @@
 import { useState } from "react";
 
 import Grid from "@material-ui/core/Grid";
-import Snackbar from "@material-ui/core/Snackbar";
 import TextField from "@material-ui/core/TextField";
 import EmailIcon from "@material-ui/icons/Email";
-import MuiAlert from "@material-ui/lab/Alert";
 import styled from "styled-components";
 
 import CustomButton from "../components/CustomButton";
 import DisabledButton from "../components/DisabledButton";
+import Snack from "../components/Snack";
 import { useAuth } from "../contexts/AuthContext";
 import BackgroundStyle from "../styles/BackgroundStyle";
 
@@ -18,18 +17,6 @@ const ForgotPassword = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [resetComplete, setResetComplete] = useState(false);
-
-  function Alert(props) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-  }
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setResetComplete(false);
-  };
 
   const handleSubmit = async (e) => {
     setError("");
@@ -73,28 +60,17 @@ const ForgotPassword = () => {
         {loading ? (
           <DisabledButton text="Reset Password" className="btn-reset" />
         ) : (
-          <CustomButton
-            text="Reset Password"
-            className="btn-reset"
-            type="submit"
-          />
+          <CustomButton text="Reset Password" className="btn-reset" />
         )}
       </form>
 
-      {resetComplete ? (
-        <Snackbar
-          open={resetComplete}
-          autoHideDuration={6000}
-          onClose={handleClose}
-        >
-          <Alert onClose={handleClose} severity="success">
-            We've got your request! Please check your email for further
-            instructions.
-          </Alert>
-        </Snackbar>
-      ) : (
-        <></>
-      )}
+      <Snack
+        severity="success"
+        text="We've got your request! Please check your email for further
+            instructions."
+        condition={resetComplete}
+        setCondition={setResetComplete}
+      />
     </LoginStyled>
   );
 };

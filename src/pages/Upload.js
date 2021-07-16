@@ -5,10 +5,11 @@ import styled from "styled-components";
 
 import CustomBeatLoader from "../components/CustomBeatLoader";
 import CustomButton from "../components/CustomButton";
-import DestUploader from "../components/DestUploader";
 import DisabledButton from "../components/DisabledButton";
 import Disclaimers from "../components/Disclaimers";
-import SrcUploader from "../components/SrcUploader";
+import Snack from "../components/Snack";
+import UploaderDest from "../components/UploaderDest";
+import UploaderSrc from "../components/UploaderSrc";
 import UploadInfo from "../components/UploadInfo";
 import { useAuth } from "../contexts/AuthContext";
 import BackgroundStyle from "../styles/BackgroundStyle";
@@ -29,8 +30,8 @@ const Upload = () => {
   const [srcType, setSrcType] = useState("lesson");
   const lessonVid = srcType === "lesson" ? true : false;
   const [voice, setVoice] = useState("Joanna");
-
-  console.log(submitting);
+  const [complete, setComplete] = useState("");
+  const [error, setError] = useState("");
 
   const submit = (data) => {
     setSubmitting(true);
@@ -55,15 +56,15 @@ const Upload = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res);
         return typeof res === "string"
-          ? alert(successMessage)
-          : alert(errorMessage);
+          ? setComplete(successMessage) // AWS Lambda returns string if successful
+          : setError(errorMessage); // If AWS services are not running
       })
       .then(() => setSubmitting(false)) // Should be inside the fetch scope to avoid jumping ahead
       .catch((error) => {
         console.log(error);
-        setSubmitting(false);
+        setError(error);
+        setSubmitting(false); // Still set to false when fetch fails
       });
   };
 
@@ -74,7 +75,7 @@ const Upload = () => {
 
       <div className="dropzones">
         <div className="src-media">
-          <SrcUploader
+          <UploaderSrc
             srcType={srcType}
             setSrcType={setSrcType}
             secondUpload={secondUpload}
@@ -85,7 +86,7 @@ const Upload = () => {
             setVoice={setVoice}
           />
         </div>
-        <DestUploader
+        <UploaderDest
           destType={destType}
           setDestType={setDestType}
           firstUpload={firstUpload}
@@ -104,6 +105,12 @@ const Upload = () => {
 
       <h5>Send results to: {currentUser.email}</h5>
       <Disclaimers />
+      <Snack severity="success" message={complete} setMessage={setComplete} />
+      <Snack
+        severity="error"
+        message={error} // If error is not empty string, show Snack
+        setMessage={setError}
+      />
     </AppStyled>
   );
 };
@@ -121,13 +128,6 @@ const AppStyled = styled.main`
   .dropzones {
     width: 60%;
     display: inline-block;
-  }
-
-  // In srcUploader
-  .video-requirements {
-    list-style: none;
-    padding: 0;
-    margin-top: 0.5rem;
   }
 
   .src-media {

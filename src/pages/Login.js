@@ -143,7 +143,6 @@ const Login = (props) => {
           <CustomButton
             text={hasAccount ? "Login" : "Sign up"}
             className="btn-submit"
-            type="submit"
           />
         )}
 

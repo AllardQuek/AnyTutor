@@ -4,10 +4,14 @@ import { useState } from "react";
 import Dropzone from "react-dropzone-uploader";
 
 import CustomBeatLoader from "./CustomBeatLoader";
+import CustomDialog from "./CustomDialog";
+import Snack from "./Snack";
 
 const Uploader = ({ mediaType, uploadLesson, setNthUpload }) => {
   const axios = require("axios").default;
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   // * Initialize variables to empty string
   let [url, inputContent, contentType] = "";
@@ -36,10 +40,15 @@ const Uploader = ({ mediaType, uploadLesson, setNthUpload }) => {
   const handleChangeStatus = (file, status) => {
     console.log(status, file.meta);
 
+    if (status === "rejected_file_type") {
+      setError("Sorry, this file type is not supported");
+      return;
+    }
+
     // When status is done, alert the user if their file is longer than 1 minute
     if (status === "done") {
       if (file.meta.duration > 60) {
-        alert("Sorry, maximum file duration is 1 minute!");
+        setError("Sorry, maximum file duration is 1 minute!");
         file.remove();
         return;
       }
@@ -48,10 +57,7 @@ const Uploader = ({ mediaType, uploadLesson, setNthUpload }) => {
 
   const handleSubmit = async (files) => {
     setLoading(true);
-
-    // We limit uploads to only 1
-    const f = files[0];
-
+    const f = files[0]; // We limit uploads to only 1
     const response = await axios({
       method: "GET",
       url: url,
@@ -64,51 +70,66 @@ const Uploader = ({ mediaType, uploadLesson, setNthUpload }) => {
         "Content-Type": contentType,
       },
       body: f["file"], // ! WATCH OUT !
-    }).catch((err) => {
-      console.log(err);
-    });
+    })
+      .then(() => {
+        setSuccess("File successfully uploaded!");
+        setNthUpload(true); // Keep track which files have been uploaded
+      })
+      .catch((err) => {
+        setError(err);
+        console.log(err);
+      });
 
     f.remove(); // Remove the file from the Dropzone
-    setNthUpload(true); // Keep track which files have been uploaded
     setLoading(false); // Disable uploader if file is already uploading
-    alert("File uploaded successfully!");
+  };
+
+  const submitStyles = {
+    dropzone: {
+      overflow: "auto",
+      padding: "1.5rem",
+      backgroundColor: "var(--dropzone-bg-color)",
+    },
+    dropzoneReject: {
+      borderColor: "red",
+      backgroundColor: "#DAA",
+    },
+    submitButton: {
+      borderRadius: "45px",
+      color: "var(--font-light-color)",
+      backgroundColor: "var(--primary-color)",
+      boxShadow: "0px 8px 25px rgba(0,0,0,0.1)",
+      fontWeight: 500,
+      letterSpacing: "1.2px",
+      fontFamily: "Roboto",
+    },
+    preview: {},
+    inputLabel: {
+      color: "var(--dropzone-font-color)",
+    },
   };
 
   return (
-    <Dropzone
-      onChangeStatus={handleChangeStatus}
-      onSubmit={handleSubmit}
-      accept={mediaType}
-      maxFiles={1}
-      multiple={false}
-      submitButtonDisabled={(files) => files.length > 1}
-      inputContent={inputContent}
-      PreviewComponent={loading && CustomBeatLoader} // Cannot pass props here!
-      disabled={loading}
-      styles={{
-        dropzone: {
-          overflow: "auto",
-          padding: "1.5rem",
-          backgroundColor: "var(--dropzone-bg-color)",
-        },
-        dropzoneReject: {
-          borderColor: "red",
-          backgroundColor: "#DAA",
-        },
-        submitButton: {
-          borderRadius: "45px",
-          color: "var(--white-color)",
-          boxShadow: "0px 8px 25px rgba(0,0,0,0.1)",
-          fontWeight: 500,
-          letterSpacing: "1.2px",
-          fontFamily: "Roboto",
-        },
-        preview: {},
-        inputLabel: {
-          color: "var(--dropzone-font-color)",
-        },
-      }}
-    />
+    <div>
+      <Dropzone
+        onChangeStatus={handleChangeStatus}
+        onSubmit={handleSubmit}
+        accept={mediaType}
+        maxFiles={1}
+        multiple={false}
+        submitButtonDisabled={(files) => files.length > 1}
+        inputContent={inputContent}
+        PreviewComponent={loading && CustomBeatLoader} // Cannot pass props here!
+        disabled={loading}
+        styles={submitStyles}
+      />
+      <CustomDialog open={success} setOpen={setSuccess} />
+      <Snack
+        severity="error"
+        message={error} // Display the error if not empty
+        setMessage={setError}
+      />
+    </div>
   );
 };
 
