@@ -23,7 +23,7 @@ const Upload = () => {
   const successMessage =
     "Submitted! You will receive the result video in your email when it is ready. This should take about 5 minutes for a ~20s video. Please contact us at anytutor.official@gmail.com if you face any difficulties! :)";
   const errorMessage =
-    "Sorry, our services are currently not runnning. Please contact anytutor.official@gmail.com for assistance!";
+    "Sorry, our services are currently not running. Please contact anytutor.official@gmail.com for assistance!";
   const [uploadText, setUploadText] = useState("");
   const [firstUpload, setFirstUpload] = useState(false);
   const [destType, setDestType] = useState("video/mp4");
@@ -78,8 +78,8 @@ const Upload = () => {
           <UploaderSrc
             srcType={srcType}
             setSrcType={setSrcType}
-            secondUpload={secondUpload}
-            setSecondUpload={setSecondUpload}
+            firstUpload={firstUpload}
+            setFirstUpload={setFirstUpload}
             setUploadText={setUploadText}
             lessonVid={lessonVid}
             voice={voice}
@@ -89,12 +89,12 @@ const Upload = () => {
         <UploaderDest
           destType={destType}
           setDestType={setDestType}
-          firstUpload={firstUpload}
-          setFirstUpload={setFirstUpload}
+          secondUpload={secondUpload}
+          setSecondUpload={setSecondUpload}
         />
         <form onSubmit={handleSubmit(submit)} className="uploads">
           {/* If both uploads have been made enable submit button */}
-          {firstUpload && (secondUpload || uploadText) && !submitting ? (
+          {(firstUpload || uploadText) && secondUpload && !submitting ? (
             <CustomButton text="Submit" className="btn-submit" />
           ) : (
             <DisabledButton text="Submit" className="btn-submit" />

@@ -10,8 +10,8 @@ import Uploader from "./Uploader";
 const UploaderDest = ({
   destType,
   setDestType,
-  firstUpload,
-  setFirstUpload,
+  secondUpload,
+  setSecondUpload,
 }) => {
   const handleDestChange = (event) => {
     setDestType(event.target.value);
@@ -42,8 +42,8 @@ const UploaderDest = ({
         <Uploader
           mediaType={destType}
           lessonVid={false} // Will always be false for destination
-          nthUpload={firstUpload}
-          setNthUpload={setFirstUpload}
+          nthUpload={secondUpload}
+          setNthUpload={setSecondUpload}
           successMessage="Destination file uploaded!"
         />
 

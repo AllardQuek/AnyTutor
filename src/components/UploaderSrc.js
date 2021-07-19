@@ -14,8 +14,8 @@ import Uploader from "./Uploader";
 const UploaderSrc = ({
   srcType,
   setSrcType,
-  secondUpload,
-  setSecondUpload,
+  firstUpload,
+  setFirstUpload,
   setUploadText,
   lessonVid,
   voice,
@@ -26,7 +26,7 @@ const UploaderSrc = ({
   };
 
   const handleSrcChange = (event) => {
-    setSecondUpload(false); // If user changed media type, reset second upload
+    setFirstUpload(false); // If user changed media type, reset second upload
     setUploadText(""); // and reset the text field
     setSrcType(event.target.value);
   };
@@ -64,8 +64,8 @@ const UploaderSrc = ({
           <Uploader
             mediaType="video/mp4"
             uploadLesson={lessonVid} // true
-            nthUpload={secondUpload}
-            setNthUpload={setSecondUpload}
+            nthUpload={firstUpload}
+            setNthUpload={setFirstUpload}
             successMessage="Source file uploaded!"
           />
         </div>
@@ -75,8 +75,8 @@ const UploaderSrc = ({
           <Uploader
             mediaType="audio/*"
             uploadLesson={lessonVid} // true
-            nthUpload={secondUpload}
-            setNthUpload={setSecondUpload}
+            nthUpload={firstUpload}
+            setNthUpload={setFirstUpload}
             successMessage="Source file uploaded!"
           />
         </div>
