@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="dzu-dropzone"
+  onDragEnter={[Function]}
+  onDragLeave={[Function]}
+  onDragOver={[Function]}
+  onDrop={[Function]}
+  style={
+    Object {
+      "backgroundColor": "var(--dropzone-bg-color)",
+      "overflow": "auto",
+      "padding": "1.5rem",
+    }
+  }
+>
+  <label
+    className="dzu-inputLabel"
+    style={
+      Object {
+        "color": "var(--dropzone-font-color)",
+      }
+    }
+  >
+    Drop 1 Audio File of Speech
+    <input
+      accept="audio/mp3"
+      className="dzu-input"
+      disabled={false}
+      multiple={false}
+      onChange={[Function]}
+      type="file"
+    />
+  </label>
+</div>
+`;
