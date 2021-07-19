@@ -11,7 +11,7 @@ const Uploader = ({ mediaType, uploadLesson, setNthUpload }) => {
   const axios = require("axios").default;
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [success, setSuccess] = useState(false);
 
   // * Initialize variables to empty string
   let [url, inputContent, contentType] = "";
@@ -72,7 +72,7 @@ const Uploader = ({ mediaType, uploadLesson, setNthUpload }) => {
       body: f["file"], // ! WATCH OUT !
     })
       .then(() => {
-        setSuccess("File successfully uploaded!");
+        setSuccess(true);
         setNthUpload(true); // Keep track which files have been uploaded
       })
       .catch((err) => {
