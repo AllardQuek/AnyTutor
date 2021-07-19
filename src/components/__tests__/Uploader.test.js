@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom"; // Adding here to remove linting errors
 import Dropzone from "react-dropzone-uploader";
 import renderer from "react-test-renderer";
-import Uploader from "../Uploader";
 
 it("renders correctly", () => {
   const tree = renderer
