@@ -4,14 +4,14 @@ const Disclaimers = () => {
   return (
     <DisclaimersStyled>
       <div className="disclaimers">
-        <h3>Disclaimers:</h3>
+        <h3>Disclaimers</h3>
         <p>
           For the process to work, we will need to turn on our backend services.
           However, this costs real money and so to cut costs we will turn on the
           services <strong>only while we are developing</strong>. If you'd like
           to test the features out, please reach out to us at{" "}
-          <a href="mailto:anytutor.official@gmail.com">
-            anytutor.offical@gmail.com
+          <a data-testid="email" href="mailto:anytutor.official@gmail.com">
+            anytutor.official@gmail.com
           </a>{" "}
           to make arrangements with us. Thank you!
         </p>

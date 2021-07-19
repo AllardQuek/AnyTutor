@@ -28,9 +28,6 @@ const CustomDialog = ({ open, setOpen }) => {
           className="btn-continue"
           onClick={handleClose}
         />
-        {/* <Button onClick={handleClose} color="primary" autoFocus>
-          Continue
-        </Button> */}
       </DialogActions>
     </Dialog>
   );

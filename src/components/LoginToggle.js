@@ -1,20 +1,22 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const LoginToggle = ({ hasAccount, toggleLogin }) => {
+const LoginToggle = ({ hasAccount, setHasAccount }) => {
   const text = hasAccount
     ? "Don't have an account? "
     : "Already have an account? ";
   const callToAction = hasAccount ? "Sign up" : "Log in";
 
+  const toggleLogin = () => {
+    setHasAccount(!hasAccount);
+  };
+
   return (
     <ToggleStyled>
-      {hasAccount ? (
+      {hasAccount && (
         <div className="link pw">
           <Link to="/reset-password">Forgot password?</Link>
         </div>
-      ) : (
-        <></>
       )}
       <p>
         {text}

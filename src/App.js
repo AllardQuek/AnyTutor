@@ -11,9 +11,9 @@ import PublicRoute from "./components/PublicRoute";
 import Toggle from "./components/Toggle";
 import { AuthProvider } from "./contexts/AuthContext";
 import About from "./pages/About";
-import ForgotPassword from "./pages/ForgotPassword";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import ResetPassword from "./pages/ResetPassword";
 import Upload from "./pages/Upload";
 import BackgroundStyle from "./styles/BackgroundStyle";
 import darkHomeVid from "./videos/darkHomeVid.mp4";
@@ -31,7 +31,7 @@ function App() {
 
   const themeToggler = () => {
     if (theme === "light-theme") {
-      setMode("dark-theme"); // setTheme('dark-theme');
+      setMode("dark-theme");
     } else {
       setMode("light-theme");
     }
@@ -86,10 +86,7 @@ function App() {
                 <PublicRoute path="/about" component={About} />
                 <PublicRoute path="/login" component={Login} isLogin={true} />
                 <PrivateRoute path="/upload" component={Upload} />
-                <PublicRoute
-                  path="/reset-password"
-                  component={ForgotPassword}
-                />
+                <PublicRoute path="/reset-password" component={ResetPassword} />
               </Switch>
             </AuthProvider>
           </Router>

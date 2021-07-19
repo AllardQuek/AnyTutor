@@ -76,10 +76,6 @@ const Login = (props) => {
     }
   };
 
-  const toggleLogin = () => {
-    setHasAccount(!hasAccount);
-  };
-
   return (
     <LoginStyled>
       <BackgroundStyle />
@@ -146,7 +142,7 @@ const Login = (props) => {
           />
         )}
 
-        <LoginToggle hasAccount={hasAccount} toggleLogin={toggleLogin} />
+        <LoginToggle hasAccount={hasAccount} setHasAccount={setHasAccount} />
       </form>
     </LoginStyled>
   );
