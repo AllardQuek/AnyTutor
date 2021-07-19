@@ -135,18 +135,18 @@ const AppStyled = styled.main`
   }
 
   // Styles for all radio buttons in child components
-  .MuiIconButton-label,
-  .form-label {
-    color: var(--font-light-color);
-  }
-  .MuiFormLabel-root.Mui-focused {
+  // Just the numbered headers for the radio buttons
+  .MuiFormLabel-root.form-label {
     color: var(--font-light-color);
   }
 
-  // Radio button color when selected
-  .PrivateRadioButtonIcon-root-5.PrivateRadioButtonIcon-checked-7,
-  .PrivateRadioButtonIcon-root-7.PrivateRadioButtonIcon-checked-9,
-  .jss5.jss7 {
+  // Default radio button outline color
+  .MuiButtonBase-root {
+    color: var(--font-light-color);
+  }
+
+  // Radio button checked color
+  .MuiRadio-colorSecondary.Mui-checked {
     color: var(--success-color);
   }
 `;
