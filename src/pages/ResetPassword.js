@@ -11,7 +11,7 @@ import Snack from "../components/Snack";
 import { useAuth } from "../contexts/AuthContext";
 import BackgroundStyle from "../styles/BackgroundStyle";
 
-const ForgotPassword = () => {
+const ResetPassword = () => {
   const { resetPassword } = useAuth();
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -92,4 +92,4 @@ const LoginStyled = styled.div`
   }
 `;
 
-export default ForgotPassword;
+export default ResetPassword;
