@@ -52,6 +52,12 @@ const Uploader = ({ mediaType, uploadLesson, setNthUpload }) => {
         file.remove();
         return;
       }
+      console.log(file.meta.size);
+
+      // if file size greater than 10mb
+      if (file.meta.size > 10485760) {
+        setError("Sorry, maximum file size is 10MB!");
+      }
     }
   };
 
