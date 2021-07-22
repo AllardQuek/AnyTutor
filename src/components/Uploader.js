@@ -27,8 +27,8 @@ const Uploader = ({ mediaType, uploadLesson, setNthUpload }) => {
       ? "https://h5dh9a36jl.execute-api.ap-southeast-1.amazonaws.com/default/getLessonPresignedURL"
       : "https://5n58vjjzdd.execute-api.ap-southeast-1.amazonaws.com/default/getVidPresignedURL";
     inputContent = uploadLesson
-      ? "Drop 1 Lesson Video"
-      : "Drop 1 Video File of a Face";
+      ? "Drop 1 Lesson Video (.mp4)"
+      : "Drop 1 Video File (.mp4) of a Face";
     contentType = "video/mp4";
   } else {
     url =

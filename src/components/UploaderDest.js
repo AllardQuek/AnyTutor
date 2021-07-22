@@ -50,7 +50,7 @@ const UploaderDest = ({
         {destType === "video/mp4" && (
           <div className="video-requirements">
             <p>Video must have a face in every frame!</p>
-            <p>We recommend a short video, about 10s long will do! :)</p>
+            <p>We recommend a short video, less than 10s will do! :)</p>
           </div>
         )}
       </div>
