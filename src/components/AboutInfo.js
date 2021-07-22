@@ -25,7 +25,7 @@ const AboutInfo = () => {
           not intended to represent what the figures shown actually said nor
           their thoughts on the content presented. We remind users to respect
           others' privacy and will review any potentially malicious usage of our
-          platform.
+          platform. Thank you!
         </h4>
       </div>
     </AboutInfoStyled>
