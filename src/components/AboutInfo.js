@@ -10,8 +10,8 @@ const AboutInfo = () => {
         <FcIdea className="idea" />
         <h3>
           AnyTutor is an automation tool for generating more engaging lesson
-          videos for students by mapping and syncing a human face onto any
-          video.
+          videos for students by syncing lesson content to any image or video of
+          a human face.
         </h3>
         <h3 className="">Here's what you'll need.</h3>
         <h3 className="example">
