@@ -18,9 +18,6 @@ const UploadInfo = () => {
 
       <div className="additional-info">
         <p>
-          Max File Length: <strong>1 minute</strong>
-        </p>
-        <p>
           Max File Size: <strong>10MB</strong>
         </p>
       </div>

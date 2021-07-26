@@ -47,13 +47,6 @@ const Uploader = ({ mediaType, uploadLesson, setNthUpload }) => {
 
     // When status is done, alert the user if their file is longer than 1 minute
     if (status === "done") {
-      if (file.meta.duration > 60) {
-        setError("Sorry, maximum file duration is 1 minute!");
-        file.remove();
-        return;
-      }
-      console.log(file.meta.size);
-
       // if file size greater than 10mb
       if (file.meta.size > 10485760) {
         setError("Sorry, maximum file size is 10MB!");
