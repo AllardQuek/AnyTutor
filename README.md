@@ -1,5 +1,8 @@
-# AnyTutor
+<div align="center">
+  <img src="/readme/AnyTutor.png"/>
+</div>
 
+# AnyTutor
 ![GitHub last commit](https://img.shields.io/github/last-commit/AllardQuek/AnyTutor?color=blue) 
 ![Website](https://img.shields.io/website?down_color=lightgrey&down_message=offline&up_color=darkgreen&up_message=online&url=https%3A%2F%2Fany-tutor-allardquek.vercel.app%2F)
 ![GitHub repo size](https://img.shields.io/github/repo-size/AllardQuek/AnyTutor?color=orange)
